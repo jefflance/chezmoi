@@ -3,7 +3,7 @@
 ZIMDIR=${HOME}/.zim
 
 echo "Installing Zim Framework"
-$(which zsh) ${ZIMDIR}/zimfw.zsh install
+$(which zsh) -c "source ${ZIMDIR}/zimfw.zsh init -q"
 
 exit 0
 
