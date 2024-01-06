@@ -1,4 +1,4 @@
-[".zim/zimfw.sh"]
+[".zim/zimfw.zsh"]
     type = "file"
     url = "https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh"
     exact = true
