@@ -9,7 +9,7 @@ packages=(
   neovim
 )
 
-{{ if (eq .chezmoi.osRelease.id "manjaro") -}}
+{{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
   echo -e "\033[0;32m>>>>> Begin Manjaro Linux packages installation <<<<<\033[0m"
 
   ## Update system
