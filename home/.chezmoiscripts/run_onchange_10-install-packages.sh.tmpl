@@ -1,53 +1,51 @@
-{{- if (eq .chezmoi.os "linux") }}
-  #!/usr/bin/env bash
+#!/usr/bin/env bash
 
-  set -euxo pipefail
+set -euxo pipefail
 
-  packages=(
-    curl
-    wget
-    tmux
-    neovim
-  )
+packages=(
+  curl
+  wget
+  tmux
+  neovim
+)
 
-  {{ if (eq .chezmoi.osRelease.id "manjaro") -}}
-    echo -e "\033[0;32m>>>>> Begin Manjaro Linux packages installation <<<<<\033[0m"
+{{ if (eq .chezmoi.osRelease.id "manjaro") -}}
+  echo -e "\033[0;32m>>>>> Begin Manjaro Linux packages installation <<<<<\033[0m"
 
-    ## Update system
-    {{- if ne .chezmoi.username "root" }}
-      sudo pacman -Syu --noconfirm
-    {{- else }}
-      pacman -Syu --noconfirm
-    {{- end}}
+  ## Update system
+  {{- if ne .chezmoi.username "root" }}
+    sudo pacman -Syu --noconfirm
+  {{- else }}
+    pacman -Syu --noconfirm
+  {{- end}}
 
-    ## Install yay
-    if [ ! $(command -v yay) ]; then
-      echo "installing yay"
-    {{-   if ne .chezmoi.username "root" }}
-      sudo pacman -S --needed --noconfirm git base-devel
-    {{-   else}}
-      pacman -S --needed --noconfirm git base-devel
-    {{-   end }}
-      git clone https://aur.archlinux.org/yay.git /tmp/yay
-      cd /tmp/yay
-      makepkg -si --noconfirm
-      rm -rf /tmp/yay
+  ## Install yay
+  if [ ! $(command -v yay) ]; then
+    echo "installing yay"
+  {{-   if ne .chezmoi.username "root" }}
+    sudo pacman -S --needed --noconfirm git base-devel
+  {{-   else}}
+    pacman -S --needed --noconfirm git base-devel
+  {{-   end }}
+    git clone https://aur.archlinux.org/yay.git /tmp/yay
+    cd /tmp/yay
+    makepkg -si --noconfirm
+    rm -rf /tmp/yay
+  fi
+
+  ## Install packages
+  for package in ${packages[@]}; do
+    if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
+      echo "installing packages"
+
+      {{- if ne .chezmoi.username "root" }}
+        sudo yay -S --noconfirm $package
+      {{- else }}
+        yay -S --noconfirm $package
+      {{- end }}
     fi
+  done
 
-    ## Install packages
-    for package in ${packages[@]}; do
-      if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
-        echo "installing packages"
-
-        {{- if ne .chezmoi.username "root" }}
-          sudo yay -S --noconfirm $package
-        {{- else }}
-          yay -S --noconfirm $package
-        {{- end }}
-      fi
-    done
-
-    echo -e "\033[0;32m>>>>> Finish Manjaro Linux packages installation <<<<<\033[0m"
-  {{- end }}
-
+  echo -e "\033[0;32m>>>>> Finish Manjaro Linux packages installation <<<<<\033[0m"
 {{- end }}
+
