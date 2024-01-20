@@ -2,14 +2,28 @@
 
 set -euxo pipefail
 
+packages=(
+  neovim
+  python-pynvim
+  npm
+)
 
-if [ ! $(command -v nvim) ]; then
-  {{- if ne .chezmoi.username "root" }}
-    sudo yay -S --noconfirm neovim python-pynvim
-  {{- else }}
-    yay -S --noconfirm neovim python-pynvim
-  {{- end }}
-fi
+echo -e "\033[0;32m>>>>> Begin LVim installation <<<<<\033[0m"
+
+## Install packages
+for package in ${packages[@]}; do
+  if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
+    echo "installing packages"
+
+    {{- if ne .chezmoi.username "root" }}
+      sudo yay -S --noconfirm $package
+    {{- else }}
+      yay -S --noconfirm $package
+    {{- end }}
+  fi
+done
 
 
 LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
+
+echo -e "\033[0;32m>>>>> Finish LVim installation <<<<<\033[0m"
