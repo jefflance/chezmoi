@@ -1,0 +1,9 @@
+defaultIndent: "  "
+
+removeTrailingWhitespace:
+  beforeProcessing: 0
+  afterProcessing: 0
+
+modifyLineBreaks:
+  textWrapOptions:
+  columns: 100
