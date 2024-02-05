@@ -29,6 +29,11 @@ M.setup = function()
   require("lvim.lsp.manager").setup(
     "marksman", {
   })
+
+  require("lvim.lsp.manager").setup(
+    "golangci_lint_ls", {
+  })
+
 end
 
 return M

@@ -111,6 +111,9 @@ M.setup = function()
         })
       end
     },
+    -- {
+    --   'tpope/vim-dotenv',
+    -- },
     -- gitignore
     {
       'jefflance/vim-gitignore',

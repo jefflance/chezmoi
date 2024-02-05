@@ -93,6 +93,7 @@ require("user.whichkey").setup()
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "c",
+  "go",
   "java",
   "javascript",
   "json",
@@ -112,7 +113,7 @@ lvim.builtin.treesitter.ensure_installed = {
 
 lvim.builtin.treesitter.ignore_install = { "comment" }
 lvim.builtin.treesitter.highlight.enable = true
-lvim.builtin.treesitter.highlight.disable( "latex" )
+lvim.builtin.treesitter.highlight.disable( "latex", "zsh" )
 lvim.builtin.treesitter.rainbow.enable = true
 
 
