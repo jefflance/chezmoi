@@ -4,3 +4,28 @@
     exact = true
     refreshPeriod = "168h"
 
+[".config/ranger/plugins/ranger_udisk_menu"]
+    type = "git-repo"
+    url = "https://github.com/SL-RU/ranger_udisk_menu.git"
+    refreshPeriod = "168h"
+
+[".config/ranger/plugins/devicons2"]
+    type = "git-repo"
+    url = "https://github.com/cdump/ranger-devicons2.git"
+    refreshPeriod = "168h"
+
+[".config/ranger/plugins/ranger-archives"]
+    type = "git-repo"
+    url = "https://github.com/maximtrp/ranger-archives.git"
+    refreshPeriod = "168h"
+
+[".config/ranger/plugins/ranger_tmux"]
+    type = "git-repo"
+    url = "https://github.com/joouha/ranger_tmux.git"
+    refreshPeriod = "168h"
+
+[".config/ranger/plugins/oscyank"]
+    type = "git-repo"
+    url = "https://github.com/laggardkernel/ranger-oscyank.git"
+    refreshPeriod = "168h"
+
