@@ -28,7 +28,7 @@ M.setup = function()
   lvim.keys.normal_mode["<C-r>"] = "<CMD>redo<CR>"
   lvim.keys.normal_mode["<C-[>"] = ":<<CR>"
   lvim.keys.normal_mode["<C-]>"] = ":><CR>"
-  lvim.keys.normal_mode["<C-t>"] = ":FloatermToggle! term"
+  lvim.keys.normal_mode["<C-t>"] = ":FloatermNew --name=term --width=0.8"
 
 end
 
