@@ -111,9 +111,10 @@ M.setup = function()
         })
       end
     },
-    -- {
-    --   'tpope/vim-dotenv',
-    -- },
+    -- floaterm
+    {
+      'voldikss/vim-floaterm',
+    },
     -- gitignore
     {
       'jefflance/vim-gitignore',
