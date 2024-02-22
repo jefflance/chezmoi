@@ -5,10 +5,11 @@ set -euxo pipefail
 packages=(
   curl
   wget
-  tmux
-  zsh
   direnv
   starship
+  tmux
+  unzip
+  zsh
 )
 
 {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
