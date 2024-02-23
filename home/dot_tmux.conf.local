@@ -1,0 +1,80 @@
+# File              : .tmux.conf.local
+# Author            : Jeff LANCE <email@jefflance.me>
+# Date              : 25.06.2021
+# Last Modified Date: 27.06.2021
+# Last Modified By  : Jeff LANCE <email@jefflance.me>
+
+# -- user customizations -------------------------------------------------------
+# this is the place to override or undo settings
+
+# increase history size
+set -g history-limit 10000
+
+# start with mouse mode enabled
+set -g mouse on
+
+# replace C-b by C-Space instead of using both prefixes
+set -gu prefix2
+set -g prefix C-Space
+bind C-Space send-prefix
+
+# colored underscores
+set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'
+
+# true-color support
+set -as terminal-overrides ',alacritty:RGB'
+
+# keybindings correction for home and end keys as i set the terminal env for tmux to alacritty
+bind-key -n Home send Escape "OH"
+bind-key -n End send Escape "OF"
+
+# move status line to top
+# set -g status-right '%Y-%m-%d %H:%M #{tmux_mode_indicator}'
+
+# -- plugins configuration -----------------------------------------------------
+#
+set-environment -g TMUX_PLUGIN_MANAGER_PATH '~/.tmux/plugins'
+
+set -g @tpm_plugins '             \
+  tmux-plugins/tpm                \
+  tmux-plugins/tmux-resurrect     \
+  tmux-plugins/tmux-continuum     \
+  tmux-plugins/tmux-sidebar       \
+  tmux-plugins/tmux-yank          \
+  odedlaz/tmux-onedark-theme      \
+  dracula/tmux                    \
+  jaclu/tmux-menus                \
+  MunifTanjim/tmux-mode-indicator \
+  kenos1/tmux-cht-sh              \
+'
+
+# set -g @onedark_widgets "#(date +%s)"
+
+set -g @dracula-refresh-rate 5
+set -g @dracula-show-fahrenheit false
+# set -g @dracula-fixed-location "Livry-Gargan"
+# set -g @dracula-day-month true
+set -g @dracula-military-time false
+set -g @dracula-show-timezone true
+set -g @dracula-time-format "%F %R"
+set -g @dracula-show-network false
+set -g @dracula-show-powerline true
+set -g @dracula-show-battery false
+set -g @dracula-show-left-icon session
+set -g status-right 'Continuum status: #{continuum_status}'
+set -g @continuum-boot 'on'
+
+run '~/.tmux/plugins/tpm/tpm'
+
+
+# -- startup customizations -----------------------------------------------------
+#
+
+# make tmux works with ssh-agent
+set -g update-environment "DISPLAY SSH_ASKPASS \
+                           SSH_AGENT_PID \
+                           SSH_CONNECTION WINDOWID XAUTHORITY"
+setenv -g SSH_AUTH_SOCK "/run/user/1000/keyring/ssh"
+
+# start with a new session
+new-session -s jeff
