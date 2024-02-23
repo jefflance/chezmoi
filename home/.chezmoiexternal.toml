@@ -34,3 +34,9 @@
     url = "https://github.com/jchook/ranger-zoxide.git"
     refreshPeriod = "168h"
 
+[".tmux/plugins/tpm"]
+    type = "git-repo"
+    url = "https://github.com/tmux-plugins/tpm.git"
+    refreshPeriod = "168h"
+
+
