@@ -34,7 +34,7 @@ M.setup = function()
   }
 
   -- remap neo-tree shortcut to rnvimr
-  lvim.builtin.which_key.mappings["e"] = { "<CMD>RnvimrToggle<CR>", "File explorer" }
+  -- lvim.builtin.which_key.mappings["e"] = { "<CMD>RnvimrToggle<CR>", "File explorer" }
 
   -- remap dashboard
   lvim.builtin.which_key.mappings["d"] = lvim.builtin.which_key.mappings[";"]
@@ -99,6 +99,8 @@ M.setup = function()
   lvim.builtin.which_key.mappings["x"] = { "<CMD>w! <BAR> q!<CR>", "Save and quit" }
 
   lvim.builtin.which_key.mappings[";"] = {}
+  -- lvim.builtin.which_key.mappings["e"] = { ":lua require('user.functions').xplr_toggle()<CR>", "File manager" }
+  lvim.builtin.which_key.mappings["e"] = { ":RnvimrToggle<CR>", "File manager" }
   lvim.builtin.terminal.open_mapping = "<C-t>"
 
 end
