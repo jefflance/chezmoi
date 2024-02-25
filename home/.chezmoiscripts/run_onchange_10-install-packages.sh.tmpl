@@ -11,13 +11,14 @@ packages=(
   trash-cli
   unzip
   wget
-  xplr
   zip
   zoxide
   zsh
 )
 
 {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
+
+  {{- /* we're on Arch based system */ -}}
   echo -e "\033[0;32m>>>>> Begin Arch/Manjaro Linux packages installation <<<<<\033[0m"
 
   ## Update system
@@ -55,5 +56,13 @@ packages=(
   done
 
   echo -e "\033[0;32m>>>>> Finish Arch/Manjaro Linux packages installation <<<<<\033[0m"
+
+{{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
+
+  {{- /* we're on Debian based system */ -}}
+  echo -e "\033[0;32m>>>>> Begin Debian/Ubuntu Linux packages installation <<<<<\033[0m"
+
+  echo -e "\033[0;32m>>>>> Finish Debian/Ubuntu Linux packages installation <<<<<\033[0m"
+
 {{- end }}
 
