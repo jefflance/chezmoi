@@ -42,7 +42,7 @@ ZIMDIR=${HOME}/.zim
   {{- if ne .chezmoi.username "root" }}
     DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing zsh
   {{- else }}
-    DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing zsh
+    DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends --ignore-missing zsh
   {{- end }}
 
   curl -sS https://starship.rs/install.sh | sh

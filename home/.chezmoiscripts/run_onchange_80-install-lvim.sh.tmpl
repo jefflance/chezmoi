@@ -48,17 +48,11 @@ echo -e "\033[0;32m>>>>> Begin LVim installation <<<<<\033[0m"
   {{- end}}
 
   ## Install packages
-  for package in ${packages[@]}; do
-    if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
-      echo "installing packages"
-
-      {{- if ne .chezmoi.username "root" }}
-        DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
-      {{- else }}
-        DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
-      {{- end }}
-    fi
-  done
+  {{- if ne .chezmoi.username "root" }}
+    DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing neovim python3-pynvim npm
+  {{- else }}
+    DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends --ignore-missing neovim python3-pynvim npm
+  {{- end }}
 
 {{- end }}
 
