@@ -10,19 +10,57 @@ packages=(
 
 echo -e "\033[0;32m>>>>> Begin LVim installation <<<<<\033[0m"
 
-## Install packages
-for package in ${packages[@]}; do
-  if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
-    echo "installing packages"
+{{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
 
-    {{- if ne .chezmoi.username "root" }}
-      sudo yay -S --noconfirm $package
-    {{- else }}
-      yay -S --noconfirm $package
-    {{- end }}
-  fi
-done
+  {{- /* we're on Arch based system */ -}}
+  ## Update system
+  {{- if ne .chezmoi.username "root" }}
+    sudo pacman -Syu --noconfirm
+  {{- else }}
+    pacman -Syu --noconfirm
+  {{- end}}
 
+  ## Install packages
+  for package in ${packages[@]}; do
+    if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
+      echo "installing packages"
+
+      {{- if ne .chezmoi.username "root" }}
+        sudo yay -S --noconfirm $package
+      {{- else }}
+        yay -S --noconfirm $package
+      {{- end }}
+    fi
+  done
+
+{{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
+
+  {{- /* we're on Debian based system */ -}}
+  echo -e "\033[0;32m>>>>> Begin zsh installation <<<<<\033[0m"
+
+  ## Update system
+  {{- if ne .chezmoi.username "root" }}
+    DEBIAN_FRONTEND=noninteractive sudo -E apt update
+    DEBIAN_FRONTEND=noninteractive sudo -E apt upgrade --yes
+  {{- else }}
+    DEBIAN_FRONTEND=noninteractive apt update
+    DEBIAN_FRONTEND=noninteractive apt upgrade --yes
+  {{- end}}
+
+  ## Install packages
+  for package in ${packages[@]}; do
+    if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
+      echo "installing packages"
+
+      {{- if ne .chezmoi.username "root" }}
+        DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
+      {{- else }}
+        DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
+      {{- end }}
+    fi
+  done
+
+{{- end }}
 
 LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s 'https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh')
 
