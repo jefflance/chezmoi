@@ -17,13 +17,13 @@ set -euxo pipefail
   if [ ! $(command -v yay) ]; then
     echo "installing yay"
 
-    {{ range .packages_base.archlinux.pacman -}}
+    {{ range .packages_base.archlinux.pacman }}
       {{- if ne .chezmoi.username "root" }}
         sudo pacman -S --needed --noconfirm {{ . | quote }}
       {{- else}}
         pacman -S --needed --noconfirm {{ . | quote }}
       {{- end }}
-    {{ end -}}
+    {{ end }}
 
     git clone https://aur.archlinux.org/yay.git /tmp/yay
     cd /tmp/yay
