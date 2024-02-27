@@ -50,6 +50,7 @@ echo -e "\033[0;32m>>>>> Begin LVim installation <<<<<\033[0m"
     DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends --ignore-missing python3-pynvim npm
   {{- end }}
 
+  mist update
   mist install neovim
 
 {{- end }}
