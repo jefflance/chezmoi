@@ -76,7 +76,7 @@ packages=(
   {{- end}}
 
   ## Install packages
-  packages=${packages[@]//starship/makedeb}
+  packages=(${packages[@]//starship/makedeb})
 
   for package in ${packages[@]}; do
     echo "installing ${package}..."
