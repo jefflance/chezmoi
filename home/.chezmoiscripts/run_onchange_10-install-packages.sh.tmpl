@@ -44,9 +44,9 @@ packages=(
   ## Install packages
   for package in ${packages[@]}; do
     if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
-      echo "installing packages"
+      echo "installing ${package}..."
 
-      {{- if ne .chezmoi.username "root" }}
+    {{- if ne .chezmoi.username "root" }}
         sudo yay -S --noconfirm $package
       {{- else }}
         yay -S --noconfirm $package
@@ -68,7 +68,7 @@ packages=(
     DEBIAN_FRONTEND=noninteractive sudo -E apt update
     DEBIAN_FRONTEND=noninteractive sudo -E apt upgrade --yes
   {{- else }}
-    DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing gpg
+    DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends --ignore-missing gpg
     wget -qO - 'https://proget.makedeb.org/debian-feeds/makedeb.pub' | gpg --dearmor | tee /usr/share/keyrings/makedeb-archive-keyring.gpg 1> /dev/null
     echo 'deb [signed-by=/usr/share/keyrings/makedeb-archive-keyring.gpg arch=all] https://proget.makedeb.org/ makedeb main' | tee /etc/apt/sources.list.d/makedeb.list
     DEBIAN_FRONTEND=noninteractive apt update
@@ -76,16 +76,15 @@ packages=(
   {{- end}}
 
   ## Install packages
-  packages+=(makedeb)
-  packages=${packages[@]//starship}
+  packages=${packages[@]//starship/makedeb}
 
   for package in ${packages[@]}; do
-    echo "installing packages"
+    echo "installing ${package}..."
 
     {{- if ne .chezmoi.username "root" }}
       DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
     {{- else }}
-      DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
+      DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends --ignore-missing $package
     {{- end }}
   done
 
