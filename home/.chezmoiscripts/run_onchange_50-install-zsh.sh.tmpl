@@ -2,52 +2,52 @@
 
 ZIMDIR=${HOME}/.zim
 
-{{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
+## {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
 
-  {{- /* we're on Arch based system */ -}}
-  echo -e "\033[0;32m>>>>> Begin zsh installation <<<<<\033[0m"
+##   {{- /* we're on Arch based system */ -}}
+##   echo -e "\033[0;32m>>>>> Begin zsh installation <<<<<\033[0m"
 
-  ## Update system
-  {{- if ne .chezmoi.username "root" }}
-    sudo pacman -Syu --noconfirm
-  {{- else }}
-    pacman -Syu --noconfirm
-  {{- end}}
+##   ## Update system
+##   {{- if ne .chezmoi.username "root" }}
+##     sudo pacman -Syu --noconfirm
+##   {{- else }}
+##     pacman -Syu --noconfirm
+##   {{- end}}
 
-  ## Install packages
-  if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
-    {{- if ne .chezmoi.username "root" }}
-      sudo yay -S --noconfirm zsh starship
-    {{- else }}
-      yay -S --noconfirm zsh starship
-    {{- end }}
-  fi
+##   ## Install packages
+##   if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
+##     {{- if ne .chezmoi.username "root" }}
+##       sudo yay -S --noconfirm zsh starship
+##     {{- else }}
+##       yay -S --noconfirm zsh starship
+##     {{- end }}
+##   fi
 
 
-{{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
+## {{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
 
-  {{- /* we're on Debian based system */ -}}
-  echo -e "\033[0;32m>>>>> Begin zsh installation <<<<<\033[0m"
+##   {{- /* we're on Debian based system */ -}}
+##   echo -e "\033[0;32m>>>>> Begin zsh installation <<<<<\033[0m"
 
-  ## Update system
-  {{- if ne .chezmoi.username "root" }}
-    DEBIAN_FRONTEND=noninteractive sudo -E apt update
-    DEBIAN_FRONTEND=noninteractive sudo -E apt upgrade --yes
-  {{- else }}
-    DEBIAN_FRONTEND=noninteractive apt update
-    DEBIAN_FRONTEND=noninteractive apt upgrade --yes
-  {{- end}}
+##   ## Update system
+##   {{- if ne .chezmoi.username "root" }}
+##     DEBIAN_FRONTEND=noninteractive sudo -E apt update
+##     DEBIAN_FRONTEND=noninteractive sudo -E apt upgrade --yes
+##   {{- else }}
+##     DEBIAN_FRONTEND=noninteractive apt update
+##     DEBIAN_FRONTEND=noninteractive apt upgrade --yes
+##   {{- end}}
 
-  ## Install packages
-  {{- if ne .chezmoi.username "root" }}
-    DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing zsh
-  {{- else }}
-    DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends --ignore-missing zsh
-  {{- end }}
+##   ## Install packages
+##   {{- if ne .chezmoi.username "root" }}
+##     DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing zsh
+##   {{- else }}
+##     DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends --ignore-missing zsh
+##   {{- end }}
 
-  curl -sS https://starship.rs/install.sh | sh
+##   curl -sS https://starship.rs/install.sh | sh
 
-{{- end }}
+## {{- end }}
 
 
 echo -e "\033[0;32m>>>>> Installing Zim Framework <<<<<\033[0m"

@@ -6,17 +6,18 @@ packages=(
   curl
   direnv
   ranger
+  starship
   tmux
   trash-cli
   unzip
   wget
   zip
   zoxide
+  zsh
 )
 
 {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
 
-  {{- /* we're on Arch based system */ -}}
   echo -e "\033[0;32m>>>>> Begin Arch/Manjaro Linux packages installation <<<<<\033[0m"
 
   ## Update system
@@ -57,7 +58,6 @@ packages=(
 
 {{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
 
-  {{- /* we're on Debian based system */ -}}
   echo -e "\033[0;32m>>>>> Begin Debian/Ubuntu Linux packages installation <<<<<\033[0m"
 
   ## Update system
@@ -70,6 +70,9 @@ packages=(
   {{- end}}
 
   ## Install packages
+  packages+=(makedeb)
+  packages=${packages[@]//starship}
+
   for package in ${packages[@]}; do
     echo "installing packages"
 
@@ -79,6 +82,8 @@ packages=(
       DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
     {{- end }}
   done
+
+  curl -sS https://starship.rs/install.sh | sh
 
   echo -e "\033[0;32m>>>>> Finish Debian/Ubuntu Linux packages installation <<<<<\033[0m"
 
