@@ -3,9 +3,12 @@
 set -euxo pipefail
 
 packages=(
+  cargo
   neovim
-  python-pynvim
   npm
+  python-pip
+  python-pynvim
+  ripgrep
 )
 
 echo -e "\033[0;32m>>>>> Begin LVim installation <<<<<\033[0m"
@@ -44,13 +47,21 @@ echo -e "\033[0;32m>>>>> Begin LVim installation <<<<<\033[0m"
   {{- end}}
 
   ## Install packages
-  {{- if ne .chezmoi.username "root" }}
-    DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing python3-pynvim npm
-  {{- else }}
-    DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends --ignore-missing python3-pynvim npm
-  {{- end }}
+  packages=(${packages[@]//neovim/})
+  packages=(${packages[@]//cargo/})
+  packages=(${packages[@]//python/python3})
 
-  mist install neovim
+  for package in ${packages[@]}; do
+    echo "installing ${package}..."
+
+    {{- if ne .chezmoi.username "root" }}
+      DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
+    {{- else }}
+      DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends --ignore-missing $package
+    {{- end }}
+  done
+
+  mist install cargo neovim
 
 {{- end }}
 
