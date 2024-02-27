@@ -2,69 +2,34 @@
 
 set -euxo pipefail
 
-packages=(
-  cargo
-  go
-  neovim
-  npm
-  python-pip
-  python-pynvim
-  ripgrep
-)
-
 echo -e "\033[0;32m>>>>> Begin LVim installation <<<<<\033[0m"
 
 {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
 
-  ## Update system
-  {{- if ne .chezmoi.username "root" }}
-    sudo pacman -Syu --noconfirm
-  {{- else }}
-    pacman -Syu --noconfirm
-  {{- end}}
-
   ## Install packages
-  for package in ${packages[@]}; do
-    if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
-      echo "installing packages"
-
-      {{- if ne .chezmoi.username "root" }}
-        sudo yay -S --noconfirm $package
-      {{- else }}
-        yay -S --noconfirm $package
-      {{- end }}
-    fi
-  done
+  {{ range .packages_lvim.archlinux.yay -}}
+    echo "installing {{ . | quote }}..."
+    yay -S --needed --noconfirm {{ . | quote }}
+  {{ end -}}
 
 {{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
 
   export DEBIAN_FRONTEND=noninteractive
 
-  ## Update system
-  {{- if ne .chezmoi.username "root" }}
-    sudo -E apt update
-    sudo -E apt upgrade --yes
-  {{- else }}
-    apt update
-    apt upgrade --yes
-  {{- end}}
-
   ## Install packages
-  packages=(${packages[@]//go/golang})
-  packages=(${packages[@]//python/python3})
-  packages=(${packages[@]//neovim/})
-
-  for package in ${packages[@]}; do
-    echo "installing ${package}..."
-
+  {{ range .packages_base.debian.apt -}}
+    echo "installing {{ . | quote }}..."
     {{- if ne .chezmoi.username "root" }}
-      sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
-    {{- else }}
-      apt-get install --yes --no-install-recommends --ignore-missing $package
+      sudo -E apt-get install --yes --no-install-recommends --ignore-missing {{ . | quote }}
+    {{- else}}
+      apt-get install --yes --no-install-recommends --ignore-missing {{ . | quote }}
     {{- end }}
-  done
+  {{ end -}}
 
-  mist install neovim
+  {{ range .packages_base.debian.mist -}}
+    echo "installing {{ . | quote }}..."
+    apt-get install --yes --no-install-recommends --ignore-missing {{ . | quote }}
+  {{ end -}}
 
 {{- end }}
 

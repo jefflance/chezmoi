@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+set -euxo pipefail
+
+ZIMDIR=${HOME}/.zim
+
+echo -e "\033[0;32m>>>>> Begin Zsh installation <<<<<\033[0m"
+
+{{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
+
+  ## Install packages
+  {{ range .packages_shell.archlinux.yay -}}
+    echo "installing {{ . | quote }}..."
+    yay -S --needed --noconfirm {{ . | quote }}
+  {{ end -}}
+
+{{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
+
+  ## Install packages
+  {{ range .packages_shell.debian.mist -}}
+    {{- if ne .chezmoi.username "root" }}
+      sudo -E apt-get install --yes --no-install-recommends --ignore-missing {{ . | quote }}
+    {{- else}}
+      apt-get install --yes --no-install-recommends --ignore-missing
+    {{- end }}
+  {{ end -}}
+
+{{- end }}
+
+echo -e "\033[0;32m>>>>> Installing Zim Framework <<<<<\033[0m"
+$(which zsh) -c "source ${ZIMDIR}/zimfw.zsh init -q"
+echo -e "\033[0;32m>>>>> Finish Zim Framework <<<<<\033[0m"
+
+echo -e "\033[0;32m>>>>> Finish zsh installation <<<<<\033[0m"
+

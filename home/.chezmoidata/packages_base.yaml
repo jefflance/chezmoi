@@ -1,0 +1,28 @@
+packages_base:
+  archlinux:
+    pacman:
+      - 'git'
+      - 'base-devel'
+    yay:
+      - 'curl'
+      - 'direnv'
+      - 'ranger'
+      - 'tmux'
+      - 'trash-cli'
+      - 'unzip'
+      - 'wget'
+      - 'zip'
+      - 'zoxide'
+  debian:
+    apt:
+      - 'apt-utils'
+      - 'autoconf'
+      - 'automake'
+      - 'cmake'
+      - 'doxygen'
+      - 'libtool'
+      - 'libtool-bin'
+      - 'mist'
+      - 'ninja-build'
+      - 'pkg-config'
+      - 'makedeb'

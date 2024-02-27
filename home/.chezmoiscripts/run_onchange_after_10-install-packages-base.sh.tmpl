@@ -2,20 +2,6 @@
 
 set -euxo pipefail
 
-packages=(
-  curl
-  direnv
-  ranger
-  starship
-  tmux
-  trash-cli
-  unzip
-  wget
-  zip
-  zoxide
-  zsh
-)
-
 {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
 
   echo -e "\033[0;32m>>>>> Begin Arch/Manjaro Linux packages installation <<<<<\033[0m"
@@ -30,11 +16,15 @@ packages=(
   ## Install yay
   if [ ! $(command -v yay) ]; then
     echo "installing yay"
-    {{- if ne .chezmoi.username "root" }}
-      sudo pacman -S --needed --noconfirm git base-devel
-    {{- else}}
-      pacman -S --needed --noconfirm git base-devel
-    {{- end }}
+
+    {{ range .packages_base.archlinux.pacman -}}
+      {{- if ne .chezmoi.username "root" }}
+        sudo pacman -S --needed --noconfirm {{ . | quote }}
+      {{- else}}
+        pacman -S --needed --noconfirm {{ . | quote }}
+      {{- end }}
+    {{ end -}}
+
     git clone https://aur.archlinux.org/yay.git /tmp/yay
     cd /tmp/yay
     makepkg -si --noconfirm
@@ -42,17 +32,10 @@ packages=(
   fi
 
   ## Install packages
-  for package in ${packages[@]}; do
-    if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
-      echo "installing ${package}..."
-
-      {{- if ne .chezmoi.username "root" }}
-        sudo yay -S --noconfirm $package
-      {{- else }}
-        yay -S --noconfirm $package
-      {{- end }}
-    fi
-  done
+  {{ range .packages_base.archlinux.yay -}}
+    echo "installing {{ . | quote }}..."
+    yay -S --needed --noconfirm {{ . | quote }}
+  {{ end -}}
 
   echo -e "\033[0;32m>>>>> Finish Arch/Manjaro Linux packages installation <<<<<\033[0m"
 
@@ -86,33 +69,14 @@ packages=(
   mist update
 
   ## Install packages
-  packages=(${packages[@]//starship/makedeb})
-  packages+=(
-    apt-utils
-    autoconf
-    automake
-    cmake
-    doxygen
-    libtool
-    libtool-bin
-    mist
-    ninja-build
-    pkg-config
-  )
-
-  for package in ${packages[@]}; do
-    echo "installing ${package}..."
-
+  {{ range .packages_base.debian.apt -}}
+    echo "installing {{ . | quote }}..."
     {{- if ne .chezmoi.username "root" }}
-      sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
-    {{- else }}
-      apt-get install --yes --no-install-recommends --ignore-missing $package
+      sudo -E apt-get install --yes --no-install-recommends --ignore-missing {{ . | quote }}
+    {{- else}}
+      apt-get install --yes --no-install-recommends --ignore-missing {{ . | quote }}
     {{- end }}
-  done
-
-  ## curl -sS https://starship.rs/install.sh | sh
-
-  mist install starship-bin
+  {{ end -}}
 
   echo -e "\033[0;32m>>>>> Finish Debian/Ubuntu Linux packages installation <<<<<\033[0m"
 
