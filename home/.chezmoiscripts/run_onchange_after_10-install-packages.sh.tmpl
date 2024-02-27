@@ -30,11 +30,11 @@ packages=(
   ## Install yay
   if [ ! $(command -v yay) ]; then
     echo "installing yay"
-  {{-   if ne .chezmoi.username "root" }}
-    sudo pacman -S --needed --noconfirm git base-devel
-  {{-   else}}
-    pacman -S --needed --noconfirm git base-devel
-  {{-   end }}
+    {{- if ne .chezmoi.username "root" }}
+      sudo pacman -S --needed --noconfirm git base-devel
+    {{- else}}
+      pacman -S --needed --noconfirm git base-devel
+    {{- end }}
     git clone https://aur.archlinux.org/yay.git /tmp/yay
     cd /tmp/yay
     makepkg -si --noconfirm
@@ -46,7 +46,7 @@ packages=(
     if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
       echo "installing ${package}..."
 
-    {{- if ne .chezmoi.username "root" }}
+      {{- if ne .chezmoi.username "root" }}
         sudo yay -S --noconfirm $package
       {{- else }}
         yay -S --noconfirm $package
