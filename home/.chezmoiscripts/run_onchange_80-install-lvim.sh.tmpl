@@ -12,7 +12,6 @@ echo -e "\033[0;32m>>>>> Begin LVim installation <<<<<\033[0m"
 
 {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
 
-  {{- /* we're on Arch based system */ -}}
   ## Update system
   {{- if ne .chezmoi.username "root" }}
     sudo pacman -Syu --noconfirm
@@ -35,9 +34,6 @@ echo -e "\033[0;32m>>>>> Begin LVim installation <<<<<\033[0m"
 
 {{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
 
-  {{- /* we're on Debian based system */ -}}
-  echo -e "\033[0;32m>>>>> Begin zsh installation <<<<<\033[0m"
-
   ## Update system
   {{- if ne .chezmoi.username "root" }}
     DEBIAN_FRONTEND=noninteractive sudo -E apt update
@@ -53,6 +49,8 @@ echo -e "\033[0;32m>>>>> Begin LVim installation <<<<<\033[0m"
   {{- else }}
     DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends --ignore-missing python3-pynvim npm
   {{- end }}
+
+  mist install neovim
 
 {{- end }}
 
