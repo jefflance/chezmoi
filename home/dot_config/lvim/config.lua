@@ -39,8 +39,8 @@ lvim.builtin.luasnip.enable_autosnippets = true
 lvim.builtin.nvimtree.active = false
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
-lvim.builtin.terminal.active = false
-
+lvim.builtin.terminal.active = true
+-- lvim.builtin.terminal.execs[#lvim.builtin.terminal.execs+1] = { "xplr", ";e", "File manager", "float", nil }
 
 
 -- theme settings
