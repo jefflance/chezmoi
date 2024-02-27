@@ -60,25 +60,27 @@ packages=(
 
   echo -e "\033[0;32m>>>>> Begin Debian/Ubuntu Linux packages installation <<<<<\033[0m"
 
+  export DEBIAN_FRONTEND=noninteractive
+
   ## Add repositories and update system
   {{- if ne .chezmoi.username "root" }}
-    DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing lsb-release gpg
+    sudo -E apt-get install --yes --no-install-recommends --ignore-missing lsb-release gpg
     curl -fsSL 'https://proget.makedeb.org/debian-feeds/makedeb.pub' | gpg --dearmor | sudo tee /usr/share/keyrings/makedeb-archive-keyring.gpg 1> /dev/null
     echo 'deb [signed-by=/usr/share/keyrings/makedeb-archive-keyring.gpg arch=all] https://proget.makedeb.org/ makedeb main' | sudo tee /etc/apt/sources.list.d/makedeb.list
     curl -fsSL 'https://proget.makedeb.org/debian-feeds/prebuilt-mpr.pub' | gpg --dearmor | sudo tee /usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg 1> /dev/null
     echo "deb [arch=all,$(dpkg --print-architecture) signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | sudo tee /etc/apt/sources.list.d/prebuilt-mpr.list
-    DEBIAN_FRONTEND=noninteractive sudo -E apt update
-    DEBIAN_FRONTEND=noninteractive sudo -E apt upgrade --yes
-    DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing mist
+    sudo -E apt update
+    sudo -E apt upgrade --yes
+    sudo -E apt-get install --yes --no-install-recommends --ignore-missing mist
   {{- else }}
-    DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends --ignore-missing lsb-release gpg
+    apt-get install --yes --no-install-recommends --ignore-missing lsb-release gpg
     curl -fsSL 'https://proget.makedeb.org/debian-feeds/makedeb.pub' | gpg --dearmor | tee /usr/share/keyrings/makedeb-archive-keyring.gpg 1> /dev/null
     echo 'deb [signed-by=/usr/share/keyrings/makedeb-archive-keyring.gpg arch=all] https://proget.makedeb.org/ makedeb main' | tee /etc/apt/sources.list.d/makedeb.list
     curl -fsSL 'https://proget.makedeb.org/debian-feeds/prebuilt-mpr.pub' | gpg --dearmor | tee /usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg 1> /dev/null
     echo "deb [arch=all,$(dpkg --print-architecture) signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | tee /etc/apt/sources.list.d/prebuilt-mpr.list
-    DEBIAN_FRONTEND=noninteractive apt update
-    DEBIAN_FRONTEND=noninteractive apt upgrade --yes
-    DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends --ignore-missing mist
+    apt update
+    apt upgrade --yes
+    apt-get install --yes --no-install-recommends --ignore-missing mist
   {{- end}}
 
   mist update
@@ -101,9 +103,9 @@ packages=(
     echo "installing ${package}..."
 
     {{- if ne .chezmoi.username "root" }}
-      DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
+      sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
     {{- else }}
-      DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends --ignore-missing $package
+      apt-get install --yes --no-install-recommends --ignore-missing $package
     {{- end }}
   done
 
