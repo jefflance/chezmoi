@@ -62,11 +62,13 @@ packages=(
 
   ## Add repositories and update system
   {{- if ne .chezmoi.username "root" }}
+    DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing gpg
     wget -qO - 'https://proget.makedeb.org/debian-feeds/makedeb.pub' | gpg --dearmor | sudo tee /usr/share/keyrings/makedeb-archive-keyring.gpg 1> /dev/null
     echo 'deb [signed-by=/usr/share/keyrings/makedeb-archive-keyring.gpg arch=all] https://proget.makedeb.org/ makedeb main' | sudo tee /etc/apt/sources.list.d/makedeb.list
     DEBIAN_FRONTEND=noninteractive sudo -E apt update
     DEBIAN_FRONTEND=noninteractive sudo -E apt upgrade --yes
   {{- else }}
+    DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing gpg
     wget -qO - 'https://proget.makedeb.org/debian-feeds/makedeb.pub' | gpg --dearmor | tee /usr/share/keyrings/makedeb-archive-keyring.gpg 1> /dev/null
     echo 'deb [signed-by=/usr/share/keyrings/makedeb-archive-keyring.gpg arch=all] https://proget.makedeb.org/ makedeb main' | tee /etc/apt/sources.list.d/makedeb.list
     DEBIAN_FRONTEND=noninteractive apt update
