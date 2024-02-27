@@ -79,6 +79,8 @@ packages=(
     DEBIAN_FRONTEND=noninteractive apt upgrade --yes
   {{- end}}
 
+  mist update
+
   ## Install packages
   packages=(${packages[@]//starship/makedeb})
   packages+=(
