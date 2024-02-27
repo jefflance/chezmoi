@@ -49,9 +49,9 @@ echo -e "\033[0;32m>>>>> Begin LVim installation <<<<<\033[0m"
 
   ## Install packages
   {{- if ne .chezmoi.username "root" }}
-    DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing neovim python3-pynvim npm
+    DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing python3-pynvim npm
   {{- else }}
-    DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends --ignore-missing neovim python3-pynvim npm
+    DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends --ignore-missing python3-pynvim npm
   {{- end }}
 
 {{- end }}
