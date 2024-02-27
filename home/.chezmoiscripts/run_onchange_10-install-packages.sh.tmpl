@@ -81,7 +81,7 @@ packages=(
 
   ## Install packages
   packages=(${packages[@]//starship/makedeb})
-  packages+=(mist)
+  packages+=(mist cmake ninja-build pkg-config)
 
   for package in ${packages[@]}; do
     echo "installing ${package}..."
@@ -93,7 +93,11 @@ packages=(
     {{- end }}
   done
 
-  ## curl -sS https://starship.rs/install.sh | sh
+  {{- if ne .chezmoi.username "root" }}
+    DEBIAN_FRONTEND=noninteractive sudo -E mist install starship
+  {{- else }}
+    DEBIAN_FRONTEND=noninteractive mist install starship
+  {{- end }}
 
   echo -e "\033[0;32m>>>>> Finish Debian/Ubuntu Linux packages installation <<<<<\033[0m"
 
