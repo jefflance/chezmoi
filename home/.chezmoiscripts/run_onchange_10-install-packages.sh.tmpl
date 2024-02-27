@@ -65,18 +65,23 @@ packages=(
     DEBIAN_FRONTEND=noninteractive sudo -E apt-get install --yes --no-install-recommends --ignore-missing gpg
     curl -fsSL 'https://proget.makedeb.org/debian-feeds/makedeb.pub' | gpg --dearmor | sudo tee /usr/share/keyrings/makedeb-archive-keyring.gpg 1> /dev/null
     echo 'deb [signed-by=/usr/share/keyrings/makedeb-archive-keyring.gpg arch=all] https://proget.makedeb.org/ makedeb main' | sudo tee /etc/apt/sources.list.d/makedeb.list
+    curl -fsSL 'https://proget.makedeb.org/debian-feeds/prebuilt-mpr.pub' | gpg --dearmor | sudo tee /usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg 1> /dev/null
+    echo "deb [arch=all,$(dpkg --print-architecture) signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | sudo tee /etc/apt/sources.list.d/prebuilt-mpr.list
     DEBIAN_FRONTEND=noninteractive sudo -E apt update
     DEBIAN_FRONTEND=noninteractive sudo -E apt upgrade --yes
   {{- else }}
     DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends --ignore-missing gpg
     curl -fsSL 'https://proget.makedeb.org/debian-feeds/makedeb.pub' | gpg --dearmor | tee /usr/share/keyrings/makedeb-archive-keyring.gpg 1> /dev/null
     echo 'deb [signed-by=/usr/share/keyrings/makedeb-archive-keyring.gpg arch=all] https://proget.makedeb.org/ makedeb main' | tee /etc/apt/sources.list.d/makedeb.list
+    curl -fsSL 'https://proget.makedeb.org/debian-feeds/prebuilt-mpr.pub' | gpg --dearmor | tee /usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg 1> /dev/null
+    echo "deb [arch=all,$(dpkg --print-architecture) signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | tee /etc/apt/sources.list.d/prebuilt-mpr.list
     DEBIAN_FRONTEND=noninteractive apt update
     DEBIAN_FRONTEND=noninteractive apt upgrade --yes
   {{- end}}
 
   ## Install packages
   packages=(${packages[@]//starship/makedeb})
+  packages+=(mist)
 
   for package in ${packages[@]}; do
     echo "installing ${package}..."
@@ -88,7 +93,7 @@ packages=(
     {{- end }}
   done
 
-  curl -sS https://starship.rs/install.sh | sh
+  ## curl -sS https://starship.rs/install.sh | sh
 
   echo -e "\033[0;32m>>>>> Finish Debian/Ubuntu Linux packages installation <<<<<\033[0m"
 
