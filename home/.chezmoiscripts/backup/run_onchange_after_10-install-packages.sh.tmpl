@@ -1,24 +1,25 @@
 #!/usr/bin/env bash
 
-set -euxo pipefail
+# Load local library
+. ./common.lib
+
+
 
 packages=(
   curl
   direnv
   ranger
-  starship
   tmux
   trash-cli
   unzip
   wget
   zip
   zoxide
-  zsh
 )
 
 {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
 
-  echo -e "\033[0;32m>>>>> Begin Arch/Manjaro Linux packages installation <<<<<\033[0m"
+  info1 ">>>>> Begin Arch/Manjaro Linux packages installation <<<<<"
 
   ## Update system
   {{- if ne .chezmoi.username "root" }}
@@ -29,7 +30,7 @@ packages=(
 
   ## Install yay
   if [ ! $(command -v yay) ]; then
-    echo "installing yay"
+    info2 "installing yay"
     {{- if ne .chezmoi.username "root" }}
       sudo pacman -S --needed --noconfirm git base-devel
     {{- else}}
@@ -44,23 +45,18 @@ packages=(
   ## Install packages
   for package in ${packages[@]}; do
     if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
-      echo "installing ${package}..."
-
-      {{- if ne .chezmoi.username "root" }}
-        sudo yay -S --noconfirm $package
-      {{- else }}
-        yay -S --noconfirm $package
-      {{- end }}
+      info2 "installing ${package}..."
+      yay -S --noconfirm $package
     fi
   done
 
-  echo -e "\033[0;32m>>>>> Finish Arch/Manjaro Linux packages installation <<<<<\033[0m"
+  info1 ">>>>> Finish Arch/Manjaro Linux packages installation <<<<<"
 
 {{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
 
-  echo -e "\033[0;32m>>>>> Begin Debian/Ubuntu Linux packages installation <<<<<\033[0m"
+  info1 ">>>>> Begin Debian/Ubuntu Linux packages installation <<<<<"
 
-  export DEBIAN_FRONTEND=noninteractive
+  DEBIAN_FRONTEND=noninteractive
 
   ## Add repositories and update system
   {{- if ne .chezmoi.username "root" }}
@@ -95,13 +91,12 @@ packages=(
     doxygen
     libtool
     libtool-bin
-    mist
     ninja-build
     pkg-config
   )
 
   for package in ${packages[@]}; do
-    echo "installing ${package}..."
+    info2 "installing ${package}..."
 
     {{- if ne .chezmoi.username "root" }}
       sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
@@ -110,9 +105,7 @@ packages=(
     {{- end }}
   done
 
-  mist install starship-bin
-
-  echo -e "\033[0;32m>>>>> Finish Debian/Ubuntu Linux packages installation <<<<<\033[0m"
+  info1 ">>>>> Finish Debian/Ubuntu Linux packages installation <<<<<"
 
 {{- end }}
 

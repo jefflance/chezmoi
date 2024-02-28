@@ -1,10 +1,25 @@
 #!/usr/bin/env bash
 
-set -euxo pipefail
+# Load local library
+. ./common.lib
+
+
+
+packages=(
+  curl
+  direnv
+  ranger
+  tmux
+  trash-cli
+  unzip
+  wget
+  zip
+  zoxide
+)
 
 {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
 
-  echo -e "\033[0;32m>>>>> Begin Arch/Manjaro Linux packages installation <<<<<\033[0m"
+  info1 ">>>>> Begin Arch/Manjaro Linux packages installation <<<<<"
 
   ## Update system
   {{- if ne .chezmoi.username "root" }}
@@ -15,16 +30,12 @@ set -euxo pipefail
 
   ## Install yay
   if [ ! $(command -v yay) ]; then
-    echo "installing yay"
-
-    {{ range .packages_base.archlinux.pacman }}
-      {{- if ne .chezmoi.username "root" }}
-        sudo pacman -S --needed --noconfirm {{ . | quote }}
-      {{- else}}
-        pacman -S --needed --noconfirm {{ . | quote }}
-      {{- end }}
-    {{ end }}
-
+    info2 "installing yay"
+    {{- if ne .chezmoi.username "root" }}
+      sudo pacman -S --needed --noconfirm git base-devel
+    {{- else}}
+      pacman -S --needed --noconfirm git base-devel
+    {{- end }}
     git clone https://aur.archlinux.org/yay.git /tmp/yay
     cd /tmp/yay
     makepkg -si --noconfirm
@@ -32,18 +43,20 @@ set -euxo pipefail
   fi
 
   ## Install packages
-  {{ range .packages_base.archlinux.yay -}}
-    echo "installing {{ . | quote }}..."
-    yay -S --needed --noconfirm {{ . | quote }}
-  {{ end -}}
+  for package in ${packages[@]}; do
+    if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
+      info2 "installing ${package}..."
+      yay -S --noconfirm $package
+    fi
+  done
 
-  echo -e "\033[0;32m>>>>> Finish Arch/Manjaro Linux packages installation <<<<<\033[0m"
+  info1 ">>>>> Finish Arch/Manjaro Linux packages installation <<<<<"
 
 {{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
 
-  echo -e "\033[0;32m>>>>> Begin Debian/Ubuntu Linux packages installation <<<<<\033[0m"
+  info1 ">>>>> Begin Debian/Ubuntu Linux packages installation <<<<<"
 
-  export DEBIAN_FRONTEND=noninteractive
+  DEBIAN_FRONTEND=noninteractive
 
   ## Add repositories and update system
   {{- if ne .chezmoi.username "root" }}
@@ -69,16 +82,30 @@ set -euxo pipefail
   mist update
 
   ## Install packages
-  {{ range .packages_base.debian.apt -}}
-    echo "installing {{ . | quote }}..."
-    {{- if ne .chezmoi.username "root" }}
-      sudo -E apt-get install --yes --no-install-recommends --ignore-missing {{ . | quote }}
-    {{- else}}
-      apt-get install --yes --no-install-recommends --ignore-missing {{ . | quote }}
-    {{- end }}
-  {{ end -}}
+  packages=(${packages[@]//starship/makedeb})
+  packages+=(
+    apt-utils
+    autoconf
+    automake
+    cmake
+    doxygen
+    libtool
+    libtool-bin
+    ninja-build
+    pkg-config
+  )
 
-  echo -e "\033[0;32m>>>>> Finish Debian/Ubuntu Linux packages installation <<<<<\033[0m"
+  for package in ${packages[@]}; do
+    info2 "installing ${package}..."
+
+    {{- if ne .chezmoi.username "root" }}
+      sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
+    {{- else }}
+      apt-get install --yes --no-install-recommends --ignore-missing $package
+    {{- end }}
+  done
+
+  info1 ">>>>> Finish Debian/Ubuntu Linux packages installation <<<<<"
 
 {{- end }}
 

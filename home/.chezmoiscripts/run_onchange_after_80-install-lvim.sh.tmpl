@@ -1,38 +1,73 @@
 #!/usr/bin/env bash
 
-set -euxo pipefail
+# Load local library
+. ./common.lib
 
-echo -e "\033[0;32m>>>>> Begin LVim installation <<<<<\033[0m"
+
+
+packages=(
+  cargo
+  go
+  neovim
+  npm
+  python-pip
+  python-pynvim
+  ripgrep
+)
+
+
+
+info1 ">>>>> Begin LVim installation <<<<<"
 
 {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
 
+  ## Update system
+  yay -Syu --noconfirm
+
   ## Install packages
-  {{ range .packages_lvim.archlinux.yay -}}
-    echo "installing {{ . | quote }}..."
-    yay -S --needed --noconfirm {{ . | quote }}
-  {{ end -}}
+  for package in ${packages[@]}; do
+    if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
+      info2 "installing ${package}..."
+      yay -S --noconfirm $package
+    fi
+  done
 
 {{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
 
-  export DEBIAN_FRONTEND=noninteractive
+  DEBIAN_FRONTEND=noninteractive
+
+  ## Update system
+  {{- if ne .chezmoi.username "root" }}
+    sudo -E apt update
+    sudo -E apt upgrade --yes
+  {{- else }}
+    apt update
+    apt upgrade --yes
+  {{- end}}
 
   ## Install packages
-  {{ range .packages_base.debian.apt -}}
-    echo "installing {{ . | quote }}..."
-    {{- if ne .chezmoi.username "root" }}
-      sudo -E apt-get install --yes --no-install-recommends --ignore-missing {{ . | quote }}
-    {{- else}}
-      apt-get install --yes --no-install-recommends --ignore-missing {{ . | quote }}
-    {{- end }}
-  {{ end -}}
+  packages=(${packages[@]//go/golang})
+  packages=(${packages[@]//python/python3})
+  packages=(${packages[@]//neovim/})
 
-  {{ range .packages_base.debian.mist -}}
-    echo "installing {{ . | quote }}..."
-    apt-get install --yes --no-install-recommends --ignore-missing {{ . | quote }}
-  {{ end -}}
+  for package in ${packages[@]}; do
+    info2 "installing ${package}..."
+
+    {{- if ne .chezmoi.username "root" }}
+      sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
+    {{- else }}
+      apt-get install --yes --no-install-recommends --ignore-missing $package
+    {{- end }}
+  done
+
+  info2 "installing neovim..."
+  mist install neovim
 
 {{- end }}
 
+info2 "installing lvim..."
 LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s 'https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh')
 
-echo -e "\033[0;32m>>>>> Finish LVim installation <<<<<\033[0m"
+info1 ">>>>> Finish LVim installation <<<<<"
+
+
