@@ -42,7 +42,7 @@ log "Begin LVim installation"
 
 {{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
 
-  DEBIAN_FRONTEND=noninteractive
+  export DEBIAN_FRONTEND=noninteractive
 
   ## Update system
   inf "updating system..."

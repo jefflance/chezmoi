@@ -64,7 +64,7 @@ packages=(
 
   log "Begin Debian/Ubuntu Linux packages installation"
 
-  DEBIAN_FRONTEND=noninteractive
+  export DEBIAN_FRONTEND=noninteractive
 
   ## Add repositories and update system
   inf "updating system..."
