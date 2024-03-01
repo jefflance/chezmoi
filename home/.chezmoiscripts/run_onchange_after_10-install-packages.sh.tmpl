@@ -92,17 +92,17 @@ packages=(
 
   ## Install packages
   packages=(${packages[@]//starship/makedeb})
-  ## packages+=(
-  ##   apt-utils
-  ##   autoconf
-  ##   automake
-  ##   cmake
-  ##   doxygen
-  ##   libtool
-  ##   libtool-bin
-  ##   ninja-build
-  ##   pkg-config
-  ## )
+  packages+=(
+    apt-utils
+    autoconf
+    automake
+    cmake
+    doxygen
+    libtool
+    libtool-bin
+    ninja-build
+    pkg-config
+  )
 
   for package in ${packages[@]}; do
     inf "installing ${package}..."
