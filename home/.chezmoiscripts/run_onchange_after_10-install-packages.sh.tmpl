@@ -76,7 +76,7 @@ packages=(
     echo "deb [arch=all,$(dpkg --print-architecture) signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | sudo tee /etc/apt/sources.list.d/prebuilt-mpr.list
     sudo -E apt update -qq
     sudo -E apt upgrade --yes -qq
-    sudo -E apt-get install --yes --no-install-recommends --ignore-missing -qq mist
+    sudo -E apt-get install --yes --no-install-recommends --ignore-missing --fix-broken -qq mist
   {{- else }}
     apt-get install --yes --no-install-recommends --ignore-missing -qq lsb-release gpg
     curl -fsSL 'https://proget.makedeb.org/debian-feeds/makedeb.pub' | gpg --dearmor | tee /usr/share/keyrings/makedeb-archive-keyring.gpg 1> /dev/null
@@ -85,32 +85,32 @@ packages=(
     echo "deb [arch=all,$(dpkg --print-architecture) signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | tee /etc/apt/sources.list.d/prebuilt-mpr.list
     apt update -qq
     apt upgrade --yes -qq
-    apt-get install --yes --no-install-recommends --ignore-missing -qq mist
+    apt-get install --yes --no-install-recommends --ignore-missing --fix-broken -qq mist
   {{- end}}
 
   mist update
 
   ## Install packages
   packages=(${packages[@]//starship/makedeb})
-  packages+=(
-    apt-utils
-    autoconf
-    automake
-    cmake
-    doxygen
-    libtool
-    libtool-bin
-    ninja-build
-    pkg-config
-  )
+  ## packages+=(
+  ##   apt-utils
+  ##   autoconf
+  ##   automake
+  ##   cmake
+  ##   doxygen
+  ##   libtool
+  ##   libtool-bin
+  ##   ninja-build
+  ##   pkg-config
+  ## )
 
   for package in ${packages[@]}; do
     inf "installing ${package}..."
 
     {{- if ne .chezmoi.username "root" }}
-      sudo -E apt-get install --yes --no-install-recommends --ignore-missing -qq $package
+      sudo -E apt-get install --yes --no-install-recommends --ignore-missing --fix-broken -qq $package
     {{- else }}
-      apt-get install --yes --no-install-recommends --ignore-missing -qq $package
+      apt-get install --yes --no-install-recommends --ignore-missing --fix-broken -qq $package
     {{- end }}
   done
 

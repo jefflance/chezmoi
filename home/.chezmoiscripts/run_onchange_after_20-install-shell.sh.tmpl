@@ -59,9 +59,9 @@ log "Begin Zsh installation"
     inf "installing ${package}..."
 
     {{- if ne .chezmoi.username "root" }}
-      sudo -E apt-get install --yes --no-install-recommends --ignore-missing -qq $package
+      sudo -E apt-get install --yes --no-install-recommends --ignore-missing --fix-broken -qq $package
     {{- else }}
-      apt-get install --yes --no-install-recommends --ignore-missing -qq $package
+      apt-get install --yes --no-install-recommends --ignore-missing --fix-broken -qq $package
     {{- end }}
   done
 

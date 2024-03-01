@@ -1,7 +1,6 @@
-[".zim/zimfw.zsh"]
-    type = "file"
-    url = "https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh"
-    exact = true
+[".asdf"]
+    type = "git-repo"
+    url = "https://github.com/asdf-vm/asdf.git"
     refreshPeriod = "168h"
 
 [".config/ranger/plugins/ranger_udisk_menu"]
@@ -38,5 +37,12 @@
     type = "git-repo"
     url = "https://github.com/tmux-plugins/tpm.git"
     refreshPeriod = "168h"
+
+[".zim/zimfw.zsh"]
+    type = "file"
+    url = "https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh"
+    exact = true
+    refreshPeriod = "168h"
+
 
 
