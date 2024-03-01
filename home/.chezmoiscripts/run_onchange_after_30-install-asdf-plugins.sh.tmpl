@@ -34,6 +34,7 @@ for plugin in ${!plugins[@]}; do
   inf "installing ${plugin}..."
 
   asdf plugin add ${plugin} ${plugins[$plugin]}
+  asdf install ${plugin} latest
   asdf global ${plugin} latest
 done
 
