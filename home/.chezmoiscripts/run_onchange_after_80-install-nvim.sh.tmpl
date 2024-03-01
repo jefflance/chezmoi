@@ -14,7 +14,6 @@ inf() {
 # Packages to install
 packages=(
   rustup
-  go
   neovim
   npm
   python-pip
@@ -55,7 +54,7 @@ log "Begin LVim installation"
   {{- end}}
 
   ## Install packages
-  packages[1]=golang
+  ## packages[1]=golang
   packages=(${packages[@]/python/python3})
   packages=(${packages[@]/neovim/})
   packages+=(python3-venv)
