@@ -15,6 +15,7 @@ packages=(
   curl
   direnv
   pass
+  libyaml
   ranger
   rustup
   tmux
@@ -92,7 +93,8 @@ packages=(
   mist update
 
   ## Install packages
-  packages=(${packages[@]//starship/makedeb})
+  packages=(${packages[@]/starship/makedeb})
+  packages=(${packages[@]/libyaml/libyaml-dev})
   packages+=(
     apt-utils
     autoconf
@@ -102,7 +104,6 @@ packages=(
     libffi-dev
     libtool
     libtool-bin
-    libyaml-dev
     ninja-build
     pkg-config
     zlib1g-dev
