@@ -2,12 +2,7 @@
 
 # Logging function
 log() {
-  printf "${C_BLU}>>>>> %s <<<<<${F_RST}" "$1"
-}
-
-# Testing existance function
-exist() {
-  command -v "$1$" >/dev/null 2>&1
+  printf "$(tput setaf 4)$(tput bold)>>>>> %s <<<<<$(tput sgr0)" "$1"
 }
 
 
