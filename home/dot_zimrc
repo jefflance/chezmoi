@@ -27,7 +27,7 @@ zmodule zsh-users/zsh-autosuggestions
 # Sets up asdf, with auto install and optimized usage of the direnv plugin.
 zmodul asdf
 # chezmoi
-joke/zim-chezmoi
+zmodule joke/zim-chezmoi
 # Provides handy git aliases and functions.
 zmodule git
 # Sets a custom terminal title.
@@ -39,7 +39,7 @@ zmodule manjaro
 # Personal aliases
 zmodule jl-helper
 # starship
-joke/zim-starship
+zmodule joke/zim-starship
 # sudo module
 zmodule sudo
 # Utility aliases and functions. Adds colour to ls, grep and less.
