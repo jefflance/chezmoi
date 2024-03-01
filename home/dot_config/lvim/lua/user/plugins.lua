@@ -192,7 +192,7 @@ M.setup = function()
           },
           auto_update = true,
           run_on_start = true,
-          start_delay = 3000,
+          start_delay = 10000,
           debounce_hours = 24,
         })
       end
