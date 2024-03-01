@@ -25,10 +25,16 @@ plugins=(
 ### Install ASDF plugins ###
 log "Begin ASDF plugins installation"
 
+inf "installing direnv with system version..."
+# no need to run asdf direnv setup --shell zsh --version latest
+# as it is managed by zim module
+asdf plugin-add direnv
+
 for plugin in ${!plugins[@]}; do
   inf "installing ${plugin}..."
 
   asdf plugin add ${plugin} ${plugins[$plugin]}
+  asdf global ${plugin} latest
 done
 
 log "Finish ASDF plugins installation"
