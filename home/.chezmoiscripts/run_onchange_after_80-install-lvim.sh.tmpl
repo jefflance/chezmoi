@@ -24,19 +24,19 @@ packages=(
 
 
 
-log ">>>>> Begin LVim installation <<<<<"
+log "Begin LVim installation"
 
 {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
 
   ## Update system
   inf "updating system..."
-  yay -Syu --noconfirm
+  yay -Syu --noconfirm --quiet
 
   ## Install packages
   for package in ${packages[@]}; do
     if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
       inf "installing ${package}..."
-      yay -S --noconfirm $package
+      yay -S --noconfirm --quiet $package
     fi
   done
 
@@ -47,11 +47,11 @@ log ">>>>> Begin LVim installation <<<<<"
   ## Update system
   inf "updating system..."
   {{- if ne .chezmoi.username "root" }}
-    sudo -E apt update
-    sudo -E apt upgrade --yes
+    sudo -E apt update -qq
+    sudo -E apt upgrade --yes -qq
   {{- else }}
-    apt update
-    apt upgrade --yes
+    apt update -qq
+    apt upgrade --yes -qq
   {{- end}}
 
   ## Install packages
@@ -63,9 +63,9 @@ log ">>>>> Begin LVim installation <<<<<"
     inf "installing ${package}..."
 
     {{- if ne .chezmoi.username "root" }}
-      sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
+      sudo -E apt-get install --yes --no-install-recommends --ignore-missing -qq $package
     {{- else }}
-      apt-get install --yes --no-install-recommends --ignore-missing $package
+      apt-get install --yes --no-install-recommends --ignore-missing -qq $package
     {{- end }}
   done
 
@@ -77,6 +77,6 @@ log ">>>>> Begin LVim installation <<<<<"
 inf "installing lvim..."
 LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s 'https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh')
 
-log ">>>>> Finish LVim installation <<<<<"
+log "Finish LVim installation"
 
 

@@ -23,19 +23,19 @@ packages=(
 
 
 ### Install Zsh ###
-log ">>>>> Begin Zsh installation <<<<<"
+log "Begin Zsh installation"
 
 {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
 
   ## Update system
   inf "updating system..."
-  yay -Syu --noconfirm
+  yay -Syu --noconfirm --quiet
 
   ## install packages
   for package in ${packages[@]}; do
     if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
       inf "installing ${package}..."
-      yay -S --noconfirm $package
+      yay -S --noconfirm --quiet $package
     fi
   done
 
@@ -45,11 +45,11 @@ log ">>>>> Begin Zsh installation <<<<<"
   ## Update system
   inf "updating system..."
   {{- if ne .chezmoi.username "root" }}
-    sudo -E apt update
-    sudo -E apt upgrade --yes
+    sudo -E apt update -qq
+    sudo -E apt upgrade --yes -qq
   {{- else }}
-    apt update
-    apt upgrade --yes
+    apt update -qq
+    apt upgrade --yes -qq
   {{- end}}
 
   packages=(${packages[@]//starship/})
@@ -59,9 +59,9 @@ log ">>>>> Begin Zsh installation <<<<<"
     inf "installing ${package}..."
 
     {{- if ne .chezmoi.username "root" }}
-      sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
+      sudo -E apt-get install --yes --no-install-recommends --ignore-missing -qq $package
     {{- else }}
-      apt-get install --yes --no-install-recommends --ignore-missing $package
+      apt-get install --yes --no-install-recommends --ignore-missing -qq $package
     {{- end }}
   done
 
@@ -70,13 +70,13 @@ log ">>>>> Begin Zsh installation <<<<<"
 
 {{- end }}
 
-log ">>>>> Finish Zsh installation <<<<<"
+log "Finish Zsh installation"
 
 
 ### Config Zsh ###
-log ">>>>> Installing Zim Framework <<<<<"
+log "Installing Zim Framework"
 
 $(which zsh) -c "source ${ZIMDIR}/zimfw.zsh init -q"
 
-log ">>>>> Finish zsh installation <<<<<"
+log "Finish zsh installation"
 
