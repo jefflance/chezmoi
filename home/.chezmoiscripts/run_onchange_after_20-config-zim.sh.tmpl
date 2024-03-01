@@ -2,7 +2,11 @@
 
 # Logging function
 log() {
-  printf "$(tput setaf 4)$(tput bold)>>>>> %s <<<<<$(tput sgr0)" "$1"
+  printf "$(tput setaf 4)$(tput bold)>>>>> %s <<<<<$(tput sgr0)\n" "$1"
+}
+
+inf() {
+  printf "$(tput setaf 2)$(tput sgr 0 1)%s$(tput sgr0)\n" "$1"
 }
 
 
@@ -23,10 +27,14 @@ log ">>>>> Begin Zsh installation <<<<<"
 
 {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
 
+  ## Update system
+  inf "updating system..."
+  yay -Syu --noconfirm
+
   ## install packages
   for package in ${packages[@]}; do
     if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
-      log "installing ${package}..."
+      inf "installing ${package}..."
       yay -S --noconfirm $package
     fi
   done
@@ -34,11 +42,21 @@ log ">>>>> Begin Zsh installation <<<<<"
 {{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
   DEBIAN_FRONTEND=noninteractive
 
+  ## Update system
+  inf "updating system..."
+  {{- if ne .chezmoi.username "root" }}
+    sudo -E apt update
+    sudo -E apt upgrade --yes
+  {{- else }}
+    apt update
+    apt upgrade --yes
+  {{- end}}
+
   packages=(${packages[@]//starship/})
 
   ## install packages
   for package in ${packages[@]}; do
-    log "installing ${package}..."
+    inf "installing ${package}..."
 
     {{- if ne .chezmoi.username "root" }}
       sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
@@ -47,7 +65,7 @@ log ">>>>> Begin Zsh installation <<<<<"
     {{- end }}
   done
 
-  log "installing starship..."
+  inf "installing starship..."
   mist install starship-bin
 
 {{- end }}

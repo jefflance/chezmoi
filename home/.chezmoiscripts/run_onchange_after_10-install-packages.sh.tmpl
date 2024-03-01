@@ -2,9 +2,12 @@
 
 # Logging function
 log() {
-  printf "$(tput setaf 4)$(tput bold)>>>>> %s <<<<<$(tput sgr0)" "$1"
+  printf "$(tput setaf 4)$(tput bold)>>>>> %s <<<<<$(tput sgr0)\n" "$1"
 }
 
+inf() {
+  printf "$(tput setaf 2)$(tput sgr 0 1)%s$(tput sgr0)\n" "$1"
+}
 
 
 # Packages to install
@@ -25,6 +28,7 @@ packages=(
   log ">>>>> Begin Arch/Manjaro Linux packages installation <<<<<"
 
   ## Update system
+  inf "updating system..."
   {{- if ne .chezmoi.username "root" }}
     sudo pacman -Syu --noconfirm
   {{- else }}
@@ -33,7 +37,7 @@ packages=(
 
   ## Install yay
   if [ ! $(command -v yay) ]; then
-    log "installing yay"
+    inf "installing yay..."
     {{- if ne .chezmoi.username "root" }}
       sudo pacman -S --needed --noconfirm git base-devel
     {{- else}}
@@ -48,7 +52,7 @@ packages=(
   ## Install packages
   for package in ${packages[@]}; do
     if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
-      log "installing ${package}..."
+      inf "installing ${package}..."
       yay -S --noconfirm $package
     fi
   done
@@ -62,6 +66,7 @@ packages=(
   DEBIAN_FRONTEND=noninteractive
 
   ## Add repositories and update system
+  inf "updating system..."
   {{- if ne .chezmoi.username "root" }}
     sudo -E apt-get install --yes --no-install-recommends --ignore-missing lsb-release gpg
     curl -fsSL 'https://proget.makedeb.org/debian-feeds/makedeb.pub' | gpg --dearmor | sudo tee /usr/share/keyrings/makedeb-archive-keyring.gpg 1> /dev/null
@@ -99,7 +104,7 @@ packages=(
   )
 
   for package in ${packages[@]}; do
-    log "installing ${package}..."
+    inf "installing ${package}..."
 
     {{- if ne .chezmoi.username "root" }}
       sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
