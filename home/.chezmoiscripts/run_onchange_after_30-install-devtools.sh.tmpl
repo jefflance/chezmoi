@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+# Load asdf
+. "$HOME/.asdf/asdf.sh"
+
+# Logging function
+log() {
+  printf "$(tput setaf 4)$(tput bold)>>>>> %s <<<<<$(tput sgr0)\n" "$1"
+}
+
+inf() {
+  printf "$(tput sgr 0 1)$(tput setaf 2)%s$(tput sgr0)\n" "$1"
+}
+
+
+
+# Plugins to install
+declare -A plugins
+plugins=(
+  ['golang']='https://github.com/asdf-community/asdf-golang.git'
+)
+
+
+
+### Install ASDF plugins ###
+log "Begin ASDF plugins installation"
+
+for plugin in ${!plugins[@]}; do
+  inf "installing ${plugin}..."
+
+  asdf plugin add ${plugin} ${plugins[$plugin]}
+done
+
+log "Finish ASDF plugins installation"
+
