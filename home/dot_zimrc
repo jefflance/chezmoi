@@ -25,7 +25,7 @@ zmodule zsh-users/zsh-autosuggestions
 # Productivity
 #
 # Sets up asdf, with auto install and optimized usage of the direnv plugin.
-zmodul asdf
+zmodule asdf
 # chezmoi
 zmodule joke/zim-chezmoi
 # Provides handy git aliases and functions.
