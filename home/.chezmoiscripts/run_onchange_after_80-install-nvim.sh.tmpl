@@ -58,6 +58,7 @@ log "Begin LVim installation"
   packages[1]=golang
   packages=(${packages[@]/python/python3})
   packages=(${packages[@]/neovim/})
+  packages+=(python3-venv)
 
   for package in ${packages[@]}; do
     inf "installing ${package}..."
