@@ -36,7 +36,7 @@ packages=(
   {{- end}}
 
   ## Install yay
-  if [ ! exist "yay" ]; then
+  if [ ! $(command -v yay) ]; then
     log "installing yay"
     {{- if ne .chezmoi.username "root" }}
       sudo pacman -S --needed --noconfirm git base-devel
