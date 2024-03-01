@@ -1,10 +1,17 @@
 #!/usr/bin/env bash
 
-# Load local library
-. ./run_before-common.lib
+# Logging function
+log() {
+  printf "${C_BLU}>>>>> %s <<<<<${F_RST}" "$1"
+}
+
+# Testing existance function
+exist() {
+  command -v "$1$" >/dev/null 2>&1
+}
 
 
-
+# Packages to install
 packages=(
   curl
   direnv
@@ -19,7 +26,7 @@ packages=(
 
 {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
 
-  info1 ">>>>> Begin Arch/Manjaro Linux packages installation <<<<<"
+  log ">>>>> Begin Arch/Manjaro Linux packages installation <<<<<"
 
   ## Update system
   {{- if ne .chezmoi.username "root" }}
@@ -29,8 +36,8 @@ packages=(
   {{- end}}
 
   ## Install yay
-  if [ ! $(command -v yay) ]; then
-    info2 "installing yay"
+  if [ ! exist "yay" ]; then
+    log "installing yay"
     {{- if ne .chezmoi.username "root" }}
       sudo pacman -S --needed --noconfirm git base-devel
     {{- else}}
@@ -45,16 +52,16 @@ packages=(
   ## Install packages
   for package in ${packages[@]}; do
     if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
-      info2 "installing ${package}..."
+      log "installing ${package}..."
       yay -S --noconfirm $package
     fi
   done
 
-  info1 ">>>>> Finish Arch/Manjaro Linux packages installation <<<<<"
+  log ">>>>> Finish Arch/Manjaro Linux packages installation <<<<<"
 
 {{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
 
-  info1 ">>>>> Begin Debian/Ubuntu Linux packages installation <<<<<"
+  log ">>>>> Begin Debian/Ubuntu Linux packages installation <<<<<"
 
   DEBIAN_FRONTEND=noninteractive
 
@@ -96,7 +103,7 @@ packages=(
   )
 
   for package in ${packages[@]}; do
-    info2 "installing ${package}..."
+    log "installing ${package}..."
 
     {{- if ne .chezmoi.username "root" }}
       sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
@@ -105,7 +112,7 @@ packages=(
     {{- end }}
   done
 
-  info1 ">>>>> Finish Debian/Ubuntu Linux packages installation <<<<<"
+  log ">>>>> Finish Debian/Ubuntu Linux packages installation <<<<<"
 
 {{- end }}
 

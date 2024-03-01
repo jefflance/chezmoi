@@ -1,14 +1,22 @@
 #!/usr/bin/env bash
 
-# Load local library
-. ./run_before-common.lib
+# Logging function
+log() {
+  printf "${C_BLU}>>>>> %s <<<<<${F_RST}" "$1"
+}
+
+# Testing existance function
+exist() {
+  command -v "$1$" >/dev/null 2>&1
+}
 
 
 
-ZIMDIR=${HOME}/.zim
+ZIMDIR=${HOME}/.zim:
 
 
 
+# Packages to install
 packages=(
   starship
   zsh
@@ -17,14 +25,14 @@ packages=(
 
 
 ### Install Zsh ###
-info1 ">>>>> Begin Zsh installation <<<<<"
+log ">>>>> Begin Zsh installation <<<<<"
 
 {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
 
   ## install packages
   for package in ${packages[@]}; do
     if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
-      info2 "installing ${package}..."
+      log "installing ${package}..."
       yay -S --noconfirm $package
     fi
   done
@@ -36,7 +44,7 @@ info1 ">>>>> Begin Zsh installation <<<<<"
 
   ## install packages
   for package in ${packages[@]}; do
-    info2 "installing ${package}..."
+    log "installing ${package}..."
 
     {{- if ne .chezmoi.username "root" }}
       sudo -E apt-get install --yes --no-install-recommends --ignore-missing $package
@@ -45,18 +53,18 @@ info1 ">>>>> Begin Zsh installation <<<<<"
     {{- end }}
   done
 
-  info2 "installing starship..."
+  log "installing starship..."
   mist install starship-bin
 
 {{- end }}
 
-info1 ">>>>> Finish Zsh installation <<<<<"
+log ">>>>> Finish Zsh installation <<<<<"
 
 
 ### Config Zsh ###
-info1 ">>>>> Installing Zim Framework <<<<<"
+log ">>>>> Installing Zim Framework <<<<<"
 
 $(which zsh) -c "source ${ZIMDIR}/zimfw.zsh init -q"
 
-info1 ">>>>> Finish zsh installation <<<<<"
+log ">>>>> Finish zsh installation <<<<<"
 
