@@ -1,0 +1,111 @@
+###########################
+#   LatexMK config file   #
+###########################
+
+# where auxiliary files are to be written (don't work with lualatex)
+# $aux_dir = "aux";
+
+# where output files are to be written
+$out_dir = "build";
+
+$emulate_aux = 1;
+
+# files to be deleted during a cleanup operation
+$clean_ext = "nav pre pythontex-files-%R/* pythontex-files-%R snm synctex.gz bbl vrb";
+$clean_full_ext = "nav pre snm synctex.gz bbl vrb";
+push @generated_exts, "nav", "pre", "pytxcode", "snm", "synctex.gz", "bbl", "vrb";
+
+# default excluded files when run without any arguments
+@default_excluded_files = ("partie*.tex");
+
+# LaTeX processing program used when run with pdflatex option
+# i use lualatex and generate a pdf version of the document using pdflatex
+# $pdf_mode = "1";
+# $postscript_mode = $dvi_mode = 0;
+# $pdflatex = "lualatex -shell-escape -synctex=1 -interaction=nonstopmode -halt-on-error %O %S";
+
+# LaTeX processing program used when run with lualatex option
+# generate a pdf version of the document using lualatex
+$pdf_mode = 4;
+$postscript_mode = $dvi_mode = 0;
+$lualatex = "lualatex -shell-escape -synctex=1 -interaction=nonstopmode -halt-on-error %O %S";
+
+# Asy compilation
+#
+add_cus_dep("asy","eps",0,"asy2eps");
+add_cus_dep("asy","pdf",0,"asy2pdf");
+add_cus_dep("asy","tex",0,"asy2tex");
+
+sub asy2eps { return asy2x( $_[0], 'eps' ); }
+sub asy2pdf { return asy2x( $_[0], 'pdf' ); }
+sub asy2tex { return asy2x( $_[0], 'tex' ); }
+
+sub asy2x   {
+my $ret = system("asy -vv -f '$_[1]' '$_[0]' >& '$_[0].log'");
+  open( my $FH, "<", "$_[0].log" );
+  %imp = ();
+
+  while (<$FH>) {
+    if (/^(Including|Loading) .* from (.*)\s*$/) {
+      my $import = $2;
+      $imp{$import} = 1;
+    }
+    elsif ( /^error/ || /^.*\.asy: \d/ ) {
+      warn "==Message from asy: $_";
+      $ret = 1;
+    }
+    elsif ( /^kpsewhich / || /^Processing / || /^Using /
+       || /^Welcome / || /^Wrote /|| /^cd /|| /^gs /
+    ) {
+    }
+    else {
+      warn "==Message from asy: $_";
+    }
+  }
+  close $FH;
+  # For latexmk 4.48
+  rdb_set_source( $rule, keys %imp );
+  return $ret;
+}
+
+# PythonTeX
+#
+$pythontex = 'pythontex %O %S';
+$extra_rule_spec{'pythontex'}  = [ 'internal', '', 'mypythontex', "%Y%R.pytxcode",  "%Ypythontex-files-%R/%R.pytxmcr",    "%R", 1 ];
+
+sub mypythontex {
+   my $result_dir = $aux_dir1."pythontex-files-$$Pbase";
+   my $ret = Run_subst( $pythontex, 2 );
+   rdb_add_generated( glob "$result_dir/*" );
+   open( my $fh, "<", $$Pdest );
+   if ($fh) {
+      while (<$fh>) {
+         if ( /^%PythonTeX dependency:\s+'([^']+)';/ ) {
+	     print "Found pythontex dependency '$1'\n";
+             rdb_ensure_file( $rule, $aux_dir1.$1 );
+	 }
+      }
+      undef $fh;
+   }
+   else {
+       warn "mypythontex: I could not read '$$Pdest'\n",
+            "  to check dependencies\n";
+   }
+   return $ret;
+}
+
+# SageTeX
+#
+add_cus_dep( 'sage', 'sout', 0, 'makesout' );
+$hash_calc_ignore_pattern{'sage'} = '^( _st_.goboom|print .SageT)';
+# $hash_calc_ignore_pattern{'sage'} = '^( _st_.goboom|print .SageT)|(_st_.current_tex_line|SageTeX paused|SageTeX unpaused)';
+sub makesout {
+  Run_subst('if [[ -f ./build/%A.sagetex.sage && ! -f ./build/%A.sagetex.sout ]]; then cd ./build ; sage %A.sagetex.sage ; cd .. ; fi');
+}
+
+# Some things to do after all the compile stuff
+END{
+  Run_subst('rm ./*.pdf ./*.aux');
+  Run_subst('mv ./build/%A.pdf .');
+  Run_subst('rm -rf ./build');
+}
