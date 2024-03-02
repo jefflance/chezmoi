@@ -1,9 +1,0 @@
-packages_shell:
-  archlinux:
-    yay:
-      - 'zsh'
-      - 'starship'
-  debian:
-    mist:
-      - 'zsh'
-      - 'starship-bin'
