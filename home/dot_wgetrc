@@ -1,0 +1,8 @@
+########################
+#   wget config file   #
+########################
+
+#recursive = on
+dirstruct = off
+no_parent = on
+reject = "index.html*"
