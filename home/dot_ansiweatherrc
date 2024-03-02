@@ -2,7 +2,7 @@
 #   ANsiweather config file   #
 ###############################
 
-location:Mauguio,FR
+location:Livry-Gargan,FR
 forecast:3
 dateformat:%a %d %b
 timeformat:%b %d %r
