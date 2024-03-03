@@ -31,12 +31,9 @@ BufferLimit 100M
 
 IMAPAccount {{ $value.name }}
 # Address to connect to
-Host {{- $value.server -}}
-User {{- $value.username -}}
-# Get the password account through secret-tool
-# I replaced it by a pass command
-# PassCmd "secret-tool lookup email jeff.lance@mala.fr service imap"
-PassCmd "pass {{- $value.server -}}/{{- $value.username -}}"
+Host {{ $value.server }}
+User {{ $value.username }}
+PassCmd "pass {{ $value.server }}/{{ $value.username }}"
 # Use SSL
 # SSLType IMAPS
 SSLType None
@@ -46,61 +43,61 @@ SSLType None
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 
-IMAPStore {{- $value.name -}}-remote
-Account {{- $value.name -}}
+IMAPStore {{ $value.name }}-remote
+Account {{ $value.name }}
 
 
-MaildirStore {{- $value.name -}}-local
+MaildirStore {{ $value.name }}-local
 SubFolders Verbatim
 # The trailing "/" is important
-Path ~/Mail/{{- $value.name -}}/
-Inbox ~/Mail/{{- $value.name -}}/inbox
+Path ~/Mail/{{ $value.name }}/
+Inbox ~/Mail/{{ $value.name }}/inbox
 
 
-Channel {{- $value.name -}}-inbox
-Far :{{- $value.name -}}-remote:
-Near :{{- $value.name -}}-local:inbox
+Channel {{ $value.name }}-inbox
+Far :{{ $value.name }}-remote:
+Near :{{ $value.name }}-local:inbox
 Sync PullNew PullDelete Push
 SyncState *
 # Remove Both
 Expunge Both
 
 
-Channel {{- $value.name -}}-sent
-Far :{{- $value.name -}}-remote:"Sent Items"
-Near :{{- $value.name -}}-local:sent
+Channel {{ $value.name }}-sent
+Far :{{ $value.name }}-remote:"Sent Items"
+Near :{{ $value.name }}-local:sent
 Sync PullNew PullDelete Push
 SyncState *
 Expunge Both
 
 
-Channel {{- $value.name -}}-trash
-Far :{{- $value.name -}}-remote:"Deleted Items"
-Near :{{- $value.name -}}-local:trash
+Channel {{ $value.name }}-trash
+Far :{{ $value.name }}-remote:"Deleted Items"
+Near :{{ $value.name }}-local:trash
 Sync PullNew PullDelete Push
 SyncState *
 Expunge Both
 
 
-Channel {{- $value.name -}}-drafts
-Far :{{- $value.name -}}-remote:"Drafts"
-Near :{{- $value.name -}}-local:drafts
+Channel {{ $value.name }}-drafts
+Far :{{ $value.name }}-remote:"Drafts"
+Near :{{ $value.name }}-local:drafts
 Sync PullNew PullDelete Push
 SyncState *
 Expunge Both
 
 
-Channel {{- $value.name -}}-junk
-Far :{{- $value.name -}}-remote:"Junk Email"
-Near :{{- $value.name -}}-local:junk
+Channel {{ $value.name }}-junk
+Far :{{ $value.name }}-remote:"Junk Email"
+Near :{{ $value.name }}-local:junk
 Sync PullNew PullDelete Push
 SyncState *
 Expunge Both
 
 
-Channel {{- $value.name -}}-archive
-Far :{{- $value.name -}}-remote:"Archive"
-Near :{{- $value.name -}}-local:archive
+Channel {{ $value.name }}-archive
+Far :{{ $value.name }}-remote:"Archive"
+Near :{{ $value.name }}-local:archive
 Pattern *
 Create Near
 MaxMessages 1500
@@ -109,12 +106,12 @@ SyncState *
 Expunge Both
 
 
-Group {{- $value.name -}}
-Channel {{- $value.name -}}-inbox
-Channel {{- $value.name -}}-sent
-Channel {{- $value.name -}}-trash
-Channel {{- $value.name -}}-drafts
-Channel {{- $value.name -}}-junk
-Channel {{- $value.name -}}-archive
+Group {{ $value.name }}
+Channel {{ $value.name }}-inbox
+Channel {{ $value.name }}-sent
+Channel {{ $value.name }}-trash
+Channel {{ $value.name }}-drafts
+Channel {{ $value.name }}-junk
+Channel {{ $value.name }}-archive
 
 {{ end }}
