@@ -9,7 +9,7 @@ log() {
 }
 
 inf() {
-  printf "      $(tput sgr 0 1)$(tput setaf 2)%s$(tput sgr0)\n" "$1"
+  printf "╚═══ᐳ $(tput sgr 0 1)$(tput setaf 2)%s$(tput sgr0)\n" "$1"
 }
 
 
@@ -21,6 +21,7 @@ plugins=(
   ['nodejs']='https://github.com/asdf-vm/asdf-nodejs.git'
   ['opam']='https://github.com/asdf-community/asdf-opam.git'
   ['ruby']='https://github.com/asdf-vm/asdf-ruby.git'
+  ['rust']='https://github.com/code-lever/asdf-rust.git'
 )
 
 

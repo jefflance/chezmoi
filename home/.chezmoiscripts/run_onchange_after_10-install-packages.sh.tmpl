@@ -6,7 +6,7 @@ log() {
 }
 
 inf() {
-  printf "      $(tput sgr 0 1)$(tput setaf 2)%s$(tput sgr0)\n" "$1"
+  printf "╚═══ᐳ $(tput sgr 0 1)$(tput setaf 2)%s$(tput sgr0)\n" "$1"
 }
 
 
@@ -17,7 +17,6 @@ packages=(
   pass
   libyaml
   ranger
-  rustup
   tmux
   trash-cli
   ueberzug
