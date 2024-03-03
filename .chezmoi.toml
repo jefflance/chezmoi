@@ -1,2 +1,4 @@
-[scriptEnv]
-    SYSTEM_RUSTUP = true
+{{ $installSystemRustup := promptBoolOnce "Install rustup from system or asdf ?" true -}}
+
+[data.system]
+    rustup = {{ $installSystemRustup }}

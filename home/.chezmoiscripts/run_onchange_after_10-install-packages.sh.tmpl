@@ -26,7 +26,7 @@ packages=(
   zoxide
 )
 
-log "Rustup var: $SYSTEM_RUSTUP"
+log "Rustup var: {{ .system.rustup }}"
 
 {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
 
