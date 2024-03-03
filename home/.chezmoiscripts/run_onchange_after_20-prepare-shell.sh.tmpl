@@ -88,7 +88,8 @@ log "Finish zsh installation"
 ## Install Atuin
 log "Installing atuin"
 
-bash <(curl --proto '=https' --tlsv1.2 -sSf https://setup.atuin.sh)
+cargo install atuin
+ln -s ~/.asdf/installs/rust/1.76.0/bin/atuin .asdf/shims/atuin
 
 log "Finish atuin installation"
 
