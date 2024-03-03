@@ -1,4 +1,4 @@
 {{ $installSystemRustup := promptBoolOnce "Install rustup from system or asdf ?" true -}}
 
-[data]
-  installSystemRustup = {{ $installSystemRustup }}
+[scriptEnv]
+    installSystemRustup = {{ $installSystemRustup }}
