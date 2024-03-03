@@ -77,14 +77,6 @@ log "Begin Zsh installation"
 log "Finish Zsh installation"
 
 
-### Config Zsh ###
-log "Installing Zim Framework"
-
-$(which zsh) -c "source ${ZIMDIR}/zimfw.zsh init -q"
-
-log "Finish zsh installation"
-
-
 ## Install Atuin
 log "Installing atuin"
 
@@ -92,4 +84,12 @@ cargo install atuin
 ln -s ~/.asdf/installs/rust/1.76.0/bin/atuin .asdf/shims/atuin
 
 log "Finish atuin installation"
+
+
+### Config Zsh ###
+log "Installing Zim Framework"
+
+$(which zsh) -c "source ${ZIMDIR}/zimfw.zsh init -q"
+
+log "Finish zsh installation"
 
