@@ -16,7 +16,6 @@ ZIMDIR=${HOME}/.zim:
 
 # Packages to install
 packages=(
-  starship
   zsh
 )
 
@@ -52,7 +51,7 @@ log "Begin Zsh installation"
     apt upgrade --yes -qq
   {{- end}}
 
-  packages=(${packages[@]//starship/})
+  ## packages=(${packages[@]//starship/})
 
   ## install packages
   for package in ${packages[@]}; do
@@ -65,8 +64,8 @@ log "Begin Zsh installation"
     {{- end }}
   done
 
-  inf "installing starship..."
-  mist install starship-bin
+  ## inf "installing starship..."
+  ## mist install starship-bin
 
 {{- end }}
 
