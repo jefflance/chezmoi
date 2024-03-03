@@ -223,6 +223,12 @@ eval "$(direnv hook zsh)"
 
 
 #
+# atuin
+eval "$(atuin init zsh)"
+
+
+
+#
 # gnome-keyring-daemon
 #
 if [[ ! $(command -v gnome-keyring-daemon) ]]; then
