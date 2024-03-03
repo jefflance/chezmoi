@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Load asdf
+# as we need cargo and it is installed from
+. "$HOME/.asdf/asdf.sh"
+
+
 # Logging function
 log() {
   printf "$(tput setaf 4)$(tput bold)>>>>> %s <<<<<$(tput sgr0)\n" "$1"
