@@ -1,6 +1,10 @@
 {{- $email := promptStringOnce . "email" "Email address" -}}
 {{- $mbsyncAccounts := promptIntOnce . "mbsyncAccounts" "Nombre de comptes email" -}}
 
-[data]
-    email = {{ $email | quote }}
-    mbsyncAccounts = {{ $mbsyncAccounts }}
+data
+  email: {{ $email | quote }}
+
+mbsync:
+  - name: "account name"
+    email: "account mail"
+    server: "account server"
