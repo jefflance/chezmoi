@@ -1,9 +1,10 @@
 {{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $mbsyncAccounts := promptStringOnce . "mbsync" "account1 account2 " -}}
 
 data:
   email: {{ $email | quote }}
   mbsync:
-    - name: "jeff.lance@mala.fr"
-      email: "jeff.lance@mala.fr"
-      username: "jeff.lance@mala.fr"
-      server: "ssl0.ovh.net"
+    - name: "accountName"
+      email: "accountEmail"
+      username: "accountUserName"
+      server: "accountServer"
