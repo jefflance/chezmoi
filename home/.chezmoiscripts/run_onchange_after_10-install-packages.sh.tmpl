@@ -26,6 +26,8 @@ packages=(
   zoxide
 )
 
+{{- writeToStdout $installSystemRustup -}}
+
 {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
 
   log "Begin Arch/Manjaro Linux packages installation"
