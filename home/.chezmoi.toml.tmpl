@@ -3,8 +3,8 @@
 
 [data]
 email = {{ $email | quote }}
-{{- if gt $mbsyncAccountNumber 0 -}}
-{{- range $i, $e := until $mbsyncAccountNumber -}}
+{{ if gt $mbsyncAccountNumber 0 }}
+{{ range $i, $e := until $mbsyncAccountNumber }}
 [[data.mbsync]]
 name = {{ promptString "MbSync account name " }}
 mail = {{ promptString "MbSync account mail " }}
