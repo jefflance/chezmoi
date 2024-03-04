@@ -5,12 +5,14 @@ email = {{ promptString "Git main email address " "" | quote }}
 {{- if gt $count 0 -}}
 {{- range $i, $e := until $count }}
 [[data.mbsync]]
+active = true
 name = {{ promptString "MbSync account name " | quote }}
 mail = {{ promptString "MbSync account mail " | quote }}
 user = {{ promptString "MbSync account user " | quote }}
 host = {{ promptString "MbSync account host " | quote }}
 {{- end }}
 {{ else -}}
-mbsync = {{ $count }}
+[[data.mbsync]]
+active = false
 {{- end }}
 {{- end }}
