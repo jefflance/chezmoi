@@ -1,3 +1,4 @@
+chezmoi:template:missing-key=invalid
 [data]
 email = {{ promptString "Git main email address " "" | quote }}
 {{- with promptInt "How many mbsync accounts would you generate " 0 -}}{{- $count := . | int }}
