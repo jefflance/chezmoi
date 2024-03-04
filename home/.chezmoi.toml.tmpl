@@ -3,13 +3,13 @@ email = {{ promptString "Git main email address " "" | quote }}
 {{- with promptInt "How many mbsync accounts would you generate " -}}{{- $count := . | int }}
   {{- if gt $count 0 -}}
     {{- range $i, $e := until $count }}
-      [[data.mbsync]]
-      name = {{ promptString "MbSync account name " | quote }}
-      mail = {{ promptString "MbSync account mail " | quote }}
-      user = {{ promptString "MbSync account user " | quote }}
-      host = {{ promptString "MbSync account host " | quote }}
+[[data.mbsync]]
+name = {{ promptString "MbSync account name " | quote }}
+mail = {{ promptString "MbSync account mail " | quote }}
+user = {{ promptString "MbSync account user " | quote }}
+host = {{ promptString "MbSync account host " | quote }}
     {{- end }}
   {{- end }}
 {{ else }}
-  [[data.mbsync]]
+[[data.mbsync]]
 {{- end }}
