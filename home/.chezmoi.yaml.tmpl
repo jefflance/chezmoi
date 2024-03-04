@@ -1,8 +1,13 @@
-{{- $email := promptStringOnce . "email" "Email address" -}}
-{{- $mbsyncAccounts := promptStringOnce . "mbsync" "account1 account2" | split " " -}}
+{{- $email := promptStringOnce . "email" "Email address ?" -}}
+{{- $mbsyncAccountNumber := promptIntOnce . "mbsyncAccountNumber" "How many mbsync accounts would you generate ?" -}}
+
+{{- if -}}
+
+{{- end -}}
 
 data:
   email: {{ $email | quote }}
+  mbsyncAccountNumber: {{ $mbsyncAccountNumber }}
   mbsync:
     - name: "accountName"
       email: "accountEmail"
