@@ -9,7 +9,7 @@ email = {{ promptString "Git main email address " "" | quote }}
       user = {{ promptString "MbSync account user " | quote }}
       host = {{ promptString "MbSync account host " | quote }}
     {{- end }}
-  {{- end -}}
-{{- else -}}
+  {{- end }}
+{{ else }}
   [[data.mbsync]]
 {{- end }}
