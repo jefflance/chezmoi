@@ -1,12 +1,11 @@
 {{- $email := promptStringOnce . "email" "Email address " }}
 {{- $mbsyncAccountNumber := promptIntOnce . "mbsyncAccountNumber" "How many mbsync accounts would you generate " }}
 
+{{- $mbsyncAccountNumber = $mbsyncAccountNumber | int -}}
+
 {{- if gt $mbsyncAccountNumber 0 -}}
-  {{- range $i, $e := until $mbsyncAccountNumber | int -}}
+  {{- range $i, $e := until $mbsyncAccountNumber -}}
     {{- $mbsyncAccountName := promptStringOnce . "mbsync" "MbSync account name " }}
-    {{- $mbsyncAccountMail := promptStringOnce . "mbsync" "MbSync account mail " }}
-    {{- $mbsyncAccountUser := promptStringOnce . "mbsync" "MbSync account user " }}
-    {{- $mbsyncAccountHost := promptStringOnce . "mbsync" "MbSync account host " }}
   {{- end -}}
 {{- end -}}
 
