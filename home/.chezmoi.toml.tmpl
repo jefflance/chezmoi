@@ -14,7 +14,7 @@ host = {{ promptString "MbSync account host " | quote }}
 {{ else }}
 
 [[data.mbsync]]
-active = {{ $count }}
+active = {{ $count  | quote }}
 
 {{- end }}
 {{- end }}
