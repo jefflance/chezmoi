@@ -1,6 +1,5 @@
 {{- $email := promptString "Git main email address " ""}}
-{{- $mbsyncAccountNumber := promptInt "How many mbsync accounts would you generate " 0 }}
-{{- $mbsyncAccountNumber = $mbsyncAccountNumber | int -}}
+{{- with promptInt "How many mbsync accounts would you generate " 0 }}{{ $mbsyncAccountNumber := . | int }}{{ end }}
 
 [data]
 email = {{ $email | quote }}
