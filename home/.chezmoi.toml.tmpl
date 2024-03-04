@@ -5,14 +5,11 @@
 email = {{ $email | quote }}
 {{- if gt $mbsyncAccountNumber 0 -}}
 {{- range $i, $e := until $mbsyncAccountNumber -}}
-{{ $mbsyncAccountMail := promptString "MbSync account mail " }}
-{{ $mbsyncAccountUser := promptString "MbSync account user " }}
-{{ $mbsyncAccountHost := promptString "MbSync account host " }}
 [[data.mbsync]]
 name = {{ promptString "MbSync account name " }}
-mail = {{ $mbsyncAccountMail | quote }}
-user = {{ $mbsyncAccountUser | quote }}
-host = {{ $mbsyncAccountHost | quote }}
+mail = {{ promptString "MbSync account mail " }}
+user = {{ promptString "MbSync account user " }}
+host = {{ promptString "MbSync account host " }}
 {{- end }}
 {{- end }}
 {{- end }}
