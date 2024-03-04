@@ -3,17 +3,16 @@
 
 {{- $mbsyncAccountNumber = $mbsyncAccountNumber | int -}}
 
-{{- if gt $mbsyncAccountNumber 0 -}}
-  {{- range $i, $e := until $mbsyncAccountNumber -}}
-    {{- $mbsyncAccountName := promptString "MbSync account name " }}
-  {{- end -}}
-{{- end -}}
 
 data:
   email: {{ $email | quote }}
   mbsyncAccountNumber: {{ $mbsyncAccountNumber }}
+  {{- if gt $mbsyncAccountNumber 0 -}}
   mbsync:
-    - name: {{ $mbsyncAccountName }}
+    {{- range $i, $e := until $mbsyncAccountNumber -}}
+    - name: {{ $mbsyncAccountName := promptString "MbSync account name " }}
       email: "accountEmail"
       username: "accountUserName"
       server: "accountServer"
+    {{- end -}}
+  {{- end -}}
