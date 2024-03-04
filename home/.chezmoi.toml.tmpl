@@ -1,8 +1,9 @@
 [data]
 email = {{ promptString "Git main email address " "" | quote }}
 {{- with promptInt "How many mbsync accounts would you generate " 0 -}}{{- $count := . | int -}}
+{{ $mbsync := ternary true false $count }}
+mbsync = {{ $mbsync }}
 {{- if gt $count 0 -}}
-mbsync = {{ ternary true false  $count }}
 {{- range $i, $e := until $count }}
 [[data.mbsync]]
 name = {{ promptString "MbSync account name " | quote }}
