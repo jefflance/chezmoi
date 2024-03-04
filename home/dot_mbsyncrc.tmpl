@@ -25,15 +25,15 @@ BufferLimit 100M
 #                        #
 ##########################
 
-{{ range $value := .mbsync }}
-# {{ $value.name }}
+{{ range $value := .mail }}
+# {{ $value.comment }}
 #-------------------------
 
-IMAPAccount {{ $value.name }}
+IMAPAccount {{ $value.account }}
 # Address to connect to
-Host {{ $value.host }}
-User {{ $value.user }}
-PassCmd "pass {{ $value.host }}/{{ $value.user }}"
+Host {{ $value.imapsrv }}
+User {{ $value.usrname }}
+PassCmd "pass {{ $value.host }}/{{ $value.usrname }}"
 # Use SSL
 # SSLType IMAPS
 SSLType None
@@ -43,61 +43,61 @@ SSLType None
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 
-IMAPStore {{ $value.name }}-remote
-Account {{ $value.name }}
+IMAPStore {{ $value.account }}-remote
+Account {{ $value.account }}
 
 
-MaildirStore {{ $value.name }}-local
+MaildirStore {{ $value.account }}-local
 SubFolders Verbatim
 # The trailing "/" is important
-Path ~/Mail/{{ $value.name }}/
-Inbox ~/Mail/{{ $value.name }}/inbox
+Path ~/Mail/{{ $value.account }}/
+Inbox ~/Mail/{{ $value.account }}/inbox
 
 
-Channel {{ $value.name }}-inbox
-Far :{{ $value.name }}-remote:
-Near :{{ $value.name }}-local:inbox
+Channel {{ $value.account }}-inbox
+Far :{{ $value.account }}-remote:
+Near :{{ $value.account }}-local:inbox
 Sync PullNew PullDelete Push
 SyncState *
 # Remove Both
 Expunge Both
 
 
-Channel {{ $value.name }}-sent
-Far :{{ $value.name }}-remote:"Sent Items"
-Near :{{ $value.name }}-local:sent
+Channel {{ $value.account }}-sent
+Far :{{ $value.account }}-remote:"Sent Items"
+Near :{{ $value.account }}-local:sent
 Sync PullNew PullDelete Push
 SyncState *
 Expunge Both
 
 
-Channel {{ $value.name }}-trash
-Far :{{ $value.name }}-remote:"Deleted Items"
-Near :{{ $value.name }}-local:trash
+Channel {{ $value.account }}-trash
+Far :{{ $value.account }}-remote:"Deleted Items"
+Near :{{ $value.account }}-local:trash
 Sync PullNew PullDelete Push
 SyncState *
 Expunge Both
 
 
-Channel {{ $value.name }}-drafts
-Far :{{ $value.name }}-remote:"Drafts"
-Near :{{ $value.name }}-local:drafts
+Channel {{ $value.account }}-drafts
+Far :{{ $value.account }}-remote:"Drafts"
+Near :{{ $value.account }}-local:drafts
 Sync PullNew PullDelete Push
 SyncState *
 Expunge Both
 
 
-Channel {{ $value.name }}-junk
-Far :{{ $value.name }}-remote:"Junk Email"
-Near :{{ $value.name }}-local:junk
+Channel {{ $value.account }}-junk
+Far :{{ $value.account }}-remote:"Junk Email"
+Near :{{ $value.account }}-local:junk
 Sync PullNew PullDelete Push
 SyncState *
 Expunge Both
 
 
-Channel {{ $value.name }}-archive
-Far :{{ $value.name }}-remote:"Archive"
-Near :{{ $value.name }}-local:archive
+Channel {{ $value.account }}-archive
+Far :{{ $value.account }}-remote:"Archive"
+Near :{{ $value.account }}-local:archive
 Pattern *
 Create Near
 MaxMessages 1500
@@ -106,12 +106,12 @@ SyncState *
 Expunge Both
 
 
-Group {{ $value.name }}
-Channel {{ $value.name }}-inbox
-Channel {{ $value.name }}-sent
-Channel {{ $value.name }}-trash
-Channel {{ $value.name }}-drafts
-Channel {{ $value.name }}-junk
-Channel {{ $value.name }}-archive
+Group {{ $value.account }}
+Channel {{ $value.account }}-inbox
+Channel {{ $value.account }}-sent
+Channel {{ $value.account }}-trash
+Channel {{ $value.account }}-drafts
+Channel {{ $value.account }}-junk
+Channel {{ $value.account }}-archive
 
 {{ end }}
