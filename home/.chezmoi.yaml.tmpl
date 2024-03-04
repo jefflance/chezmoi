@@ -5,10 +5,10 @@
 
 {{- if gt $mbsyncAccountNumber 0 -}}
   {{- range $i, $e := until $mbsyncAccountNumber -}}
-    {{- $mbsyncAccountName := promptStringOnce . "mbsync.name" "MbSync account name " }}
-    {{- $mbsyncAccountMail := promptStringOnce . "mbsync.mail" "MbSync account mail " }}
-    {{- $mbsyncAccountUser := promptStringOnce . "mbsync.user" "MbSync account user " }}
-    {{- $mbsyncAccountHost := promptStringOnce . "mbsync.host" "MbSync account host " }}
+    {{- $mbsyncAccountName := promptStringOnce . "mbsync" "MbSync account name " }}
+    {{- $mbsyncAccountMail := promptStringOnce . "mbsync" "MbSync account mail " }}
+    {{- $mbsyncAccountUser := promptStringOnce . "mbsync" "MbSync account user " }}
+    {{- $mbsyncAccountHost := promptStringOnce . "mbsync" "MbSync account host " }}
   {{- end -}}
 {{- end -}}
 
