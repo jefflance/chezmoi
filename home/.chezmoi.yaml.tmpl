@@ -13,7 +13,7 @@ data:
   email: {{ $email | quote }}
   mbsyncAccountNumber: {{ $mbsyncAccountNumber }}
   mbsync:
-    - name: "accountName"
+    - name: {{ $mbsyncAccountName }}
       email: "accountEmail"
       username: "accountUserName"
       server: "accountServer"
