@@ -24,7 +24,10 @@ BufferLimit 100M
 #                        #
 ##########################
 
-{{ writeToStdout (len .mbsync) }}
+{{ if (eq (len .mbsync) 0) }}
+
+longueur 0
+
 {{ range $value := .mbsync }}
 
 # {{ $value.name }}
