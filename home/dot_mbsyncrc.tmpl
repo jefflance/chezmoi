@@ -24,6 +24,7 @@ BufferLimit 100M
 #                        #
 ##########################
 
+{{ if .mbsync }}
 {{ range $value := .mbsync }}
 
 # {{ $value.name }}
@@ -114,4 +115,5 @@ Channel {{ $value.name }}-drafts
 Channel {{ $value.name }}-junk
 Channel {{ $value.name }}-archive
 
+{{ end }}
 {{ end }}
