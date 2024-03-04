@@ -1,5 +1,5 @@
 {{- $email := promptString "Git main email address " ""}}
-{{- with $mbsyncAccountNumber := promptInt "How many mbsync accounts would you generate " 0 }}{{ $mbsyncAccountNumber = $mbsyncAccountNumber | int }}{{ end }}
+{{- with $mbsyncAccountNumber := promptInt "How many mbsync accounts would you generate " 0 }}{{ $mbsyncAccountNumber = $mbsyncAccountNumber | int }}
 
 [data]
 email = {{ $email | quote }}
@@ -14,5 +14,6 @@ name = {{ $mbsyncAccountName | quote }}
 mail = {{ $mbsyncAccountMail | quote }}
 user = {{ $mbsyncAccountUser | quote }}
 host = {{ $mbsyncAccountHost | quote }}
+{{- end }}
 {{- end }}
 {{- end }}
