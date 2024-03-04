@@ -1,8 +1,6 @@
 {{- $email := promptStringOnce . "email" "Email address " }}
 {{- $mbsyncAccountNumber := promptIntOnce . "mbsyncAccountNumber" "How many mbsync accounts would you generate " }}
 
-{{- $mbsyncAccountNumber = $mbsyncAccountNumber | int -}}
-
 {{- if gt $mbsyncAccountNumber 0 -}}
   {{- range $i, $e := until $mbsyncAccountNumber -}}
     {{- $mbsyncAccountName := promptStringOnce . "mbsync" "MbSync account name " }}
