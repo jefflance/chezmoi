@@ -5,7 +5,7 @@
 
 {{- if gt $mbsyncAccountNumber 0 -}}
   {{- range $i, $e := until $mbsyncAccountNumber -}}
-    {{- $mbsyncAccountName := promptStringOnce . "mbsync" "MbSync account name " }}
+    {{- $mbsyncAccountName := promptString "MbSync account name " }}
   {{- end -}}
 {{- end -}}
 
