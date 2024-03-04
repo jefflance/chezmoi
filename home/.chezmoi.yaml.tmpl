@@ -1,5 +1,5 @@
-{{- $email := promptStringOnce . "email" "Email address ?" -}}
-{{- $mbsyncAccountNumber := promptIntOnce . "mbsyncAccountNumber" "How many mbsync accounts would you generate ?" -}}
+{{- $email := promptStringOnce . "email" "Email address" }}
+{{- $mbsyncAccountNumber := promptIntOnce . "mbsyncAccountNumber" "How many mbsync accounts would you generate" }}
 
 data:
   email: {{ $email | quote }}
