@@ -3,6 +3,12 @@
     url = "https://github.com/asdf-vm/asdf.git"
     refreshPeriod = "168h"
 
+[".config/aacs"]
+    type = "file"
+    url = "https://vlc-bluray.whoknowsmy.name/files/KEYDB.cfg"
+    exact = true
+    refreshPeriod = "168h"
+
 [".config/ranger/plugins/ranger_udisk_menu"]
     type = "git-repo"
     url = "https://github.com/SL-RU/ranger_udisk_menu.git"
