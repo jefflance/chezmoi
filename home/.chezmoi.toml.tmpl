@@ -10,7 +10,7 @@ mail = {{ promptString "MbSync account mail " | quote }}
 user = {{ promptString "MbSync account user " | quote }}
 host = {{ promptString "MbSync account host " | quote }}
 {{- end }}
-{{- else -}}
+{{ else -}}
 mbsync = {{ $count }}
 {{- end }}
 {{- end }}
