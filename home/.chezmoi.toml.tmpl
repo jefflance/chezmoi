@@ -3,6 +3,10 @@ chezmoi:template:missing-key=zero
 email = {{ promptString "Git main email address " "" | quote }}
 {{- with promptInt "How many mbsync accounts would you generate " 0 -}}{{- $count := . | int }}
 {{- if gt $count 0 -}}
+
+[[data.mbsync]]
+activate = true
+
 {{- range $i, $e := until $count }}
 [[data.mbsync]]
 name = {{ promptString "MbSync account name " | quote }}
@@ -14,7 +18,7 @@ host = {{ promptString "MbSync account host " | quote }}
 {{ else }}
 
 [[data.mbsync]]
-active = {{ $count  | quote }}
+activate = false
 
 {{- end }}
 {{- end }}
