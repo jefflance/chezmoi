@@ -1,18 +1,2 @@
 [data]
 email = {{ promptString "Git main email address " "" | quote }}
-{{- with promptInt "How many mail accounts would you like to configure " 0 -}}{{- $count := . | int }}
-  {{- if gt $count 0 -}}
-    {{- range $i, $e := until $count }}
-[[data.mail]]
-comment = {{ promptString "Mail description " | quote }}
-account = {{ promptString "Mail account name " | quote }}
-address = {{ promptString "Mail address " | quote }}
-usrname = {{ promptString "Mail username " | quote }}
-imapsrv = {{ promptString "Mail imap host " | quote }}
-smtpsrv = {{ promptString "Mail smtp host " | quote }}
-smtport = {{ promptInt "Mail smtp port " 465 }}
-smtpaut = {{ promptChoice "Mail smtp auth " (list "on" "plain") "on" }}
-autofro = {{ promptChoice "Auto from " (list "on" "off") "off" }}
-    {{- end }}
-  {{- end }}
-{{- end }}
