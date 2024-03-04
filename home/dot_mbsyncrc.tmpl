@@ -31,9 +31,9 @@ BufferLimit 100M
 
 IMAPAccount {{ $value.name }}
 # Address to connect to
-Host {{ $value.server }}
-User {{ $value.username }}
-PassCmd "pass {{ $value.server }}/{{ $value.username }}"
+Host {{ $value.host }}
+User {{ $value.user }}
+PassCmd "pass {{ $value.host }}/{{ $value.user }}"
 # Use SSL
 # SSLType IMAPS
 SSLType None
