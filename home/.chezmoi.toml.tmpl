@@ -10,6 +10,6 @@ user = {{ promptString "MbSync account user " | quote }}
 host = {{ promptString "MbSync account host " | quote }}
     {{- end }}
   {{- end }}
-{{ else }}
-[[data.mbsync]]
+## {{ else }}
+## [[data.mbsync]]
 {{- end }}
