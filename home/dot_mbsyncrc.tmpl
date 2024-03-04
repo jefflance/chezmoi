@@ -24,7 +24,7 @@ BufferLimit 100M
 #                        #
 ##########################
 
-{{- if .mbsync }}
+{{- if ternary .mbsync [] .mbsync }}
 {{ range $value := .mbsync }}
 
 # {{ $value.name }}
