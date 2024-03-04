@@ -24,8 +24,8 @@ BufferLimit 100M
 #                        #
 ##########################
 
-{{ if .mbsync.activate }}
-{{ range $value := .mbsync[1:] }}
+{{ if .mbsync }}
+{{ range $value := .mbsync }}
 
 # {{ $value.name }}
 #-------------------------
