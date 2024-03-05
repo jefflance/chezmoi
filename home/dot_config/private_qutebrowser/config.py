@@ -29,6 +29,7 @@ c.aliases = {
     "wq": "quit --save",
     "wqa": "quit --save",
     "ddg": "open ddg",
+    "bk": "spawn --userscript buku",
 }
 
 ## Time interval (in milliseconds) between auto-saves of
