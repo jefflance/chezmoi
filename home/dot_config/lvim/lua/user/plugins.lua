@@ -146,6 +146,8 @@ M.setup = function()
         local mason = require('mason-tool-installer')
         mason.setup({
           ensure_installed = {
+            'ocaml-lsp',
+            'ocamlformat',
             'xo',
             'textlint',
             'yamllint',
