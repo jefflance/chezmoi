@@ -3,9 +3,15 @@
     url = "https://github.com/asdf-vm/asdf.git"
     refreshPeriod = "168h"
 
-[".config/aacs"]
+[".config/aacs/KEYDB.cfg"]
     type = "file"
     url = "https://vlc-bluray.whoknowsmy.name/files/KEYDB.cfg"
+    exact = true
+    refreshPeriod = "168h"
+
+[".local/share/qutebrowser/userscripts/buku"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/spectronp/qutebrowser-buku/main/buku"
     exact = true
     refreshPeriod = "168h"
 
