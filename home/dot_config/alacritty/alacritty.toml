@@ -1,4 +1,4 @@
-import = ["/home/jeff/.config/alacritty/themes/github_dark_high_contrast.toml"]
+import = ["/home/jeff/.config/alacritty/themes/onedarkpro.toml"]
 live_config_reload = true
 
 [cursor.style]
