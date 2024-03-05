@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Logging function
+log() {
+  printf "$(tput setaf 4)$(tput bold)>>>>> %s <<<<<$(tput sgr0)\n" "$1"
+}
+
+inf() {
+  printf "$(tput setaf 2)╚═══ᐳ $(tput sgr 0 1)$(tput setaf 2)%s$(tput sgr0)\n" "$1"
+}
+
+
+
+# Environment variables
+TEXMF=texmf/tex/latex
+
+
+
+{{- if (ne .latex false) -}}
+log "Begin LaTeX initialization"
+
+texhash "${HOME}/${TEXMF}"
+
+log "Finish LaTeX initialization"
+{{- end }}
+
