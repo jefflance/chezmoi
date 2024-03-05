@@ -218,7 +218,7 @@ eval "$(direnv hook zsh)"
 #
 # starship
 # unused since i install asdf
-# eval "$(starship init zsh)"
+eval "$(starship init zsh)"
 
 
 
