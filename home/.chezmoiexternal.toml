@@ -6,13 +6,12 @@
 [".config/aacs/KEYDB.cfg"]
     type = "file"
     url = "https://vlc-bluray.whoknowsmy.name/files/KEYDB.cfg"
-    exact = true
     refreshPeriod = "168h"
 
 [".local/share/qutebrowser/userscripts/buku"]
     type = "file"
     url = "https://raw.githubusercontent.com/spectronp/qutebrowser-buku/main/buku"
-    exact = true
+    executable = true
     refreshPeriod = "168h"
 
 [".config/ranger/plugins/ranger_udisk_menu"]
@@ -53,7 +52,6 @@
 [".zim/zimfw.zsh"]
     type = "file"
     url = "https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh"
-    exact = true
     refreshPeriod = "168h"
 
 
