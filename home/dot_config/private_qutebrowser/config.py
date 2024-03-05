@@ -1653,10 +1653,10 @@ config.bind("tg", "tab-give")
 # windows movements
 config.bind("<Ctrl-Shift-w>", "close")
 
-# quickmarks
-config.bind("b", "cmd-set-text -s :quickmark-load")
-config.bind("B", "cmd-set-text -s :quickmark-load -t")
-config.bind("m", "quickmark-save")
+# # quickmarks
+# config.bind("b", "cmd-set-text -s :quickmark-load")
+# config.bind("B", "cmd-set-text -s :quickmark-load -t")
+# config.bind("m", "quickmark-save")
 
 config.bind("dc", "download-clear")
 
