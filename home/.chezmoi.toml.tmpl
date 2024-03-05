@@ -2,4 +2,5 @@
 autoCommit = true
 autoPush = true
 [data]
-email = {{ promptString "Git main email address " "" | quote }}
+email = {{ promptString "What is your main git email address " "" | quote }}
+latex = {{ promptBool "Do i install latex files " false }}
