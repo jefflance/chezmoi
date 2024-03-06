@@ -43,5 +43,8 @@ for plugin in ${!plugins[@]}; do
   asdf global ${plugin} latest
 done
 
+inf "initializing opam..."
+opam init
+
 log "Finish ASDF plugins installation"
 
