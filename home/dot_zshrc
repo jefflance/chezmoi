@@ -223,7 +223,7 @@ unset __conda_setup
 #
 # gnome-keyring-daemon
 #
-if [[ ! $(command -v gnome-keyring-daemon) ]]; then
+if [[ $(command -v gnome-keyring-daemon) ]]; then
   eval $(gnome-keyring-daemon --start) 2>/dev/null
   export SSH_AUTH_SOCK
 fi
