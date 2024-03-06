@@ -49,7 +49,7 @@ zmodule exa
 # fzf
 zmodule fzf
 # zoxide
-zmodule kiesman99/zim-zoxide
+# zmodule kiesman99/zim-zoxide
 
 # Syntx highlighting
 #
