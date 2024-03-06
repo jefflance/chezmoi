@@ -125,11 +125,38 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 
 #
-# nvm
+# zoxide
 #
-# unused since i install asdf
-# source /usr/share/nvm/init-nvm.sh
 eval "$(zoxide init zsh)"
+
+
+
+#
+# starship
+# unused since i install asdf
+eval "$(starship init zsh)"
+
+
+
+#
+# atuin
+eval "$(atuin init zsh)"
+
+
+
+#
+# direnv
+#
+setopt PROMPT_SUBST
+
+show_virtual_env() {
+  if [[ -n "$CONDA_DEFAULT_ENV" && -n "$DIRENV_DIR" ]]; then
+    echo "($(basename $CONDA_DEFAULT_ENV))"
+  fi
+}
+PS1='$(show_virtual_env)'$PS1
+
+eval "$(direnv hook zsh)"
 
 
 
@@ -169,13 +196,6 @@ fi
 
 
 #
-# fuzzy file search
-#
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
-
-#
 # ocaml
 #
 test -r /home/jeff/.opam/opam-init/init.zsh && . /home/jeff/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
@@ -197,35 +217,6 @@ else
     fi
 fi
 unset __conda_setup
-
-
-
-#
-# direnv
-#
-setopt PROMPT_SUBST
-
-show_virtual_env() {
-  if [[ -n "$CONDA_DEFAULT_ENV" && -n "$DIRENV_DIR" ]]; then
-    echo "($(basename $CONDA_DEFAULT_ENV))"
-  fi
-}
-PS1='$(show_virtual_env)'$PS1
-
-eval "$(direnv hook zsh)"
-
-
-
-#
-# starship
-# unused since i install asdf
-eval "$(starship init zsh)"
-
-
-
-#
-# atuin
-eval "$(atuin init zsh)"
 
 
 
