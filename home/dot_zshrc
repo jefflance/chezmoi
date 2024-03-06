@@ -129,6 +129,7 @@ bindkey -M vicmd 'j' history-substring-search-down
 #
 # unused since i install asdf
 # source /usr/share/nvm/init-nvm.sh
+eval "$(zoxide init zsh)"
 
 
 
