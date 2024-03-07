@@ -38,8 +38,6 @@ zmodule archive
 zmodule manjaro
 # Personal aliases
 zmodule jl-helper
-# starship
-zmodule joke/zim-starship
 # sudo module
 zmodule sudo
 # Utility aliases and functions. Adds colour to ls, grep and less.
@@ -64,5 +62,7 @@ zmodule zsh-users/zsh-history-substring-search
 zmodule git-info
 # A customizable version of steeef's prompt theme.
 zmodule steeef
+# starship
+zmodule joke/zim-starship
 
 # }}} End configuration added by Zim install
