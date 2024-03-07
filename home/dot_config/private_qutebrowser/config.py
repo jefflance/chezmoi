@@ -867,11 +867,11 @@ c.editor.encoding = "utf-8"
 
 ## Font used in the completion categories.
 ## Type: Font
-c.fonts.completion.category = "12pt JetBrainsMono Nerd Font Bold"
+c.fonts.completion.category = "bold 12pt JetBrainsMono Nerd Font"
 
 ## Font used in the completion widget.
 ## Type: Font
-c.fonts.completion.entry = "12pt JetBrainsMono Nerd Font Mono"
+c.fonts.completion.entry = "bold 12pt JetBrainsMono Nerd Font Mono"
 
 ## Font used for the debugging console.
 ## Type: QtFont
