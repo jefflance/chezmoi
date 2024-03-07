@@ -20,7 +20,7 @@ fg_disabled = "#565c64"
 fg_default = "#abb2bf"
 fg_error = "#e06c75"  # red
 bg_hint = "#e5c07b"  # yellow
-fg_matched_text = "#98c379"  # green
+fg_matched_text = "#62aeef"  # green
 # "#be5046"                     # dark red
 # "#282c34"          # main shade darkest
 # "#d19a66"                     # orange
