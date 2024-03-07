@@ -405,8 +405,8 @@ c.colors.webpage.darkmode.contrast = 0.0
 c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.policy.images = "never"
 c.colors.webpage.darkmode.policy.page = "smart"
-c.colors.webpage.darkmode.threshold.background = 205
-c.colors.webpage.darkmode.threshold.foreground = 150
+c.colors.webpage.darkmode.threshold.background = 128
+c.colors.webpage.darkmode.threshold.foreground = 128
 # c.colors.webpage.preferred_color_scheme = "dark"
 
 ## Number of commands to save in the command history. 0: no history / -1:
