@@ -7,8 +7,8 @@
 # base16 colors but with variable names that
 # reflect what the color is mainly used for
 
-bg_default = "#111111"
-bg_lighter = "#353b45"
+bg_default = "#000000"
+bg_lighter = "#111111"
 bg_lightest = "#c8ccd4"  # main shade lightest
 bg_selection = "#3e4451"
 bg_passthrough_mode = "#56b6c2"  # teal
