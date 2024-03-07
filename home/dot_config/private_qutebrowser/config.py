@@ -402,7 +402,7 @@ c.backend = "webengine"
 
 c.colors.webpage.darkmode.algorithm = "lightness-hsl"
 c.colors.webpage.darkmode.contrast = 0.3
-c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.enabled = False
 c.colors.webpage.darkmode.policy.images = "never"
 c.colors.webpage.darkmode.policy.page = "smart"
 c.colors.webpage.darkmode.threshold.background = 128
