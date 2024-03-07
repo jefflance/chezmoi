@@ -400,10 +400,10 @@ c.backend = "webengine"
 ## Type: QtColor
 # c.colors.webpage.bg = 'white'
 
-c.colors.webpage.darkmode.algorithm = "lightness-cielab"
+c.colors.webpage.darkmode.algorithm = "lightness-hsl"
 c.colors.webpage.darkmode.contrast = 0.0
 c.colors.webpage.darkmode.enabled = True
-c.colors.webpage.darkmode.policy.images = "smart"
+c.colors.webpage.darkmode.policy.images = "never"
 c.colors.webpage.darkmode.policy.page = "smart"
 c.colors.webpage.darkmode.threshold.background = 205
 c.colors.webpage.darkmode.threshold.foreground = 150
