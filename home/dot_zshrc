@@ -133,7 +133,7 @@ eval "$(zoxide init zsh)"
 
 #
 # starship
-# unused since i install asdf
+#
 eval "$(starship init zsh)"
 
 
