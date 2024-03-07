@@ -14,13 +14,14 @@ bg_selection = "#000000"
 bg_passthrough_mode = "#56b6c2"
 bg_insert_mode = "#98c379"
 bg_warning = "#c678dd"
+bg_hint = "#000000"
 fg_selection = "#62aeef"
 fg_matched_text = "#ff79c6"
-fg_pinned = "#ee4427"
+fg_pinned = "#e06c75"
 fg_disabled = "#565c64"
 fg_default = "#abb2bf"
-fg_error = "#e06c75"
-bg_hint = "#ffb86c"
+fg_error = "#ee4427"
+fg_hint = "#ffb86c"
 
 ############
 # SETTINGS #
@@ -37,7 +38,7 @@ c.colors.completion.odd.bg = bg_default
 c.colors.completion.even.bg = bg_default
 
 # Foreground color of completion widget category headers.
-c.colors.completion.category.fg = bg_hint
+c.colors.completion.category.fg = fg_hint
 
 # Background color of the completion widget category headers.
 c.colors.completion.category.bg = bg_default
