@@ -606,7 +606,7 @@ c.content.headers.do_not_track = True
 ## Type: String
 # c.content.headers.user_agent = None
 c.content.headers.user_agent = (
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/115.2"
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0"
 )
 
 ## Enable host blocking.
