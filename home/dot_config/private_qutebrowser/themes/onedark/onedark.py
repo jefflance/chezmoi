@@ -10,7 +10,7 @@
 bg_default = "#000000"
 bg_lighter = "#111111"
 bg_lightest = "#c8ccd4"  # main shade lightest
-bg_selection = "#111111"
+bg_selection = "#000000"
 bg_passthrough_mode = "#56b6c2"  # teal
 bg_insert_mode = "#61afef"  # blue
 bg_warning = "#c678dd"  # purple
