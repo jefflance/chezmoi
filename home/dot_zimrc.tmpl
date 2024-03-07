@@ -41,7 +41,7 @@ zmodule archive
 zmodule manjaro
 {{ else if (eq .chezmoi.osRelease.id "arch") -}}
 zmodule pacman
-{{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -)}}
+{{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
 zmodule debian
 {{- end }}
 # Personal aliases
