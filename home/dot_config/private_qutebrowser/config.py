@@ -867,15 +867,15 @@ c.editor.encoding = "utf-8"
 
 ## Font used in the completion categories.
 ## Type: Font
-c.fonts.completion.category = "bold 12pt JetBrainsMono Nerd Font"
+c.fonts.completion.category = "bold 13pt JetBrainsMono Nerd Font"
 
 ## Font used in the completion widget.
 ## Type: Font
-c.fonts.completion.entry = "bold 12pt JetBrainsMono Nerd Font Mono"
+c.fonts.completion.entry = "bold 13pt JetBrainsMono Nerd Font Mono"
 
 ## Font used for the debugging console.
 ## Type: QtFont
-c.fonts.debug_console = "bold 12pt JetBrainsMono Nerd Font Mono"
+c.fonts.debug_console = "bold 13pt JetBrainsMono Nerd Font Mono"
 
 ## Default font families to use. Whenever "default_family" is used in a font setting,
 ## it’s replaced with the fonts listed here. If set to an empty value,
@@ -889,39 +889,39 @@ c.fonts.default_family = ["JetBrainsMono NFP SemiBold"]
 ## Valid values are either a float value with a "pt" suffix, or an integer value with a "px" suffix.
 ## Type: String
 ## Default: 10pt
-c.fonts.default_size = "12pt"
+c.fonts.default_size = "13pt"
 
 ## Font used for the downloadbar.
 ## Type: Font
-c.fonts.downloads = "12pt JetBrainsMono Nerd Font Mono"
+c.fonts.downloads = "13pt JetBrainsMono Nerd Font Mono"
 
 ## Font used for the hints.
 ## Type: Font
-c.fonts.hints = "bold 12pt JetBrainsMono Nerd Font Mono"
+c.fonts.hints = "bold 13pt JetBrainsMono Nerd Font Mono"
 
 ## Font used in the keyhint widget.
 ## Type: Font
-c.fonts.keyhint = "12pt JetBrainsMono Nerd Font Mono"
+c.fonts.keyhint = "13pt JetBrainsMono Nerd Font Mono"
 
 ## Font used for error messages.
 ## Type: Font
-c.fonts.messages.error = "12pt JetBrainsMono Nerd Font Mono"
+c.fonts.messages.error = "13pt JetBrainsMono Nerd Font Mono"
 
 ## Font used for info messages.
 ## Type: Font
-c.fonts.messages.info = "12pt JetBrainsMono Nerd Font Mono"
+c.fonts.messages.info = "13pt JetBrainsMono Nerd Font Mono"
 
 ## Font used for warning messages.
 ## Type: Font
-c.fonts.messages.warning = "12pt JetBrainsMono Nerd Font Mono"
+c.fonts.messages.warning = "13pt JetBrainsMono Nerd Font Mono"
 
 ## Font used for prompts.
 ## Type: Font
-c.fonts.prompts = "12pt JetBrainsMono Nerd Font Mono"
+c.fonts.prompts = "13pt JetBrainsMono Nerd Font Mono"
 
 ## Font used in the statusbar.
 ## Type: Font
-c.fonts.statusbar = "12pt JetBrainsMono Nerd Font Mono"
+c.fonts.statusbar = "13pt JetBrainsMono Nerd Font Mono"
 
 ## Font family for cursive fonts.
 ## Type: FontFamily
