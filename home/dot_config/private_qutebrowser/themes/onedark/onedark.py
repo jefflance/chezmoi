@@ -36,7 +36,7 @@ fg_matched_text = "#98c379"  # green
 c.colors.completion.fg = fg_default
 
 # Background color of the completion widget for odd rows.
-c.colors.completion.odd.bg = bg_lighter
+c.colors.completion.odd.bg = bg_default
 
 # Background color of the completion widget for even rows.
 c.colors.completion.even.bg = bg_default
