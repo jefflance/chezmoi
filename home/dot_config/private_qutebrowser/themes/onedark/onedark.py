@@ -20,8 +20,11 @@ fg_matched_text = "#ff79c6"
 fg_pinned = "#e06c75"
 fg_disabled = "#565c64"
 fg_default = "#abb2bf"
-fg_error = "#ee4427"
+fg_error = "#ef596f"
 fg_hint = "#ffb86c"
+fg_hover = "#ffb86c"
+fg_success = "#98c379"
+fg_warning = "#c678dd"
 
 ############
 # SETTINGS #
@@ -222,24 +225,24 @@ c.colors.statusbar.caret.selection.bg = bg_insert_mode
 c.colors.statusbar.progress.bg = bg_insert_mode
 
 # Default foreground color of the URL in the statusbar.
-c.colors.statusbar.url.fg = fg_default
+c.colors.statusbar.url.fg = fg_selection
 
 # Foreground color of the URL in the statusbar on error.
 c.colors.statusbar.url.error.fg = fg_error
 
 # Foreground color of the URL in the statusbar for hovered links.
-c.colors.statusbar.url.hover.fg = fg_default
+c.colors.statusbar.url.hover.fg = fg_hover
 
 # Foreground color of the URL in the statusbar on successful load
 # (http).
-c.colors.statusbar.url.success.http.fg = bg_passthrough_mode
+c.colors.statusbar.url.success.http.fg = fg_success
 
 # Foreground color of the URL in the statusbar on successful load
 # (https).
-c.colors.statusbar.url.success.https.fg = fg_matched_text
+c.colors.statusbar.url.success.https.fg = fg_success
 
 # Foreground color of the URL in the statusbar when there's a warning.
-c.colors.statusbar.url.warn.fg = bg_warning
+c.colors.statusbar.url.warn.fg = fg_warning
 
 # Background color of the tab bar.
 c.colors.tabs.bar.bg = bg_default
