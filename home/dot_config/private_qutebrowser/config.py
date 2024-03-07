@@ -875,14 +875,14 @@ c.fonts.completion.entry = "bold 12pt JetBrainsMono Nerd Font Mono"
 
 ## Font used for the debugging console.
 ## Type: QtFont
-c.fonts.debug_console = "12pt JetBrainsMono Nerd Font Mono"
+c.fonts.debug_console = "bold 12pt JetBrainsMono Nerd Font Mono"
 
 ## Default font families to use. Whenever "default_family" is used in a font setting,
 ## it’s replaced with the fonts listed here. If set to an empty value,
 ## a system-specific monospace default is used.
 ## Type: List of Font, or Font
 ## Default: empty
-c.fonts.default_family = ["JetBrainsMono Nerd Font Mono"]
+c.fonts.default_family = ["JetBrainsMono NFP SemiBold"]
 
 ## Default font size to use.
 ## Whenever "default_size" is used in a font setting, it’s replaced with the size listed here.
