@@ -12,8 +12,6 @@ from plugins.ranger_udisk_menu.mounter import mount
 from tmsu import Tmsu
 
 import os
-import ranger.api
-import ranger.core.linemode
 
 
 tmsu = Tmsu.findTmsu()
@@ -124,6 +122,10 @@ class tmsu_ls(Command):
         cf = self.fm.thisfile
         tags = tmsu.tags(cf.basename)
         self.fm.notify(tags)
+
+
+import ranger.api
+import ranger.core.linemode
 
 
 @ranger.api.register_linemode  # It may be used as a decorator too!
