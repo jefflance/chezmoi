@@ -11,10 +11,15 @@ inf() {
 
 
 
+# Environment variables
+TEXMFDIR=${HOME}/texmf/tex/latex
+
+
+
 {{- if (ne .latex false) }}
 log "Begin LaTeX repo initialization"
 
-texhash "${HOME}/texmf/tex/latex"
+texhash "${TEXMFDIR}"
 
 log "Finish LaTeX repo initialization"
 {{ end -}}
