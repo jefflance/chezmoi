@@ -11,11 +11,11 @@ inf() {
 
 
 
-{{- if (ne .latex false) -}}
+{{- if (ne .latex false) }}
 log "Begin LaTeX repo initialization"
 
 texhash "${HOME}/texmf/tex/latex"
 
 log "Finish LaTeX repo initialization"
-{{ end }}
+{{ end -}}
 
