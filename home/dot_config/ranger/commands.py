@@ -7,6 +7,7 @@
 # Last Modified By  : Jeff Lance <email@jefflance.me>
 
 from ranger.api.commands import Command
+from plugins.ranger_udisk_menu.mounter import mount
 
 
 class mkcd(Command):
