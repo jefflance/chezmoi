@@ -17,10 +17,10 @@ TEXMF=texmf/tex/latex
 
 
 {{- if (ne .latex false) -}}
-log "Begin LaTeX initialization"
+log "Begin LaTeX repo initialization"
 
 texhash "${HOME}/${TEXMF}"
 
-log "Finish LaTeX initialization"
+log "Finish LaTeX repo initialization"
 {{- end }}
 
