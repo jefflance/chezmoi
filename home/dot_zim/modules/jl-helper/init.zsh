@@ -37,9 +37,9 @@ alias pips='pip_search'                  # pip search tool
 alias rs='rsync -Pavzl'                  # rsync shortcut
 alias t='tmux'                           # tmux
 alias ta='t a -t'                        # tmux attach to a session
-alias tls='t ls'                         # tmux list sessions
+alias tl='t ls'                          # tmux list sessions
 alias tn='t n -t'                        # tmux new session
-alias tvs='transcode-video --scan'       #
+alias vs='transcode-video --scan'        #
 alias xcolor='xcolor | xclip -i'         # xcolor
 alias yd='yt-dlp'                        # yt-dlp best download
 
@@ -48,9 +48,9 @@ alias yd='yt-dlp'                        # yt-dlp best download
 # Shortcuts
 #
 
-hash -d crs="${HOME}/Cours"              # cours
+hash -d crs="${HOME}/Documents/cours"    # cours
 hash -d doc="${HOME}/Documents"          # documents
-hash -d dot="${HOME}/dotfiles"           # dotfiles
+hash -d dot="$(chezmoi source-path)"     # dotfiles
 
 
 #
