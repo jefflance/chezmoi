@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# File              : command.py
+# File              : .config/ranger/commands.py
 # Author            : Jeff LANCE <email@jefflance.me>
 # Date              : 12.05.2021
-# Last Modified Date: 12.05.2021
-# Last Modified By  : Jeff LANCE <email@jefflance.me>
+# Last Modified Date: 08.03.2024 17:35:06
+# Last Modified By  : Jeff Lance <email@jefflance.me>
 
 from ranger.api.commands import Command
 

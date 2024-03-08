@@ -49,6 +49,12 @@
     url = "https://github.com/tmux-plugins/tpm.git"
     refreshPeriod = "168h"
 
+{{ $tmsuVersion := "0.7.5" -}}
+[".local/bin/tmsu"]
+    type = "archive-file"
+    url = "https://github.com/oniony/TMSU/releases/download/v0.7.5/tmsu-x86_64-{{ $tmsuVersion }}.tgz"
+    path = bin/tmsu
+
 [".zim/zimfw.zsh"]
     type = "file"
     url = "https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh"
