@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # File              : .config/ranger/commands.py
 # Author            : Jeff LANCE <email@jefflance.me>
