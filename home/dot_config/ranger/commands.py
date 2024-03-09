@@ -9,7 +9,7 @@
 
 from ranger.api.commands import Command
 from plugins.ranger_udisk_menu.mounter import mount
-from tmsu import Tmsu
+from plugins.ranger_tmsu import Tmsu
 
 import os
 
