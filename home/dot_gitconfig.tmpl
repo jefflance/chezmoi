@@ -1,7 +1,9 @@
 [user]
 	name = Jeff LANCE
 	email = "{{ .email }}"
-  signingkey = "{{ .signingkey }}"
+{{ if not empty .signinkey }}
+  signinkey = "{{ .signinkey }}"
+{{ end }}
 [core]
 	excludesfile = /home/jeff/.gitignore.global
 [credential]
