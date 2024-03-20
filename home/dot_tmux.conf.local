@@ -46,6 +46,7 @@ set -g @tpm_plugins '             \
   jaclu/tmux-menus                \
   MunifTanjim/tmux-mode-indicator \
   kenos1/tmux-cht-sh              \
+  laktak/extrakto                 \
 '
 
 # set -g @onedark_widgets "#(date +%s)"
