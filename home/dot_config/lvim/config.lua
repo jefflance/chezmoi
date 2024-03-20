@@ -100,6 +100,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "julia",
   "latex",
   "lua",
+  "markdown",
   "perl",
   "python",
   "typescript",
@@ -111,8 +112,9 @@ lvim.builtin.treesitter.ensure_installed = {
   "yaml",
 }
 
-lvim.builtin.treesitter.ignore_install = { "comment" }
+lvim.builtin.treesitter.ignore_install = { "all" }
 lvim.builtin.treesitter.highlight.enable = true
+lvim.builtin.treesitter.additional_vim_regex_highlighting = { "markdown" }
 lvim.builtin.treesitter.highlight.disable( "latex", "zsh" )
 lvim.builtin.treesitter.rainbow.enable = true
 

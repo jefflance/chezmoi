@@ -128,6 +128,24 @@ M.setup = function()
         ]])
       end
     },
+    -- markdown: syntax highlighting, matching rules and mappings for
+    -- the original Markdown and extensions
+    {
+      'preservim/vim-markdown',
+      ft = "markdown",
+      config = function()
+        vim.g.vim_markdown_folding_disabled        = 1
+        vim.g.vim_markdown_no_default_key_mappings = 0
+        vim.g.vim_markdown_conceal_code_blocks     = 0
+        vim.g.vim_markdown_math                    = 1
+        vim.g.tex_conceal = "abmgs"
+        vim.g.vim_markdown_conceal = 1
+        vim.g.vim_markdown_toc_autofit = 1
+        vim.g.vim_markdown_follow_anchor = 0
+        vim.g.vim_markdown_toml_frontmatter = 1
+        vim.g.vim_markdown_strikethrough = 1
+      end,
+    },
     -- markdown previewer
     {
       'iamcco/markdown-preview.nvim',
@@ -248,13 +266,57 @@ M.setup = function()
         })
       end
     },
-    -- zk: a plain text note-taking assistant
     {
-      'mickael-menu/zk-nvim',
+      "postfen/clipboard-image.nvim",
+      keys = {
+        { "<leader>i", "<cmd>PasteImg<CR>"},
+      },
       config = function()
-        require("zk").setup({
+        require'clipboard-image'.setup({
+          -- Default configuration for all filetype
+          default = {
+            img_dir = {"%:p:h", "img"}, -- Use table for nested dir (New feature form PR #20)
+            img_name = function ()
+              vim.fn.inputsave()
+              local name = vim.fn.input('Name: ')
+              vim.fn.inputrestore()
+              return name
+            end,
+            affix = "<\n  %s\n>" -- Multi lines affix
+          },
+          markdown = {
+            img_dir = {"%:p:h", "img"}, -- Use table for nested dir (New feature form PR #20)
+            img_name = function ()
+              vim.fn.inputsave()
+              local name = vim.fn.input('Name: ')
+              vim.fn.inputrestore()
+              return name
+            end,
+            img_handler = function(img)
+              vim.cmd("normal! f[") -- go to [
+              vim.cmd("normal! a" .. img.name) -- append text with image name
+            end,
+            affix = "![](%s)",
+          }
         })
-      end,
+      end
+    },
+    -- lists: plugin to manage text based lists
+    {
+      'bullets-vim/bullets.vim',
+    },
+    {
+      'lervag/lists.vim',
+      ft = "markdown",
+      config = function()
+          vim.cmd("ListsEnable")
+      end
+    },
+    {
+      'lervag/vim-rainbow-lists',
+    },
+    {
+      'KabbAmine/lazyList.vim',
     },
     -- nvim-ts-rainbow: rainbowed parenthesis
     {
@@ -351,7 +413,18 @@ M.setup = function()
       "nvim-neotest/neotest"
     },
     {
+      'nvim-neotest/nvim-nio'
+    },
+    {
       "nvim-neotest/neotest-python"
+    },
+    -- zk: a plain text note-taking assistant
+    {
+      'mickael-menu/zk-nvim',
+      config = function()
+        require("zk").setup({
+        })
+      end,
     },
   }
 end
