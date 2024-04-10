@@ -96,7 +96,7 @@ M.setup = function()
 
   lvim.builtin.which_key.mappings["s"] = { "<CMD>echom 'Sourcing' <BAR> source %<CR>", "Source current file" }
 
-  lvim.builtin.which_key.mappings["x"] = { "<CMD>w! <BAR> q!<CR>", "Save and quit" }
+  lvim.builtin.which_key.mappings["Q"] = { "<CMD>w! <BAR> q!<CR>", "Save and quit" }
 
   lvim.builtin.which_key.mappings[";"] = {}
   -- lvim.builtin.which_key.mappings["e"] = { ":lua require('user.functions').xplr_toggle()<CR>", "File manager" }
