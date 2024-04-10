@@ -33,13 +33,13 @@ log "Begin Zsh installation"
 
   ## Update system
   inf "updating system..."
-  yay -Syu --noconfirm --quiet
+  yay -Syu --noconfirm --removemake --quiet
 
   ## install packages
   for package in ${packages[@]}; do
     if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
       inf "installing ${package}..."
-      yay -S --noconfirm --quiet $package
+      yay -S --noconfirm --removemake --quiet $package
     fi
   done
 

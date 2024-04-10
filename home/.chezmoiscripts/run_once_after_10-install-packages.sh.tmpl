@@ -58,7 +58,7 @@ packages=(
   for package in ${packages[@]}; do
     if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
       inf "installing ${package}..."
-      yay -S --noconfirm --quiet $package
+      yay -S --noconfirm --removemake --quiet $package
     fi
   done
 
