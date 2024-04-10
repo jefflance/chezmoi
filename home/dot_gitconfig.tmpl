@@ -1,7 +1,7 @@
 [user]
 	name = Jeff LANCE
 	email = "{{ .email }}"
-{{ if not empty .signinkey }}
+{{ if not (empty .signinkey) }}
   signinkey = "{{ .signinkey }}"
 {{ end }}
 [core]
