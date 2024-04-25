@@ -34,6 +34,7 @@ inf "installing direnv with system version..."
 # no need to run asdf direnv setup --shell zsh --version latest
 # as it is managed by zim module
 asdf plugin-add direnv
+asdf install direnv latest
 
 for plugin in ${!plugins[@]}; do
   inf "installing ${plugin}..."
