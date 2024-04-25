@@ -89,9 +89,16 @@ log "Finish cargo-update installation"
 log "Installing atuin"
 
 cargo install atuin
-ln -sf ~/.asdf/installs/rust/1.76.0/bin/atuin ~/.asdf/shims/atuin
 
 log "Finish atuin installation"
+
+
+## Reshim
+log "Asdf reshim..."
+
+asdf reshim
+
+log "Reshim ok."
 
 
 ### Config Zsh ###
