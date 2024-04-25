@@ -140,7 +140,7 @@ eval "$(asdf exec starship init zsh)"
 
 #
 # atuin
-eval "$(asdf exec atuin init zsh)"
+# eval "$(asdf exec atuin init zsh)"
 
 
 
