@@ -35,6 +35,7 @@ inf "installing direnv with system version..."
 # as it is managed by zim module
 asdf plugin-add direnv
 asdf install direnv latest
+asdf global direnv latest
 
 for plugin in ${!plugins[@]}; do
   inf "installing ${plugin}..."
