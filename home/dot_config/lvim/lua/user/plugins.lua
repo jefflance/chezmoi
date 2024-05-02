@@ -157,6 +157,21 @@ M.setup = function()
         ]])
       end,
     },
+    -- markdown to pdf conversion
+    {
+      'arminveres/md-pdf.nvim',
+      branch = 'main',
+      lazy = true,
+      config = function()
+        local mdpdf = require('md-pdf')
+        mdpdf.setup({
+          margins = "0.8cm",
+          highlight = "tango",
+          toc = false,
+          preview_cmd = function() return 'zathura' end
+        })
+      end,
+    },
     -- mason
     {
       'WhoIsSethDaniel/mason-tool-installer.nvim',
