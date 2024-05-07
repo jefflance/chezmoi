@@ -123,5 +123,11 @@ packages=(
 
   log "Finish Debian/Ubuntu Linux packages installation"
 
+{{ else if (eq .chezmoi.osRelease.id "android") -}}
+
+  log "Begin Android packages installation"
+
+  log "Finish Android Linux packages installation"
+
 {{- end }}
 
