@@ -126,7 +126,7 @@ packages=(
 
   {{- end }}
 
-{{ else if (eq .chezmoi.arch "android/arm64") }}
+{{ else if (eq .chezmoi.arch "android/arm64") -}}
 
   log "Begin Android packages installation"
 
