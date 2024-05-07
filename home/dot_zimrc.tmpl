@@ -36,6 +36,7 @@ zmodule git
 zmodule termtitle
 # Provides archive and unarchive functions for easy archive manipulation.
 zmodule archive
+{{ if (eq .chezmoi.os "linux") -}}
 # Distribution aliases and functions.
 {{ if (eq .chezmoi.osRelease.id "manjaro") -}}
 zmodule manjaro
@@ -43,6 +44,7 @@ zmodule manjaro
 zmodule pacman
 {{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
 zmodule debian
+{{- end }}
 {{- end }}
 # Personal aliases
 zmodule jl-helper
