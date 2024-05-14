@@ -156,8 +156,6 @@ show_virtual_env() {
 }
 PS1='$(show_virtual_env)'$PS1
 
-# eval "$(direnv hook zsh)"
-
 
 
 #
