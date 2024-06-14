@@ -76,7 +76,7 @@ log "Begin LVim installation"
 {{- end }}
 
 inf "installing lvim..."
-LV_BRANCH='release-${lvim_version}/neovim-0.9' bash <(curl -s 'https://raw.githubusercontent.com/LunarVim/LunarVim/release-${lvim_version}/neovim-0.9/utils/installer/install.sh')
+LV_BRANCH="release-${lvim_version}/neovim-0.9" bash <(curl -s "https://raw.githubusercontent.com/LunarVim/LunarVim/release-${lvim_version}/neovim-0.9/utils/installer/install.sh")
 
 log "Finish LVim installation"
 
