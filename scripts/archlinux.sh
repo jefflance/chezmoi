@@ -31,7 +31,7 @@ packages=(
 )
 
 
-{{- if ne .chezmoi.username "root" }}
+{{ if ne .chezmoi.username "root" -}}
   ## Update system
   inf "updating system..."
   sudo pacman -Syu --noconfirm --quiet
@@ -53,7 +53,7 @@ packages=(
       yay -S --noconfirm --removemake --quiet $package
     fi
   done
-{{- else }}
+{{ else -}}
   err "you may not run this script as root" 
 {{- end}}
 
