@@ -13,6 +13,8 @@ err() {
   printf "$(tput setaf 9)$(tput bold)>>>>> %s ! <<<<<$(tput sgr0)\n" "$1"
 }
 
+log "Executing $0..."
+
 # Packages to install
 packages=(
   bubblewrap
