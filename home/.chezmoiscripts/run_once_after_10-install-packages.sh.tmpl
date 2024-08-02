@@ -19,7 +19,7 @@ err() {
 
     log "Begin Arch/Manjaro Linux packages installation"
 
-    sh {{ .chezmoi.sourceDir }}/scripts/archlinux.sh
+    sh {{ .chezmoi.workingTree }}/scripts/archlinux.sh
 
     log "Finish Arch/Manjaro Linux packages installation"
 
