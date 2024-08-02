@@ -1,0 +1,130 @@
+#!{{ lookPath "bash" }}
+
+# Logging function
+log() {
+  printf "$(tput setaf 4)$(tput bold)>>>>> %s <<<<<$(tput sgr0)\n" "$1"
+}
+
+inf() {
+  printf "$(tput setaf 2)╚═══ᐳ $(tput sgr 0 1)$(tput setaf 2)%s$(tput sgr0)\n" "$1"
+}
+
+
+# Packages to install
+packages=(
+  bubblewrap
+  curl
+  fzf
+  pass
+  libyaml
+  ranger
+  tmux
+  trash-cli
+  ueberzug
+  unzip
+  wget
+  zip
+  zoxide
+)
+
+
+{{ if (eq .chezmoi.os "linux") -}}
+  {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
+
+    log "Begin Arch/Manjaro Linux packages installation"
+
+    ## Update system
+    inf "updating system..."
+    {{- if ne .chezmoi.username "root" }}
+      sudo pacman -Syu --noconfirm --quiet
+    {{- else }}
+      pacman -Syu --noconfirm --quiet
+    {{- end}}
+
+    ## Install yay
+    if [ ! $(command -v yay) ]; then
+      inf "installing yay..."
+      {{- if ne .chezmoi.username "root" }}
+        sudo pacman -S --needed --noconfirm --quiet git base-devel
+      {{- else}}
+        pacman -S --needed --noconfirm --quiet git base-devel
+      {{- end }}
+      git clone https://aur.archlinux.org/yay.git /tmp/yay
+      cd /tmp/yay
+      makepkg -si --noconfirm
+      rm -rf /tmp/yay
+    fi
+
+    ## Install packages
+    for package in ${packages[@]}; do
+      if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
+        inf "installing ${package}..."
+        yay -S --noconfirm --removemake --quiet $package
+      fi
+    done
+
+    log "Finish Arch/Manjaro Linux packages installation"
+
+  {{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
+
+    log "Begin Debian/Ubuntu Linux packages installation"
+
+    export DEBIAN_FRONTEND=noninteractive
+
+    ## Add repositories and update system
+    inf "updating system..."
+    {{- if ne .chezmoi.username "root" }}
+      sudo -E apt-get install --yes --no-install-recommends --ignore-missing -qq lsb-release gpg
+      curl -fsSL 'https://proget.makedeb.org/debian-feeds/makedeb.pub' | gpg --dearmor | sudo tee /usr/share/keyrings/makedeb-archive-keyring.gpg 1> /dev/null
+      echo 'deb [signed-by=/usr/share/keyrings/makedeb-archive-keyring.gpg arch=all] https://proget.makedeb.org/ makedeb main' | sudo tee /etc/apt/sources.list.d/makedeb.list
+      curl -fsSL 'https://proget.makedeb.org/debian-feeds/prebuilt-mpr.pub' | gpg --dearmor | sudo tee /usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg 1> /dev/null
+      echo "deb [arch=all,$(dpkg --print-architecture) signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | sudo tee /etc/apt/sources.list.d/prebuilt-mpr.list
+      sudo -E apt update -qq
+      sudo -E apt upgrade --yes -qq
+      sudo -E apt-get install --yes --no-install-recommends --ignore-missing --fix-broken -qq mist
+    {{- else }}
+      apt-get install --yes --no-install-recommends --ignore-missing -qq lsb-release gpg
+      curl -fsSL 'https://proget.makedeb.org/debian-feeds/makedeb.pub' | gpg --dearmor | tee /usr/share/keyrings/makedeb-archive-keyring.gpg 1> /dev/null
+      echo 'deb [signed-by=/usr/share/keyrings/makedeb-archive-keyring.gpg arch=all] https://proget.makedeb.org/ makedeb main' | tee /etc/apt/sources.list.d/makedeb.list
+      curl -fsSL 'https://proget.makedeb.org/debian-feeds/prebuilt-mpr.pub' | gpg --dearmor | tee /usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg 1> /dev/null
+      echo "deb [arch=all,$(dpkg --print-architecture) signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | tee /etc/apt/sources.list.d/prebuilt-mpr.list
+      apt update -qq
+      apt upgrade --yes -qq
+      apt-get install --yes --no-install-recommends --ignore-missing --fix-broken -qq mist
+    {{- end}}
+
+    mist update
+
+    ## Install packages
+    packages=(${packages[@]/starship/makedeb})
+    packages=(${packages[@]/libyaml/libyaml-dev})
+    packages+=(
+      apt-utils
+      autoconf
+      automake
+      cmake
+      doxygen
+      libffi-dev
+      libtool
+      libtool-bin
+      ninja-build
+      pkg-config
+      zlib1g-dev
+    )
+
+    for package in ${packages[@]}; do
+      inf "installing ${package}..."
+
+      {{- if ne .chezmoi.username "root" }}
+        sudo -E apt-get install --yes --no-install-recommends --ignore-missing --fix-broken -qq $package
+      {{- else }}
+        apt-get install --yes --no-install-recommends --ignore-missing --fix-broken -qq $package
+      {{- end }}
+    done
+
+    log "Finish Debian/Ubuntu Linux packages installation"
+
+  {{- end }}
+{{- end }}
+
+
