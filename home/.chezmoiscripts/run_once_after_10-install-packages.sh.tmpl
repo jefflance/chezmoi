@@ -14,14 +14,12 @@ err() {
 }
 
 
-log "Executing $0"
-
 {{ if (eq .chezmoi.os "linux") -}}
   {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
 
     log "Begin Arch/Manjaro Linux packages installation"
 
-    . {{ .chezmoi.config.sourceDir }}/scripts/archlinux.sh
+    . {{ .chezmoi.sourceDir }}/scripts/archlinux.sh
 
     log "Finish Arch/Manjaro Linux packages installation"
 
