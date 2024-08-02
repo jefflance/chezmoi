@@ -1,10 +1,10 @@
-{{ $email := promptStringOnce "What is your main git email address " "" }}
-{{ $signinkey := promptStringOnce "What is your git signing key " "" }}
-{{ $latex := promptBoolOnce "Do i install latex files " false }}
+{{ $email := promptStringOnce . "email" "What is your main git email address " }}
+{{ $signinkey := promptStringOnce . "signingkey" "What is your git signing key " }}
+{{ $latex := promptBoolOnce . "hasLatex" "Do i install latex files " }}
 [git]
 autoCommit = true
 autoPush = true
 [data]
 email = {{ $email | quote }}
 signinkey = {{ $signinkey | quote }}
-latex = {{ $latex }}
+hasLatex = {{ $hasLatex }}

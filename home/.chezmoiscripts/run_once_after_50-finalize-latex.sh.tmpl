@@ -16,7 +16,7 @@ TEXMFDIR=${HOME}/texmf/tex/latex
 
 
 
-{{- if (ne .latex false) }}
+{{- if (ne .hasLatex false) }}
 log "Begin LaTeX repo initialization"
 
 texhash "${TEXMFDIR}"
