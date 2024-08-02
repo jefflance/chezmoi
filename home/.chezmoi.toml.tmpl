@@ -1,6 +1,6 @@
-{{ $email := promptString "What is your main git email address " "" }}
-{{ $signinkey := promptString "What is your git signing key " "" }}
-{{ $latex := promptBool "Do i install latex files " false }}
+{{ $email := promptStringOnce "What is your main git email address " "" }}
+{{ $signinkey := promptStringOnce "What is your git signing key " "" }}
+{{ $latex := promptBoolOnce "Do i install latex files " false }}
 [git]
 autoCommit = true
 autoPush = true
