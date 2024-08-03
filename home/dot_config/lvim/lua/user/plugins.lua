@@ -335,7 +335,7 @@ M.setup = function()
     },
     -- nvim-ts-rainbow: rainbowed parenthesis
     {
-      "mrjones2014/nvim-ts-rainbow",
+      "HiPhish/nvim-ts-rainbow2",
     },
     -- colorizer: color highlighter
     {
