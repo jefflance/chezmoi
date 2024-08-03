@@ -4,7 +4,7 @@ FULL_PATH_TO_SCRIPT="$(realpath "${BASH_SOURCE[-1]}")"
 SCRIPT_DIRECTORY="$(dirname "$FULL_PATH_TO_SCRIPT")"
 
 # include lib
-. $SCRIPT_DIRECTORY/utils.sh
+. ${CHEZMOI_WORKING_TREE}/utils.sh
 
 
 # Packages to install
