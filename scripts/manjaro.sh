@@ -50,6 +50,7 @@ install_nvim() {
 
 install_lvim() {
     packages+=(
+      go
       nodejs
       python
       rust
