@@ -66,7 +66,7 @@ install_binary() {
             }
         ;;
         yay)
-            sudo yay -S --noconfirm --removemake --quiet "${package_name}" || {
+            yay -S --noconfirm --removemake --quiet "${package_name}" || {
                 err "Installation failed."
                 exit 1
             }
@@ -111,7 +111,7 @@ update_system() {
             }
         ;;
         yay)
-            sudo yay -Syu --noconfirm --removemake --quiet || {
+            yay -Syu --noconfirm --removemake --quiet || {
                 err "Update failed."
                 exit 1
             }
