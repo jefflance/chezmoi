@@ -149,7 +149,7 @@ M.setup = function()
     -- markdown previewer
     {
       'iamcco/markdown-preview.nvim',
-      build = "cd app && npm install",
+      build = "cd app && npx --yes yarn install",
       ft = "markdown",
       config = function()
         vim.cmd([[
