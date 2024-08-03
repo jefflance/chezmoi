@@ -22,7 +22,6 @@ export TERMINAL=alacritty
 # export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export GEM_HOME="$(${HOME}/.asdf/shims/gem env user_gemhome)"
 export PATH="$PATH:$GEM_HOME/bin"
-export MYVIMRC="${HOME}/.vimrc"
 export PASSWORD_STORE_DIR="${HOME}/.password-store"
 export PASSWORD_STORE_ENABLE_EXTENSIONS=True
 export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
