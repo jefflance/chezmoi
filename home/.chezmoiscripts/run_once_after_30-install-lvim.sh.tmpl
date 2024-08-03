@@ -2,10 +2,10 @@
 
 # include lib
 . ${CHEZMOI_WORKING_TREE}/scripts/utils.sh
-. ${HOME}/.asdf/asdf.sh
 
 # LVim version
 lvim_version="1.4"
+
 
 {{- if (and (ne .hasNVim false) (ne .hasLVim false)) }}
 

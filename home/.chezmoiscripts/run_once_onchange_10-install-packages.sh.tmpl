@@ -6,6 +6,7 @@
 # args
 args="--base --zsh"
 
+
 {{- if (ne .hasNVim false) }}
     args="${args} --nvim"
 {{- end }}
