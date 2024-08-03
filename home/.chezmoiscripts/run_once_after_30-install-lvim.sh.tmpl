@@ -10,7 +10,8 @@ lvim_version="1.4"
 {{- if (and (ne .hasNVim false) (ne .hasLVim false)) }}
 
     log "Begin LVim installation"
-
+    
+    go install github.com/nametake/golangci-lint-langserver@latest
     LV_BRANCH="release-${lvim_version}/neovim-0.9" bash <(curl -s "https://raw.githubusercontent.com/LunarVim/LunarVim/release-${lvim_version}/neovim-0.9/utils/installer/install.sh")
 
     log "Finish LVim installation"
