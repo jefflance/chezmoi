@@ -15,13 +15,13 @@ err() {
 
 # Function to determine the package manager if not specified
 determine_package_manager() {
-    if [ command -v apt-get &>/dev/null ]; then
+    if [ $(command -v apt-get) ]; then
         echo "apt"
-    elif [ command -v pamac &>/dev/null ]; then
+    elif [ $(command -v pamac) ]; then
         echo "pamac"
-    elif [ command -v yay &>/dev/null ]; then
+    elif [ $(command -v yay) ]; then
         echo "yay"
-    elif [ command -v pacman &>/dev/null ]; then
+    elif [ $(command -v pacman) ]; then
         echo "pacman"
     else
         err "No supported package manager found."
@@ -94,25 +94,25 @@ update_system() {
     case "${package_manager}" in
         apt)
             sudo -E apt update -qq && sudo -E apt upgrade --yes -qq || {
-                err "Installation failed."
+                err "Update failed."
                 exit 1
             }
         ;;
         pacman)
             sudo pacman -Syu --noconfirm --removemake --quiet || {
-                err "Installation failed."
+                err "Update failed."
                 exit 1
             }
         ;;
         pamac)
             sudo pamac update --aur --no-confirm && sudo pamac upgrade --aur --no-confirm || {
-                err "Installation failed."
+                err "Update failed."
                 exit 1
             }
         ;;
         yay)
             yay -Syu --noconfirm --removemake --quiet || {
-                err "Installation failed."
+                err "Update failed."
                 exit 1
             }
         ;;
