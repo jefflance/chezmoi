@@ -333,9 +333,9 @@ M.setup = function()
     {
       'KabbAmine/lazyList.vim',
     },
-    -- nvim-ts-rainbow: rainbowed parenthesis
+    -- nvim-delimiters: rainbowed parenthesis
     {
-      "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
+      url = "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
     },
     -- colorizer: color highlighter
     {
