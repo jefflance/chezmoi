@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
-FULL_PATH_TO_SCRIPT="$(realpath "${BASH_SOURCE[-1]}")"
-SCRIPT_DIRECTORY="$(dirname "$FULL_PATH_TO_SCRIPT")"
-
 # include lib
-. ${CHEZMOI_WORKING_TREE}/utils.sh
+. ${CHEZMOI_WORKING_TREE}/scripts/utils.sh
 
 
 # Packages to install
@@ -26,19 +23,21 @@ packages=(
 
 
 ## Update system
-inf "updating system..."
+inf "Updating system..."
 sudo pacman -Syu --noconfirm --quiet
 
 ## Install yay
 if [ ! $(command -v yay) ]; then
-  inf "installing yay..."
+  inf "Installing yay..."
   install_binary "yay"
 fi
 
 ## Install packages
 for package in ${packages[@]}; do
   if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
-    inf "installing ${package}..."
+    inf "Installing ${package}..."
     install_binary $package "yay"
   fi
 done
+
+inf "Packages installed."
