@@ -60,7 +60,7 @@ install_binary() {
             }
         ;;
         pamac)
-            sudo pamac --no-confirm "${package_name}" || {
+            sudo pamac install --no-confirm "${package_name}" || {
                 err "Installation failed."
                 exit 1
             }
