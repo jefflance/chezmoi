@@ -4,38 +4,112 @@
 . ${CHEZMOI_WORKING_TREE}/scripts/utils.sh
 
 
-# Packages to install
-packages=(
-    bubblewrap
-    curl
-    fzf
-    pass
-    libyaml
-    ranger
-    tmux
-    trash-cli
-    ueberzug
-    unzip
-    wget
-    zip
-    zoxide
-)
+# usage
+usage() {
+  printf "\nUsage:\n"
+  echo " --base         Install base pacakges"
+  echo " --nvim         Install deps for NeoVim"
+  echo " --zsh          Install deps for zsh"
+  echo " --latex        Install deps for latex"
+}
 
+# packages to install
+install_base() {
+    packages=(
+      bubblewrap
+      curl
+      fzf
+      pass
+      libyaml
+      ranger
+      tmux
+      trash-cli
+      ueberzug
+      unzip
+      wget
+      zip
+      zoxide
+    )
+}
 
-## Update system
-inf "updating system..."
-sudo pacman -Syu --noconfirm --quiet
+install_nvim() {
+    packages+=(
+      neovim
+      python-pip
+      python-pynvim
+      ripgrep
+    )
+}
 
-## Install yay
-if [ ! $(command -v yay) ]; then
-    install_binary "yay"
+install_zsh() {
+    packages+=(
+      zsh
+    )
+}
+
+install_latex() {
+    packages+=(
+      texlive-basic
+      texlive-latex
+      texlive-latexrecommended
+      texlive-latexextra
+      texlive-fontsrecommended
+      texlive-fontsextre
+      texlive-luatex
+      texlive-mathscience
+      texlive-lang
+    )
+}
+
+# cli options
+BASE=false
+NVIM=false
+ZSH=false
+LATEX=false
+
+if [ "$#" -eq 0 ]; then
+    usage
+    exit 1
 fi
 
-## Install packages
-for package in ${packages[@]}; do
-    if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
-        install_binary $package "yay"
-    else
-        inf "${package} already installed."
-    fi
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+      --base)  BASE=true ;;
+      --nvim)  NVIM=true ;;
+      --zsh)   ZSH=true ;;
+      --latex) LATEX=true ;;
+      *)
+          usage
+          exit 1
+      ;;
+    esac
+    shift
 done
+
+main() {
+  "$BASE" && install_base
+  "$NVIM" && install_nvim
+  "$ZSH" && install_zsh
+  "$LATEX" && install_latex
+  
+  ## Update system
+  update_system
+
+  ## Install yay
+  if [ ! $(command -v yay) ]; then
+      install_binary "yay"
+  fi
+
+  ## Install packages
+  for package in ${packages[@]}; do
+      if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
+          install_binary $package "yay"
+      else
+          inf "${package} already installed."
+      fi
+  done
+
+  exit 0
+}
+
+main "$@"

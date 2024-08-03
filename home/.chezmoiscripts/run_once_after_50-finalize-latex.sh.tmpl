@@ -1,26 +1,17 @@
 #!{{ lookPath "bash" }}
 
-# Logging function
-log() {
-  printf "$(tput setaf 4)$(tput bold)>>>>> %s <<<<<$(tput sgr0)\n" "$1"
-}
-
-inf() {
-  printf "$(tput setaf 2)╚═══ᐳ $(tput sgr 0 1)$(tput setaf 2)%s$(tput sgr0)\n" "$1"
-}
-
-
+# include lib
+. ${CHEZMOI_WORKING_TREE}/scripts/utils.sh
 
 # Environment variables
 TEXMFDIR=${HOME}/texmf/tex/latex
 
 
-
 {{- if (ne .hasLatex false) }}
-log "Begin LaTeX repo initialization"
+    log "Begin LaTeX repo initialization"
 
-texhash "${TEXMFDIR}"
+    texhash "${TEXMFDIR}"
 
-log "Finish LaTeX repo initialization"
+    log "Finish LaTeX repo initialization"
 {{ end -}}
 

@@ -1,17 +1,8 @@
 #!{{ lookPath "bash" }}
 
-# Load asdf
-. "$HOME/.asdf/asdf.sh"
-
-# Logging function
-log() {
-  printf "$(tput setaf 4)$(tput bold)>>>>> %s <<<<<$(tput sgr0)\n" "$1"
-}
-
-inf() {
-  printf "$(tput setaf 2)╚═══ᐳ $(tput sgr 0 1)$(tput setaf 2)%s$(tput sgr0)\n" "$1"
-}
-
+# include lib
+. ${CHEZMOI_WORKING_TREE}/scripts/utils.sh
+. ${HOME}/.asdf/asdf.sh
 
 
 # Plugins to install
@@ -25,7 +16,6 @@ plugins=(
   ['rust']='https://github.com/code-lever/asdf-rust.git'
   ['starship']=''
 )
-
 
 
 ### Install ASDF plugins ###

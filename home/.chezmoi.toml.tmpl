@@ -1,10 +1,15 @@
 {{ $email := promptStringOnce . "email" "What is your main git email address " }}
 {{ $signinkey := promptStringOnce . "signingkey" "What is your git signing key " }}
-{{ $hasLatex := promptBoolOnce . "hasLatex" "Do i install latex files " }}
+{{ $hasNVim := promptBool "Do i install Neovim " false}}
+{{ $hasLVim := promptBool "Do i install LunarVim " false }}
+{{ $hasLatex := promptBool "Do i install latex " false }}
 [git]
 autoCommit = true
 autoPush = true
 [data]
+hasNVim = {{ $hasNVim }}
+hasLVim = {{ $hasLVim }}
+hasLatex = {{ $hasLatex }}
 email = {{ $email | quote }}
 signinkey = {{ $signinkey | quote }}
-hasLatex = {{ $hasLatex }}
+

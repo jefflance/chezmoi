@@ -1,0 +1,17 @@
+#!{{ lookPath "bash" }}
+
+# include lib
+. ${CHEZMOI_WORKING_TREE}/scripts/utils.sh
+
+# LVim version
+lvim_version="1.4"
+
+{{- if (and (ne .hasNVim false) (ne .hasLatex false)) }}
+
+    log "Begin LVim installation"
+
+    LV_BRANCH="release-${lvim_version}/neovim-0.9" bash <(curl -s "https://raw.githubusercontent.com/LunarVim/LunarVim/release-${lvim_version}/neovim-0.9/utils/installer/install.sh")
+
+    log "Finish LVim installation"
+
+{{- end }}

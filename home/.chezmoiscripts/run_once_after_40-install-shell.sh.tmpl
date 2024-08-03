@@ -1,110 +1,37 @@
 #!{{ lookPath "bash" }}
 
-# Load asdf
-# as we need cargo and it is installed from
-. "$HOME/.asdf/asdf.sh"
-
-
-# Logging function
-log() {
-  printf "$(tput setaf 4)$(tput bold)>>>>> %s <<<<<$(tput sgr0)\n" "$1"
-}
-
-inf() {
-  printf "$(tput setaf 2)╚═══ᐳ $(tput sgr 0 1)$(tput setaf 2)%s$(tput sgr0)\n" "$1"
-}
-
-
+# include lib
+. ${CHEZMOI_WORKING_TREE}/scripts/utils.sh
+. ${HOME}/.asdf/asdf.sh
 
 # Environment variables
 ZIMDIR=${HOME}/.zim
 
-# Packages to install
-packages=(
-  zsh
-)
 
-
-
-### Install Zsh ###
-log "Begin Zsh installation"
-
-{{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
-
-  ## Update system
-  inf "updating system..."
-  yay -Syu --noconfirm --removemake --quiet
-
-  ## install packages
-  for package in ${packages[@]}; do
-    if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
-      inf "installing ${package}..."
-      yay -S --noconfirm --removemake --quiet $package
-    fi
-  done
-
-{{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
-  export DEBIAN_FRONTEND=noninteractive
-
-  ## Update system
-  inf "updating system..."
-  {{- if ne .chezmoi.username "root" }}
-    sudo -E apt update -qq
-    sudo -E apt upgrade --yes -qq
-  {{- else }}
-    apt update -qq
-    apt upgrade --yes -qq
-  {{- end}}
-
-  ## packages=(${packages[@]//starship/})
-
-  ## install packages
-  for package in ${packages[@]}; do
-    inf "installing ${package}..."
-
-    {{- if ne .chezmoi.username "root" }}
-      sudo -E apt-get install --yes --no-install-recommends --ignore-missing --fix-broken -qq $package
-    {{- else }}
-      apt-get install --yes --no-install-recommends --ignore-missing --fix-broken -qq $package
-    {{- end }}
-  done
-
-  ## inf "installing starship..."
-  ## mist install starship-bin
-
-{{- end }}
-
-log "Finish Zsh installation"
+### Update shell install ###
+log "Begin Zsh customization"
 
 
 ## Update cargo
-log "Installing cargo-update"
+inf "installing cargo-update..."
 
 cargo install cargo-update
 
-log "Finish cargo-update installation"
-
-
 ## Install Atuin
-log "Installing atuin"
+inf "installing atuin..."
 
 cargo install atuin
 
-log "Finish atuin installation"
-
-
 ## Reshim
-log "Asdf reshim..."
+inf "asdf reshim..."
 
 asdf reshim
 
-log "Reshim ok."
-
-
 ### Config Zsh ###
-log "Installing Zim Framework"
+inf "installing zim framework"
 
 $(which zsh) -c "source ${ZIMDIR}/zimfw.zsh init -q"
 
-log "Finish zsh installation"
+
+log "Finish Zsh customization"
 

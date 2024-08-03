@@ -3,13 +3,23 @@
 # include lib
 . ${CHEZMOI_WORKING_TREE}/scripts/utils.sh
 
+# args
+args="--base --zsh"
+
+{{- if (ne .hasNVim false) }}
+    args="${args} --nvim"
+{{- end }}
+
+{{- if (ne .hasLatex false) }}
+    args="${args} --latex"
+{{- end }}
 
 {{ if (eq .chezmoi.os "linux") -}}
   {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
 
     log "Begin Arch/Manjaro Linux packages installation"
 
-    . {{ .chezmoi.workingTree }}/scripts/archlinux.sh
+    . {{ .chezmoi.workingTree }}/scripts/archlinux.sh ${args}
 
     log "Finish Arch/Manjaro Linux packages installation"
 
