@@ -54,7 +54,7 @@ install_latex() {
       texlive-latexrecommended
       texlive-latexextra
       texlive-fontsrecommended
-      texlive-fontsextre
+      texlive-fontsextra
       texlive-luatex
       texlive-mathscience
       texlive-lang

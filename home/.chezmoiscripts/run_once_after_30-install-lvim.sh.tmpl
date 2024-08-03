@@ -2,6 +2,7 @@
 
 # include lib
 . ${CHEZMOI_WORKING_TREE}/scripts/utils.sh
+. ${HOME}/.asdf/asdf.sh
 
 # LVim version
 lvim_version="1.4"
@@ -10,6 +11,7 @@ lvim_version="1.4"
 
     log "Begin LVim installation"
 
+    go install github.com/nametake/golangci-lint-langserver@latest
     LV_BRANCH="release-${lvim_version}/neovim-0.9" bash <(curl -s "https://raw.githubusercontent.com/LunarVim/LunarVim/release-${lvim_version}/neovim-0.9/utils/installer/install.sh")
 
     log "Finish LVim installation"
