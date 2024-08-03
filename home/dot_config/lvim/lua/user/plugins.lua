@@ -335,7 +335,7 @@ M.setup = function()
     },
     -- nvim-ts-rainbow: rainbowed parenthesis
     {
-      "HiPhish/nvim-ts-rainbow2",
+      "HiPhish/rainbow-delimiters",
     },
     -- colorizer: color highlighter
     {
