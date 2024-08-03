@@ -10,6 +10,10 @@ args="--base --zsh"
     args="${args} --nvim"
 {{- end }}
 
+{{- if (ne .hasLVim false) }}
+    args="${args} --lvim"
+{{- end }}
+
 {{- if (ne .hasLatex false) }}
     args="${args} --latex"
 {{- end }}
@@ -19,7 +23,7 @@ args="--base --zsh"
 
     log "Begin Arch/Manjaro Linux packages installation"
 
-    . {{ .chezmoi.workingTree }}/scripts/archlinux.sh ${args}
+    . {{ .chezmoi.workingTree }}/scripts/manjaro.sh ${args}
 
     log "Finish Arch/Manjaro Linux packages installation"
 

@@ -14,6 +14,13 @@ usage() {
 }
 
 # packages to install
+install_default() {
+    packages=(
+      base-devel
+      git
+    )
+}
+
 install_base() {
     packages=(
       bubblewrap
@@ -41,6 +48,15 @@ install_nvim() {
     )
 }
 
+install_lvim() {
+    packages+=(
+      nodejs
+      python
+      rust
+      tree-sitter-cli
+    )
+}
+
 install_zsh() {
     packages+=(
       zsh
@@ -64,6 +80,7 @@ install_latex() {
 # cli options
 BASE=false
 NVIM=false
+LVIM=false
 ZSH=false
 LATEX=false
 
@@ -76,6 +93,7 @@ while [ "$#" -gt 0 ]; do
     case "$1" in
       --base)  BASE=true ;;
       --nvim)  NVIM=true ;;
+      --lvim)  LVIM=true ;;
       --zsh)   ZSH=true ;;
       --latex) LATEX=true ;;
       *)
@@ -87,8 +105,10 @@ while [ "$#" -gt 0 ]; do
 done
 
 main() {
+  install_default
   "$BASE" && install_base
   "$NVIM" && install_nvim
+  "$LVIM" && install_lvim
   "$ZSH" && install_zsh
   "$LATEX" && install_latex
   
