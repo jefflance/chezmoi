@@ -23,21 +23,19 @@ packages=(
 
 
 ## Update system
-inf "Updating system..."
+inf "updating system..."
 sudo pacman -Syu --noconfirm --quiet
 
 ## Install yay
 if [ ! $(command -v yay) ]; then
-  inf "Installing yay..."
-  install_binary "yay"
+    install_binary "yay"
 fi
 
 ## Install packages
 for package in ${packages[@]}; do
-  if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
-    inf "Installing ${package}..."
-    install_binary $package "yay"
-  fi
+    if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
+        install_binary $package "yay"
+    else
+        inf "${package} already installed."
+    fi
 done
-
-inf "Packages installed."

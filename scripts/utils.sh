@@ -6,7 +6,7 @@ log() {
 }
 
 inf() {
-    printf "$(tput setaf 2)$(tput bold)>>>>> %s <<<<<$(tput sgr0)\n" "$1"
+    printf "$(tput setaf 2)╚═══ᐳ $(tput sgr 0 1)$(tput setaf 2)%s$(tput sgr0)\n" "$1"
 }
 
 err() {
@@ -45,7 +45,7 @@ install_binary() {
     fi
 
      # Install the package using the determined or specified package manager
-     inf "Installing ${package_name} using ${package_manager}..."
+     inf "installing ${package_name} using ${package_manager}..."
 
     case "${package_manager}" in
     apt-get)
@@ -56,7 +56,7 @@ install_binary() {
         ;;
     pacman)
         sudo pacman -S --needed --noconfirm --quiet "${package_name}" || {
-            err "ERROR" "Installation failed."
+            err "Installation failed."
             exit 1
         }
         ;;
@@ -77,7 +77,7 @@ install_binary() {
         exit 1
         ;;
     esac
-    inf "Installation of ${package_name} completed successfully."
+    inf "installation of ${package_name} completed successfully."
 }
 
 
