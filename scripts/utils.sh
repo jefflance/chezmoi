@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+
+# Logging function
+log() {
+    printf "$(tput setaf 4)$(tput bold)>>>>> %s <<<<<$(tput sgr0)\n" "$1"
+}
+
+inf() {
+    printf "$(tput setaf 2)$(tput bold)>>>>> %s <<<<<$(tput sgr0)\n" "$1"
+}
+
+err() {
+    printf "$(tput setaf 9)$(tput bold)>>>>> %s ! <<<<<$(tput sgr0)\n" "$1"
+}
+
+install_binary() {
+    ##
+    # Simple abstraction to install a binary using a supported package manager
+    # Example usage:
+    # install_binary "fzf"
+    # install_binary "fzf" "dnf"
+
+    local package_name="${1}"
+    local package_manager="${2}"
+
+    # Function to determine the package manager if not specified
+    determine_package_manager() {
+        if [ command -v apt-get &>/dev/null ]; then
+            echo "apt-get"
+        elif [ command -v pamac &>/dev/null ]; then
+            echo "pamac"
+        elif [ command -v yay &>/dev/null ]; then
+            echo "yay"
+        elif [ command -v pacman &>/dev/null ]; then
+            echo "pacman"
+        else
+            err "No supported package manager found."
+            exit 1
+        fi
+    }
+
+    # If the package manager is not specified, determine it
+    if [[ -z "${package_manager}" ]]; then
+        package_manager=$(determine_package_manager)
+    fi
+
+     # Install the package using the determined or specified package manager
+     inf "Installing ${package_name} using ${package_manager}..."
+
+    case "${package_manager}" in
+    apt-get)
+        sudo apt-get install --yes --no-install-recommends --ignore-missing --fix-broken -qq "${package_name}" || {
+            err "Installation failed."
+            exit 1
+        }
+        ;;
+    pacman)
+        sudo pacman -S --needed --noconfirm --quiet "${package_name}" || {
+            err "ERROR" "Installation failed."
+            exit 1
+        }
+        ;;
+    pamac)
+        sudo pamac --no-confirm "${package_name}" || {
+            err "Installation failed."
+            exit 1
+        }
+        ;;
+    yay)
+        yay -S --noconfirm --removemake --quiet "${package_name}" || {
+            err "Installation failed."
+            exit 1
+        }
+        ;;
+    *)
+        err "Unsupported package manager: ${package_manager}"
+        exit 1
+        ;;
+    esac
+    inf "Installation of ${package_name} completed successfully."
+}
+
+
