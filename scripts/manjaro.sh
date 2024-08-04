@@ -68,6 +68,7 @@ install_latex() {
     packages+=(
       texlive-basic
       texlive-latex
+      texlive-binextra
       texlive-latexrecommended
       texlive-latexextra
       texlive-fontsrecommended
