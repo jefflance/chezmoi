@@ -105,7 +105,7 @@ update_system() {
             }
         ;;
         pamac)
-            sudo pamac update --aur --no-confirm && sudo pamac upgrade --aur --no-confirm || {
+            sudo pamac update --no-confirm || {
                 err "Update failed."
                 exit 1
             }
