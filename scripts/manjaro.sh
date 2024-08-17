@@ -52,6 +52,7 @@ install_lvim() {
     packages+=(
       go
       nodejs
+      npm
       python
       rust
       tree-sitter-cli
@@ -114,13 +115,14 @@ main() {
   "$ZSH" && install_zsh
   "$LATEX" && install_latex
   
-  ## Update system
-  update_system
-
   ## Install yay
   if [ ! $(command -v yay) ]; then
+      ## Update system
+      update_system
       install_binary "yay"
   fi
+
+  update_system "yay"
 
   ## Install packages
   for package in ${packages[@]}; do
