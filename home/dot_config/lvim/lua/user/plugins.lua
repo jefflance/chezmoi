@@ -153,6 +153,7 @@ M.setup = function()
       ft = "markdown",
       config = function()
         vim.cmd([[
+          let g:mkdp_filetypes = ['markdown']
           let g:mkdp_auto_start = 1
         ]])
       end,
