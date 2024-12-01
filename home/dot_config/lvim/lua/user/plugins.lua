@@ -119,6 +119,13 @@ M.setup = function()
     {
       'jefflance/vim-gitignore',
     },
+    -- -- joplin
+    -- {
+    --   'tenfyzhong/joplin.vim',
+    --   config = function()
+    --     vim.g.joplin_token = 'd4ccd7c32e752616aab94a212b617dc20cad655002f75acaf3f644298ba65bec4b3ffbcc055228466b5c7cb46fcc6f0b9be300634cda29b10d929b585741e636'
+    --   end,
+    -- },
     -- languagetool
     {
       'dpelle/vim-grammalecte',
