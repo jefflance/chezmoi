@@ -1,3 +1,5 @@
+[merge]
+command = "meld"
 {{ $email := promptStringOnce . "email" "What is your main git email address " }}
 {{ $signinkey := promptStringOnce . "signingkey" "What is your git signing key " }}
 {{ $hasNVim := promptBool "Do i install Neovim " false}}
