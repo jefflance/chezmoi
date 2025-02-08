@@ -196,8 +196,8 @@ fi
 #
 # ocaml
 #
-test -r /home/jeff/.opam/opam-init/init.zsh && . /home/jeff/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
+# test -r /home/jeff/.opam/opam-init/init.zsh && . /home/jeff/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+eval "$(asdf exec opam env)"
 
 
 #
