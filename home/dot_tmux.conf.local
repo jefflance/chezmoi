@@ -32,8 +32,8 @@ bind-key -n End send Escape "OF"
 # set -g status-right '%Y-%m-%d %H:%M #{tmux_mode_indicator}'
 
 # start navi as a widget
-bind-key -n "Open Navi (cheat sheets)" -T prefix C-g split-window \
-  "$SHELL --login -i -c 'navi --print | head -n 1 | tmux load-buffer -b tmp - ; tmux paste-buffer -p -t {last} -b tmp -d'"
+# bind-key -N "Open Navi (cheat sheets)" -T prefix C-g split-window \
+#   "$SHELL --login -i -c 'navi --print | head -n 1 | tmux load-buffer -b tmp - ; tmux paste-buffer -p -t {last} -b tmp -d'"
 
 # -- plugins configuration -----------------------------------------------------
 #
