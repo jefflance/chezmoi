@@ -42,44 +42,42 @@ M.setup = function()
     -- chatgpt
     {
       "jackMort/ChatGPT.nvim",
-        event = "VeryLazy",
-        config = function()
-          require("chatgpt").setup({
-            api_key_cmd = "pass _api_keys/openai_perso-1"
-        })
-        end,
-        dependencies = {
-          "MunifTanjim/nui.nvim",
-          "nvim-lua/plenary.nvim",
-          "nvim-telescope/telescope.nvim"
+      event = "VeryLazy",
+      config = function()
+        require("chatgpt").setup({
+          api_key_cmd = "pass _api_keys/openai_perso-1"
+      })
+      end,
+      dependencies = {
+        "MunifTanjim/nui.nvim",
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim"
+      }
+    },
+   {
+     'xvzc/chezmoi.nvim',
+     config = function()
+      require("chezmoi").setup {
+        -- your configurations
+        -- default values
+        {
+          edit = {
+            watch = false,
+            force = false,
+          },
+          notification = {
+            on_open = true,
+            on_apply = true,
+            on_watch = false,
+          },
+          telescope = {
+            select = { "<CR>" },
+          },
         }
-    },
-    {
-      {
-        'xvzc/chezmoi.nvim',
-        dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function()
-          require("chezmoi").setup {
-            -- your configurations
-            -- default values
-            {
-              edit = {
-                watch = false,
-                force = false,
-              },
-              notification = {
-                on_open = true,
-                on_apply = true,
-                on_watch = false,
-              },
-              telescope = {
-                select = { "<CR>" },
-              },
-            }
-          }
-        end
-      },
-    },
+      }
+     end,
+     dependencies = { 'nvim-lua/plenary.nvim' },
+   },
     -- cmp addons
     {
       "tzachar/cmp-tabnine",
