@@ -94,6 +94,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "c",
   "go",
+  "hyprlang",
   "java",
   "javascript",
   "json",
