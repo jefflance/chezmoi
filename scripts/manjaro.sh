@@ -78,6 +78,8 @@ install_latex() {
       texlive-mathscience
       texlive-lang
       texlive-plaingeneric
+      texlive-humanities
+      texlive-pstricks
     )
 }
 
