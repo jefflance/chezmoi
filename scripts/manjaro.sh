@@ -77,6 +77,7 @@ install_latex() {
       texlive-luatex
       texlive-mathscience
       texlive-lang
+      texlive-plaingeneric
     )
 }
 
