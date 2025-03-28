@@ -4,11 +4,6 @@
     url = "https://github.com/asdf-vm/asdf/releases/download/v{{ $asdfVersion }}/asdf-v{{ $asdfVersion }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
     path = "asdf"
 
-#[".asdf"]
-#    type = "git-repo"
-#    url = "https://github.com/asdf-vm/asdf.git"
-#    refreshPeriod = "168h"
-
 [".config/aacs/KEYDB.cfg"]
     type = "file"
     url = "https://vlc-bluray.whoknowsmy.name/files/KEYDB.cfg"
