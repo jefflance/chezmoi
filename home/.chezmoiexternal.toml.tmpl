@@ -1,4 +1,4 @@
-{ $asdfVersion := "0.16.7" -}}
+{{ $asdfVersion := "0.16.7" -}}
 [".local/bin/asdf"]
     type = "archive-file"
     url = "https://github.com/asdf-vm/asdf/releases/download/v{{ $asdfVersion }}/asdf-v{{ $asdfVersion }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
