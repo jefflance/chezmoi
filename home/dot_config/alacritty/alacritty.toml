@@ -25,11 +25,18 @@ style = "Bold Italic"
 program = "/bin/zsh"
 
 [window]
-decorations = "full"
+decorations = "none"
 decorations_theme_variant = "Dark"
 dynamic_title = true
-opacity = 0.9
+opacity = 1.0
+blur = true
 title = "Alacritty"
+
+[colors]
+transparent_background_colors = true
+
+[selection]
+save_to_clipboard = true
 
 [keyboard]
 bindings = [
