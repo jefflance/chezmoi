@@ -30,6 +30,8 @@ SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 # Remove path separator from WORDCHARS.
 WORDCHARS=${WORDCHARS//[\/]}
 
+# Zoxide configuration
+ZOXIDE_CMD_OVERRIDE=cd
 
 # --------------------
 # Module configuration
@@ -127,14 +129,18 @@ bindkey -M vicmd 'j' history-substring-search-down
 #
 # zoxide
 #
-eval "$(zoxide init --cmd cd zsh)"
+if (( $+commands[zoxide] )); then
+  eval "$(zoxide init --cmd ${ZOXIDE_CMD_OVERRIDE:-z} zsh)"
+else
+  echo '[zshrc] zoxide not found, please install it from https://github.com/ajeetdsouza/zoxide'
+fi
 
 
 
-#
-# starship
-#
-eval "$(asdf exec starship init zsh)"
+# #
+# # starship
+# #
+# eval "$(asdf exec starship init zsh)"
 
 
 
@@ -196,8 +202,9 @@ fi
 #
 # ocaml
 #
+# [[ ! -r '/home/jeff/.opam/opam-init/init.zsh' ]] || source '/home/jeff/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 # test -r /home/jeff/.opam/opam-init/init.zsh && . /home/jeff/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-eval "$(asdf exec opam env)"
+# eval "$(asdf exec opam env)"
 
 
 #
@@ -219,12 +226,11 @@ unset __conda_setup
 
 
 #
-# gnome-keyring-daemon
+# gpg-agent
 #
-if [[ $(command -v gnome-keyring-daemon) ]]; then
-  eval $(gnome-keyring-daemon --start) 2>/dev/null
-  export SSH_AUTH_SOCK
-fi
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
 
 
 

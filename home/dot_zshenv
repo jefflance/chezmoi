@@ -25,7 +25,8 @@ export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
 
 export BROWSER=qutebrowser
 export EDITOR=$([[ $(command -v lvim) ]] && echo lvim || echo vim)
-export TERMINAL=alacritty
+export TERMINAL=kitty
+[[ ( $(command -v code) && $(command -v trash) ) ]] && export ELECTRON_TRASH="trash"
 # export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 export PASSWORD_STORE_DIR="${HOME}/.password-store"
