@@ -30,7 +30,7 @@ alias neomutt='neomutt -f ${HOME}/Mail/jeff.lance@mala.fr/inbox/'
 #
 
 alias ip='ip -c'                         # ip address
-# alias cd='z'                             # use zoxide
+alias ls='eza --icons=always'            # ls aliased to eza, exa fork
 alias md='mkdir -p'                      # mkdir alias
 alias open='xdg-open'                    # open files
 alias pips='pip_search'                  # pip search tool
