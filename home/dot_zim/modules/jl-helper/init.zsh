@@ -15,7 +15,7 @@ alias udvrld='sudo udevadm control --reload-rules && sudo udevadm trigger'
 #
 
 alias vim='lvim'                         # redirect vim to nvim
-
+alias edit='chezmoi edit'
 
 #
 # Mail, internet
@@ -29,6 +29,7 @@ alias neomutt='neomutt -f ${HOME}/Mail/jeff.lance@mala.fr/inbox/'
 # Utilities
 #
 
+[[ $(command -v trash) ]] && alias rm='trash-put'
 alias ip='ip -c'                         # ip address
 alias ls='eza --icons=always'            # ls aliased to eza, exa fork
 alias md='mkdir -p'                      # mkdir alias
