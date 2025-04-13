@@ -40,7 +40,7 @@ save_to_clipboard = true
 
 [keyboard]
 bindings = [
-  {key = "|", mods = "Control", chars = "\\x01\\x7c"}
+  { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" }
 ]
 
 [general]
