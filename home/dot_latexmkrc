@@ -105,7 +105,7 @@ sub makesout {
 
 # Some things to do after all the compile stuff
 END{
-  Run_subst('rm ./*.pdf ./*.aux');
+  Run_subst('rm ./%A.pdf ./*.aux');
   Run_subst('mv ./build/%A.pdf .');
   Run_subst('rm -rf ./build');
 }
