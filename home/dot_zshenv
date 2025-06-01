@@ -22,6 +22,7 @@ export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export GEM_HOME="$(${HOME}/.asdf/shims/gem env user_gemhome)"
 export PATH="$PATH:$GEM_HOME/bin"
 export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
+export PATH="$HOME/.fuelup/bin:$PATH"
 
 export BROWSER=qutebrowser
 export EDITOR=$([[ $(command -v lvim) ]] && echo lvim || echo vim)
