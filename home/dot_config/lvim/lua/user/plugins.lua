@@ -391,30 +391,13 @@ M.setup = function()
         vim.cmd([[
           let g:NERDTreeHijackNetrw = 0
           let g:ranger_replace_netrw = 1
+          let g:ranger_map_keys = 0
         ]])
       end
     },
     {
       "rbgrouleff/bclose.vim"
     },
-    -- -- rnvimr
-    -- {
-    --   "kevinhwang91/rnvimr",
-    --   cmd = "RnvimrToggle",
-    --   config = function()
-    --     vim.cmd([[
-    --       let g:rnvimr_enable_ex = 1
-    --       let g:rnvimr_enable_picker = 1
-    --       let g:rnvimr_edit_cmd = 'drop'
-    --       let g:rnvimr_draw_border = 1
-    --       let g:rnvimr_hide_gitignore = 1
-    --       " let g:rnvimr_border_attr = {'fg': 14, 'bg': 0}
-    --       let g:rnvimr_enable_bw = 1
-    --       " let g:rnvimr_shadow_winblend = 70
-    --       let g:rnvimr_ranger_cmd = ['ranger', '--cmd=set draw_borders both']
-    --     ]])
-    --   end,
-    -- },
     -- suda
     {
       'lambdalisue/suda.vim',
