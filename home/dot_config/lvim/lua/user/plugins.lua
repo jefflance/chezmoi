@@ -1,8 +1,8 @@
 --[[--
-File              : conf.d/lvim/lua/user/plugins.lua
+File              : .config/lvim/lua/user/plugins.lua
 Author            : Jeff Lance <email@jefflance.me>
 Date              : 28.12.2023 21:31:06
-Last Modified Date: 28.12.2023 21:31:06
+Last Modified Date: 20.06.2025 21:42:56
 Last Modified By  : Jeff Lance <email@jefflance.me>
 --]]--
 
