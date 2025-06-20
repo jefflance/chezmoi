@@ -388,6 +388,9 @@ M.setup = function()
     {
       "francoiscabrol/ranger.vim",
     },
+    {
+      "rbgrouleff/bclose.vim"
+    },
     -- -- rnvimr
     -- {
     --   "kevinhwang91/rnvimr",
