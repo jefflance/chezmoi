@@ -387,6 +387,12 @@ M.setup = function()
     },
     {
       "francoiscabrol/ranger.vim",
+      config = function ()
+        vim.cmd([[
+          let g:NERDTreeHijackNetrw = 0
+          let g:ranger_replace_netrw = 1
+        ]])
+      end
     },
     {
       "rbgrouleff/bclose.vim"
