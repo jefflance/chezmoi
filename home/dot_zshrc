@@ -153,6 +153,7 @@ fi
 #
 # direnv
 #
+[[ -x $(command -v direnv) ]] && eval "$(direnv hook zsh)"
 setopt PROMPT_SUBST
 
 show_virtual_env() {
