@@ -14,8 +14,8 @@ alias udvrld='sudo udevadm control --reload-rules && sudo udevadm trigger'
 # Editors
 #
 
-alias vim='lvim'                         # redirect vim to nvim
-alias edit='chezmoi edit'
+[[ $(command -v lvim) ]] && alias vim='lvim'
+[[ $(command -v chezmoi) ]] && alias edit='chezmoi edit --watch'
 
 #
 # Mail, internet
@@ -30,8 +30,9 @@ alias neomutt='neomutt -f ${HOME}/Mail/jeff.lance@mala.fr/inbox/'
 #
 
 [[ $(command -v trash) ]] && alias rm='trash-put'
+[[ $(command -v dfc) ]] && alias df='dfc'
+[[ $(command -v eza) ]] && alias ls='eza -l --icons=always'
 alias ip='ip -c'                         # ip address
-alias ls='eza -l --icons=always'            # ls aliased to eza, exa fork
 alias md='mkdir -p'                      # mkdir alias
 alias open='xdg-open'                    # open files
 alias pips='pip_search'                  # pip search tool
@@ -49,7 +50,7 @@ alias yd='yt-dlp'                        # yt-dlp best download
 # Shortcuts
 #
 
-hash -d crs="${HOME}/Documents/cours"    # cours
+hash -d crs="${HOME}/cours"              # cours
 hash -d doc="${HOME}/Documents"          # documents
 hash -d dot="$(chezmoi source-path)"     # dotfiles
 
