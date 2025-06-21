@@ -1,7 +1,8 @@
-{{ $asdfVersion := "0.18.0" -}}
+{{- $asdfVersion := "0.18.0" }}
+{{- $asdfOS := "linux" }}
 [".local/bin/asdf"]
     type = "archive-file"
-    url = "https://github.com/asdf-vm/asdf/releases/download/v{{ $asdfVersion }}/asdf-v{{ $asdfVersion }}-{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
+    url = "https://github.com/asdf-vm/asdf/releases/download/v{{ $asdfVersion }}/asdf-v{{ $asdfVersion }}-{{ $asdfOS }}-{{ .chezmoi.arch }}.tar.gz"
     path = "asdf"
 
 [".config/aacs/KEYDB.cfg"]
