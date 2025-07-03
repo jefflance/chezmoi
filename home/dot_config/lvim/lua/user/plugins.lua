@@ -204,6 +204,12 @@ M.setup = function()
         })
       end,
     },
+    {
+      'vim-pandoc/vim-pandoc',
+    },
+    {
+      'vim-pandoc/vim-pandoc-syntax',
+    },
     -- mason
     {
       'WhoIsSethDaniel/mason-tool-installer.nvim',
