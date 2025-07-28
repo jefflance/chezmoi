@@ -11,6 +11,8 @@ usage() {
   echo " --nvim         Install deps for NeoVim"
   echo " --zsh          Install deps for zsh"
   echo " --latex        Install deps for latex"
+  echo " --quarto       Install deps for quarto"
+  echo " --code         Install deps for VSCode"
 }
 
 # packages to install
@@ -83,12 +85,35 @@ install_latex() {
     )
 }
 
+install_vscode() {
+    packages+=(
+      code
+    )
+}
+
+install_quarto() {
+    packages+=(
+      quarto-cli-bin
+      python-jupyter-core
+      python-matplotlib
+      python-plotly
+      jupyter-nbclient
+      jupyter-nbformat
+    )
+}
+
+configure_quarto() {
+  quarto install tinytex
+}
+
 # cli options
 BASE=false
 NVIM=false
 LVIM=false
 ZSH=false
 LATEX=false
+CODE=false
+QUARTO=false
 
 if [ "$#" -eq 0 ]; then
     usage
@@ -102,6 +127,8 @@ while [ "$#" -gt 0 ]; do
       --lvim)  LVIM=true ;;
       --zsh)   ZSH=true ;;
       --latex) LATEX=true ;;
+      --vscode) CODE=true;;
+      --quarto) QUARTO=true;;
       *)
           usage
           exit 1
@@ -117,7 +144,9 @@ main() {
   "$LVIM" && install_lvim
   "$ZSH" && install_zsh
   "$LATEX" && install_latex
-  
+  "$CODE" && install_vscode
+  "$QUARTO" && install_quarto
+
   ## Install yay
   if [ ! $(command -v yay) ]; then
       ## Update system
