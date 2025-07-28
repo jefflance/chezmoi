@@ -12,7 +12,7 @@ usage() {
   echo " --zsh          Install deps for zsh"
   echo " --latex        Install deps for latex"
   echo " --quarto       Install deps for quarto"
-  echo " --code         Install deps for VSCode"
+  echo " --vscode       Install deps for VSCode"
 }
 
 # packages to install
@@ -112,7 +112,7 @@ NVIM=false
 LVIM=false
 ZSH=false
 LATEX=false
-CODE=false
+VSCODE=false
 QUARTO=false
 
 if [ "$#" -eq 0 ]; then
@@ -127,7 +127,7 @@ while [ "$#" -gt 0 ]; do
       --lvim)  LVIM=true ;;
       --zsh)   ZSH=true ;;
       --latex) LATEX=true ;;
-      --vscode) CODE=true;;
+      --vscode) VSCODE=true;;
       --quarto) QUARTO=true;;
       *)
           usage
@@ -144,7 +144,7 @@ main() {
   "$LVIM" && install_lvim
   "$ZSH" && install_zsh
   "$LATEX" && install_latex
-  "$CODE" && install_vscode
+  "$VSCODE" && install_vscode
   "$QUARTO" && install_quarto && configure_quarto
 
   ## Install yay
