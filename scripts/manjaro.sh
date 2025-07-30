@@ -7,7 +7,7 @@
 # usage
 usage() {
   printf "\nUsage:\n"
-  echo " --base         Install base pacakges"
+  echo " --base         Install base packages"
   echo " --nvim         Install deps for NeoVim"
   echo " --zsh          Install deps for zsh"
   echo " --latex        Install deps for latex"
