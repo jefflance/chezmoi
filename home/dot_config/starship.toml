@@ -119,7 +119,7 @@ symbol = " "
 [hostname]
 ssh_only = false
 format = "on [$hostname](bold red) "
-disabled = false
+disabled = true
 
 [java]
 symbol = " "
