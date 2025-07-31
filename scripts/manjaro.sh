@@ -145,7 +145,9 @@ main() {
   "$ZSH" && install_zsh
   "$LATEX" && install_latex
   "$VSCODE" && install_vscode
-  "$QUARTO" && install_quarto && configure_quarto
+  if [ "$QUARTO" && install_quarto ]; then
+      configure_quarto
+  fi
 
   ## Install yay
   if [ ! $(command -v yay) ]; then
