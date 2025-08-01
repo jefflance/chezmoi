@@ -2,7 +2,7 @@
 
 format = """
 $username\
-$hostname\
+${custom.hostname-pretty}\
 $localip\
 $shlvl\
 $singularity\
@@ -151,6 +151,6 @@ show_always = true
 [custom.hostname-pretty]
 command = "hostnamectl --pretty"
 when = "hostnamectl --pretty"
-style = "bold blue"
-format = "[$output]($style) "
+style = "bold red"
+format = "on [$output]($style) "
 
