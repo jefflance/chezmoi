@@ -148,7 +148,7 @@ symbol = " "
 format = "[$user]($style) "
 show_always = true
 
-[[custom.hostname-pretty]]
+[custom.hostname-pretty]
 command = "hostnamectl --pretty"
 when = "hostnamectl --pretty"
 style = "bold blue"
