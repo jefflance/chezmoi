@@ -2,7 +2,7 @@
 
 format = """
 $username\
-$custom.pretty_hostname\
+$custom.hostname-pretty\
 $localip\
 $shlvl\
 $singularity\
@@ -148,7 +148,7 @@ symbol = " "
 format = "[$user]($style) "
 show_always = true
 
-[custom.pretty_hostname]
+[custom.hostname-pretty]
 command = "hostnamectl --pretty"
 when = "hostnamectl --pretty"
 style = "bold blue"
