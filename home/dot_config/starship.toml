@@ -2,7 +2,7 @@
 
 format = """
 $username\
-$custom.hostname-pretty\
+${custom.hostname-pretty}\
 $localip\
 $shlvl\
 $singularity\
