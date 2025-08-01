@@ -66,7 +66,7 @@ install_binary() {
             }
         ;;
         yay)
-            yay -S --noconfirm --removemake --quiet "${package_name}" || {
+            yay -S --needed --noconfirm --removemake --quiet "${package_name}" || {
                 err "Installation failed."
                 exit 1
             }
