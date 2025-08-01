@@ -3,7 +3,7 @@ exclude = ["scripts"]
 [merge]
 command = "meld"
 {{ $email := promptStringOnce . "email" "What is your main git email address " }}
-{{ $signinkey := promptStringOnce . "signingkey" "What is your git signing key " }}
+{{ $signingkey := promptStringOnce . "signingkey" "What is your git signing key " }}
 {{ $hasNVim := promptBool "Do i install Neovim " false}}
 {{ $hasLVim := promptBool "Do i install LunarVim " false }}
 {{ $hasLatex := promptBool "Do i install LaTeX " false }}
