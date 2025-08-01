@@ -25,6 +25,7 @@ install_default() {
 
 install_base() {
     packages=(
+      base-devel
       bubblewrap
       curl
       fzf
