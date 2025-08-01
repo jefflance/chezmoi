@@ -146,13 +146,13 @@ main() {
   "$ZSH" && install_zsh
   "$LATEX" && install_latex
   "$VSCODE" && install_vscode
-  if [ -f $QUARTO ]; then
+  if [[ $QUARTO == true ]]; then
       install_quarto
       configure_quarto
   fi
 
   ## Install yay
-  if [ ! $(command -v yay) ]; then
+  if [[ ! $(command -v yay) ]]; then
       ## Update system
       update_system
       install_binary "yay"
@@ -162,7 +162,7 @@ main() {
 
   ## Install packages
   for package in ${packages[@]}; do
-      if [ "$(yay -Qq $package 2> /dev/null)" != $package ]; then
+      if [[ "$(yay -Qq $package 2> /dev/null)" != $package ]]; then
           install_binary $package "yay"
       else
           inf "${package} already installed."
