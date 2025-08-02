@@ -153,4 +153,4 @@ command = "hostnamectl --pretty"
 when = "hostnamectl --pretty"
 style = "bold red"
 format = "on [$output]($style) "
-
+command_timeout = 1000
