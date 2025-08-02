@@ -30,6 +30,8 @@ install_base() {
       fzf
       pass
       libyaml
+      nerd-fonts
+      noto-fonts-emoji
       ranger
       tmux
       trash-cli
