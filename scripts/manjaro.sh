@@ -25,7 +25,6 @@ install_default() {
 
 install_base() {
     packages=(
-      base-devel
       bubblewrap
       curl
       fzf
@@ -44,6 +43,7 @@ install_base() {
 
 install_nvim() {
     packages+=(
+      fd
       neovim
       python-pip
       python-pynvim
