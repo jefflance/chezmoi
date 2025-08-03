@@ -30,7 +30,6 @@ for plugin in ${!plugins[@]}; do
   asdf plugin add ${plugin} ${plugins[$plugin]}
   asdf install ${plugin} latest
   asdf set ${plugin} latest
-  asdf global ${plugin} latest
 done
 
 inf "initializing opam..."
