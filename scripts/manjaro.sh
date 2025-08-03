@@ -8,6 +8,7 @@
 usage() {
   printf "\nUsage:\n"
   echo " --base         Install base packages"
+  echo " --dev          Install development languages"
   echo " --nvim         Install deps for NeoVim"
   echo " --zsh          Install deps for zsh"
   echo " --latex        Install deps for latex"
@@ -19,14 +20,19 @@ usage() {
 install_default() {
     packages=(
       base-devel
+      curl
       git
+      pkgfile
+      trash-cli
+      unzip
+      wget
+      zip
     )
 }
 
 install_base() {
     packages=(
       bubblewrap
-      curl
       fzf
       pass
       libyaml
@@ -34,33 +40,31 @@ install_base() {
       noto-fonts-emoji
       ranger
       tmux
-      trash-cli
       ueberzug
-      unzip
-      wget
-      zip
       zoxide
+    )
+}
+
+install_dev() {
+    packages+=(
+      go
+      lua
+      nodejs
+      npm
+      python
+      rust
     )
 }
 
 install_nvim() {
     packages+=(
       fd
+      luarocks
       neovim
       python-pip
       python-pynvim
       ripgrep
-    )
-}
-
-install_lvim() {
-    packages+=(
-      go
-      nodejs
-      npm
-      python
-      rust
-      tree-sitter-cli
+      tree-sitter
     )
 }
 
@@ -97,11 +101,12 @@ install_vscode() {
 install_quarto() {
     packages+=(
       quarto-cli-bin
-      python-jupyter-core
-      python-matplotlib
-      python-plotly
       jupyter-nbclient
       jupyter-nbformat
+      python-jupyter-core
+      python-matplotlib
+      python-pandas
+      python-plotly
     )
 }
 
@@ -111,8 +116,8 @@ configure_quarto() {
 
 # cli options
 BASE=false
+DEV=false
 NVIM=false
-LVIM=false
 ZSH=false
 LATEX=false
 VSCODE=false
@@ -125,11 +130,11 @@ fi
 
 while [ "$#" -gt 0 ]; do
     case "$1" in
-      --base)  BASE=true ;;
-      --nvim)  NVIM=true ;;
-      --lvim)  LVIM=true ;;
-      --zsh)   ZSH=true ;;
-      --latex) LATEX=true ;;
+      --base)   BASE=true ;;
+      --dev)    DEV=true ;;
+      --nvim)   NVIM=true ;;
+      --zsh)    ZSH=true ;;
+      --latex)  LATEX=true ;;
       --vscode) VSCODE=true;;
       --quarto) QUARTO=true;;
       *)
@@ -143,8 +148,8 @@ done
 main() {
   install_default
   "$BASE" && install_base
+  "$DEV" && install_dev
   "$NVIM" && install_nvim
-  "$LVIM" && install_lvim
   "$ZSH" && install_zsh
   "$LATEX" && install_latex
   "$VSCODE" && install_vscode

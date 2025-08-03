@@ -23,7 +23,6 @@ log "Begin ASDF plugins installation"
 inf "installing direnv with system version..."
 # no need to run asdf direnv setup --shell zsh --version latest
 # as it is managed by zim module
-#asdf plugin-add direnv
 
 for plugin in ${!plugins[@]}; do
   inf "installing ${plugin}..."
@@ -31,7 +30,7 @@ for plugin in ${!plugins[@]}; do
   asdf plugin add ${plugin} ${plugins[$plugin]}
   asdf install ${plugin} latest
   asdf set ${plugin} latest
-#  asdf global ${plugin} latest
+  asdf global ${plugin} latest
 done
 
 inf "initializing opam..."
