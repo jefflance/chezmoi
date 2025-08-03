@@ -64,7 +64,7 @@ install_nvim() {
       python-pip
       python-pynvim
       ripgrep
-      tree-sitter
+      tree-sitter-cli
     )
 }
 
