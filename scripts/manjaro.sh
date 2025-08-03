@@ -49,6 +49,7 @@ install_base() {
 
 install_devel() {
     packages+=(
+      gcc-fortran
       go
       lua
       nodejs
