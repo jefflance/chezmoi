@@ -25,13 +25,15 @@ install_default() {
       pkgfile
       trash-cli
       unzip
+      wl-clipboard
       wget
+      xclip
       zip
     )
 }
 
 install_base() {
-    packages=(
+    packages+=(
       bubblewrap
       fzf
       pass
