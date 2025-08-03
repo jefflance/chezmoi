@@ -11,8 +11,8 @@ args="--base --zsh"
     args="${args} --nvim"
 {{- end }}
 
-{{- if (ne .hasLVim false) }}
-    args="${args} --lvim"
+{{- if (ne .hasDevel false) }}
+    args="${args} --devel"
 {{- end }}
 
 {{- if (ne .hasLatex false) }}
