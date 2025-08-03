@@ -118,7 +118,7 @@ configure_quarto() {
 
 # cli options
 BASE=false
-DEV=false
+DEVEL=false
 NVIM=false
 ZSH=false
 LATEX=false
@@ -133,7 +133,7 @@ fi
 while [ "$#" -gt 0 ]; do
     case "$1" in
       --base)   BASE=true ;;
-      --dev)    DEV=true ;;
+      --devel)  DEVEL=true ;;
       --nvim)   NVIM=true ;;
       --zsh)    ZSH=true ;;
       --latex)  LATEX=true ;;
@@ -150,7 +150,7 @@ done
 main() {
   install_default
   "$BASE" && install_base
-  "$DEV" && install_dev
+  "$DEVEL" && install_devel
   "$NVIM" && install_nvim
   "$ZSH" && install_zsh
   "$LATEX" && install_latex

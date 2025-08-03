@@ -5,7 +5,7 @@ command = "meld"
 {{ $email := promptStringOnce . "email" "What is your main git email address " }}
 {{ $signingkey := promptStringOnce . "signingkey" "What is your git signing key " }}
 {{ $hasNVim := promptBool "Do i install Neovim " false}}
-{{ $hasLVim := promptBool "Do i install LunarVim " false }}
+{{ $hasDevel := promptBool "Do i install programming languages " false }}
 {{ $hasLatex := promptBool "Do i install LaTeX " false }}
 {{ $hasVSCode := promptBool "Do i install VSCode " false }}
 {{ $hasQuarto := promptBool "Do i install Quarto " false }}
@@ -14,7 +14,7 @@ autoCommit = true
 autoPush = true
 [data]
 hasNVim = {{ $hasNVim }}
-hasLVim = {{ $hasLVim }}
+hasDevel = {{ $hasDevel }}
 hasLatex = {{ $hasLatex }}
 hasVSCode = {{ $hasVSCode }}
 hasQuarto = {{ $hasQuarto }}
