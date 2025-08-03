@@ -48,12 +48,10 @@ install_base() {
 install_devel() {
     packages+=(
       go
-      julia
       lua
       nodejs
       npm
       python
-      r
       rust
     )
 }
