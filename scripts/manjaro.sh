@@ -8,7 +8,7 @@
 usage() {
   printf "\nUsage:\n"
   echo " --base         Install base packages"
-  echo " --dev          Install development languages"
+  echo " --devel        Install development languages"
   echo " --nvim         Install deps for NeoVim"
   echo " --zsh          Install deps for zsh"
   echo " --latex        Install deps for latex"
@@ -45,13 +45,15 @@ install_base() {
     )
 }
 
-install_dev() {
+install_devel() {
     packages+=(
       go
+      julia
       lua
       nodejs
       npm
       python
+      r
       rust
     )
 }
