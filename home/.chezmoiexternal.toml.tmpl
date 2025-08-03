@@ -69,22 +69,29 @@
 
 {{- if ne .hasLatex false }}
 ["texmf/tex/latex/latex-homework"]
-    type  = "git-repo"
+    type = "git-repo"
     url = "https://git.jefflance.me/jeff/latex-homework.git"
     refreshPeriod = "168h"
 
 ["texmf/tex/latex/latex-beamer-themes"]
-    type  = "git-repo"
+    type = "git-repo"
     url = "https://git.jefflance.me/jeff/latex-beamer-themes.git"
     refreshPeriod = "168h"
 
 ["texmf/tex/latex/emerald"]
-    type  = "git-repo"
+    type = "git-repo"
     url = "https://git.jefflance.me/jeff/emerald.git"
     refreshPeriod = "168h"
 
 [".asy"]
-    type  = "git-repo"
+    type = "git-repo"
     url = "https://git.jefflance.me/jeff/asymptote-config.git"
     refreshPeriod = "168h"
+{{- end }}
+
+{{- if ne .hasNVim false }}
+[".config/nvim"]
+    type = "git-repo"
+    url = "https://git.jefflance.me/jeff/nvim-modular.git"
+    refreshPeriod = "48h"
 {{- end }}
