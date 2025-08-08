@@ -62,7 +62,6 @@ install_devel() {
 install_nvim() {
     packages+=(
       fd
-      luarocks
       neovim
       python-pip
       python-pynvim
