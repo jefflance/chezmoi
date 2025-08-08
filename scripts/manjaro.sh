@@ -78,6 +78,7 @@ install_zsh() {
 
 install_latex() {
     packages+=(
+      mermaid-cli
       texlive-basic
       texlive-latex
       texlive-binextra
