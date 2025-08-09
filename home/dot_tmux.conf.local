@@ -28,6 +28,10 @@ set -as terminal-overrides ',alacritty:RGB'
 bind-key -n Home send Escape "OH"
 bind-key -n End send Escape "OF"
 
+# nvim image.nvim plugin
+set -gq allow-passthrough on
+set -g visual-activity off
+
 # move status line to top
 # set -g status-right '%Y-%m-%d %H:%M #{tmux_mode_indicator}'
 
