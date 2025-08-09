@@ -1,0 +1,19 @@
+#!{{ lookPath "bash" }}
+
+# include lib
+. ${CHEZMOI_WORKING_TREE}/scripts/utils.sh
+
+# Lua version
+lua_version="5.1:latest"
+
+
+{{- if (ne .hasNVim false) }}
+
+    log "Finalize NVim configuration"
+
+    asdf install lua ${lua_version}
+    asdf set lua ${lua_version}
+
+    log "Finish NVim installation"
+
+{{- end }}
