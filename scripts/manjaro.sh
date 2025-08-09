@@ -37,6 +37,7 @@ install_base() {
       bubblewrap
       fzf
       pass
+      imagemagick
       libyaml
       nerd-fonts
       noto-fonts-emoji
@@ -63,6 +64,7 @@ install_nvim() {
     packages+=(
       fd
       neovim
+      python-cairosvg
       python-pip
       python-pynvim
       ripgrep
