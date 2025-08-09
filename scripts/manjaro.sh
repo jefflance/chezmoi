@@ -114,6 +114,9 @@ install_quarto() {
 }
 
 configure_quarto() {
+  if [[ ! $(command -v quarto) ]]; then
+    install_quarto
+  fi
   quarto install tinytex
 }
 
