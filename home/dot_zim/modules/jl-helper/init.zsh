@@ -14,7 +14,7 @@ alias udvrld='sudo udevadm control --reload-rules && sudo udevadm trigger'
 # Editors
 #
 
-[[ $(command -v lvim) ]] && alias vim='lvim'
+[[ $(command -v nvim) ]] && alias vim='nvim'
 [[ $(command -v chezmoi) ]] && alias edit='chezmoi edit --watch'
 
 #
