@@ -23,7 +23,7 @@ log "Set Jupyter kernels"
 
 inf "R kernel"
 Rscript -e "install.packages('IRkernel', repos='https://cloud.r-project.org')" \
-        -e "IRkernel::installspec(user = FALSE)"
+        -e "IRkernel::installspec(user = TRUE)"
 
 inf "Julia kernel"
 julia -e 'using Pkg; Pkg.add("IJulia")'
