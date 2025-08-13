@@ -14,10 +14,11 @@
     fi
 
     inf "Install python dependencies"
-    python3 -m pip install jupyter jupyterlab ipykernel matplotlib plotly pandas
+    env ARGON2_CFFI_USE_SYSTEM=1
+    python3 -Im pip install jupyter jupyterlab ipykernel matplotlib plotly pandas
 
     inf "Install Jupyter kernels"
-    python3 -m ipykernel install --user --name python-asdf --display-name "Python (asdf)"
+    python3 -Im ipykernel install --user --name python-asdf --display-name "Python (asdf)"
 
     Rscript -e "install.packages('IRkernel', repos='https://cloud.r-project.org')" \
             -e "IRkernel::installspec(user = FALSE)"
