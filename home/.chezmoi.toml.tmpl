@@ -7,8 +7,7 @@ command = "meld"
 {{ $hasNVim := promptBool "Do i install Neovim " false}}
 {{ $hasDevel := promptBool "Do i install programming languages " false }}
 {{ $hasLatex := promptBool "Do i install LaTeX " false }}
-{{ $hasVSCode := promptBool "Do i install VSCode " false }}
-{{ $hasQuarto := promptBool "Do i install Quarto " false }}
+{{ $hasIDE := promptBool "Do i install IDE's " false }}
 [git]
 autoCommit = true
 autoPush = true
@@ -16,8 +15,7 @@ autoPush = true
 hasNVim = {{ $hasNVim }}
 hasDevel = {{ $hasDevel }}
 hasLatex = {{ $hasLatex }}
-hasVSCode = {{ $hasVSCode }}
-hasQuarto = {{ $hasQuarto }}
+hasIDE = {{ $hasIDE }}
 email = {{ $email | quote }}
 signingkey = {{ $signingkey | quote }}
 

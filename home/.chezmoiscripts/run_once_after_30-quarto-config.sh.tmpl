@@ -1,0 +1,30 @@
+#!{{ lookPath "bash" }}
+
+# include lib
+. ${CHEZMOI_WORKING_TREE}/scripts/utils.sh
+
+
+{{- if (ne .hasIDE false) }}
+
+    log "Finalize quarto install"
+
+    # inf "Install tinytex"
+    # if [[ $(command -v quarto) ]]; then
+    #   quarto install tinytex
+    # fi
+    #
+    # inf "Install python dependencies"
+    # python3 -m pip install jupyter jupyterlab ipykernel matplotlib plotly pandas
+    #
+    # inf "Install Jupyter kernels"
+    # python3 -m ipykernel install --user --name python-asdf --display-name "Python (asdf)"
+    #
+    # Rscript -e "install.packages('IRkernel', repos='https://cloud.r-project.org')" \
+    #         -e "IRkernel::installspec(user = FALSE)"
+    #
+    # julia -e 'using Pkg; Pkg.add("IJulia")'
+
+    log "Quarto install complete"
+
+{{- end }}
+

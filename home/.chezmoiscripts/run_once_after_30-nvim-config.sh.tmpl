@@ -9,9 +9,10 @@ lua_version="latest:5.1"
 
 {{- if (ne .hasNVim false) }}
 
-    log "Set Lua version for NVim"
+    log "Install Lua version for NVim via asdf"
 
     inf "Lua ${lua_version}..."
+    asdf plugin add lua 'https://github.com/Stratus3D/asdf-lua.git'
     asdf install lua ${lua_version}
     asdf set lua ${lua_version}
 
@@ -19,13 +20,3 @@ lua_version="latest:5.1"
 
 {{- end }}
 
-log "Set Jupyter kernels"
-
-inf "R kernel"
-Rscript -e "install.packages('IRkernel', repos='https://cloud.r-project.org')" \
-        -e "IRkernel::installspec(user = TRUE)"
-
-inf "Julia kernel"
-julia -e 'using Pkg; Pkg.add("IJulia")'
-
-log "Jypyter kernels set"

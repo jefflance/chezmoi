@@ -9,11 +9,10 @@ usage() {
   printf "\nUsage:\n"
   echo " --base         Install base packages"
   echo " --devel        Install development languages"
-  echo " --nvim         Install deps for NeoVim"
-  echo " --zsh          Install deps for zsh"
-  echo " --latex        Install deps for latex"
-  echo " --quarto       Install deps for quarto"
-  echo " --vscode       Install deps for VSCode"
+  echo " --nvim         Install NeoVim and dependencies"
+  echo " --zsh          Install zsh and dependencies"
+  echo " --latex        Install latex and dependencies"
+  echo " --ide          Install IDE's"
 }
 
 # packages to install
@@ -52,7 +51,6 @@ install_devel() {
     packages+=(
       gcc-fortran
       go
-      lua
       nodejs
       npm
       python
@@ -97,29 +95,11 @@ install_latex() {
     )
 }
 
-install_vscode() {
+install_ide() {
     packages+=(
       code
-    )
-}
-
-install_quarto() {
-    packages+=(
       quarto-cli-bin
-      jupyter-nbclient
-      jupyter-nbformat
-      python-jupyter-core
-      python-matplotlib
-      python-pandas
-      python-plotly
     )
-}
-
-configure_quarto() {
-  if [[ ! $(command -v quarto) ]]; then
-    install_quarto
-  fi
-  quarto install tinytex
 }
 
 # cli options
@@ -128,8 +108,7 @@ DEVEL=false
 NVIM=false
 ZSH=false
 LATEX=false
-VSCODE=false
-QUARTO=false
+IDE=false
 
 if [ "$#" -eq 0 ]; then
     usage
@@ -143,8 +122,7 @@ while [ "$#" -gt 0 ]; do
       --nvim)   NVIM=true ;;
       --zsh)    ZSH=true ;;
       --latex)  LATEX=true ;;
-      --vscode) VSCODE=true;;
-      --quarto) QUARTO=true;;
+      --ide)    IDE=true;;
       *)
           usage
           exit 1
@@ -160,10 +138,10 @@ main() {
   "$NVIM" && install_nvim
   "$ZSH" && install_zsh
   "$LATEX" && install_latex
-  "$VSCODE" && install_vscode
-  if [[ $QUARTO == true ]]; then
-      install_quarto
+  "$IDE" && install_ide
+  if [[ $IDE == true ]]; then
       configure_quarto
+      configure_jupyter_kernels
   fi
 
   ## Install yay
