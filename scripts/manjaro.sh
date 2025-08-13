@@ -53,7 +53,6 @@ install_devel() {
       go
       nodejs
       npm
-      python
       rust
     )
 }
@@ -139,10 +138,6 @@ main() {
   "$ZSH" && install_zsh
   "$LATEX" && install_latex
   "$IDE" && install_ide
-  if [[ $IDE == true ]]; then
-      configure_quarto
-      configure_jupyter_kernels
-  fi
 
   ## Install yay
   if [[ ! $(command -v yay) ]]; then
