@@ -19,14 +19,9 @@ args="--base --zsh"
     args="${args} --latex"
 {{- end }}
 
-{{- if (ne .hasVSCode false) }}
-    args="${args} --vscode"
+{{- if (ne .hasIDE false) }}
+    args="${args} --ide"
 {{- end }}
-
-{{- if (ne .hasQuarto false) }}
-    args="${args} --quarto"
-{{- end }}
-
 
 {{ if (eq .chezmoi.os "linux") -}}
   {{ if (eq .chezmoi.osRelease.id "manjaro" "arch") -}}
