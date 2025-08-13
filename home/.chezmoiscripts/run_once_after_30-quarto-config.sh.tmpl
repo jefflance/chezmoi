@@ -14,7 +14,7 @@
     fi
 
     inf "Install python dependencies"
-    env ARGON2_CFFI_USE_SYSTEM=1
+    export ARGON2_CFFI_USE_SYSTEM=1
     python3 -Im pip install jupyter jupyterlab ipykernel matplotlib plotly pandas
 
     inf "Install Jupyter kernels"
