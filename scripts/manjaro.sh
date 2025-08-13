@@ -53,6 +53,7 @@ install_devel() {
       go
       nodejs
       npm
+      python-argon2-cffi
       rust
     )
 }
