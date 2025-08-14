@@ -152,7 +152,7 @@ main() {
       install_binary "yay"
   fi
 
-  update_system "yay"
+  # update_system "yay"
 
   ## Install packages
   for package in ${packages[@]}; do
