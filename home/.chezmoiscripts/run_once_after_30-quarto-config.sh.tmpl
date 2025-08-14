@@ -18,10 +18,7 @@ title="IDE's configuration"
 
     inf "install python dependencies for Quarto"
     python3 -Im pip install jupyter jupyterlab ipykernel matplotlib plotly pandas
-    
-    # mask python kernel as installed in asdf directory tree
-    mv ~/.asdf/installs/python/3.12.11/share/jupyter/kernels/python3 ~/.asdf/installs/python/3.12.11/share/jupyter/kernels/python3.disabled
-
+ 
     asdf reshim python
 
     inf "install and register Jupyter kernels"
