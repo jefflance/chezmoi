@@ -31,7 +31,7 @@ title="IDE's configuration"
     Rscript -e "install.packages('IRkernel', repos='https://cloud.r-project.org')" \
             -e "Sys.setenv(JUPYTER=\"$JUPYTER_BIN\"); IRkernel::installspec(user = TRUE)"
 
-    julia -e "ENV[\"JUPYTER\"]=\"${JUPYTER_BIN}\"; using Pkg; Pkg.add(\"IJulia\"); Pkg.build(\"IJulia\")'
+    julia -e "ENV[\"JUPYTER\"]=\"${JUPYTER_BIN}\"; using Pkg; Pkg.add(\"IJulia\"); Pkg.build(\"IJulia\")"
 
     # export PATH="$OLD_PATH"
     log "${title} done"
