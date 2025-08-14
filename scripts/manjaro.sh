@@ -98,12 +98,13 @@ install_ide() {
     packages+=(
       code
       quarto-cli-bin
-      python-jupyter
-      python-jupyter-client
-      python-matplotlib
-      python-plotly
       python-cairosvg
+      python-jupyter-core
+      python-matplotlib
       python-pandas
+      python-plotly
+      jupyter-nbclient
+      jupyter-nbformat
       r
       julia
     )
