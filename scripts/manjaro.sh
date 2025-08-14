@@ -63,6 +63,7 @@ install_nvim() {
       neovim
       python-cairosvg
       python-pip
+      python-jupyter-client
       python-pynvim
       ripgrep
       tree-sitter-cli
