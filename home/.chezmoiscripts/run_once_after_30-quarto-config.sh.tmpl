@@ -17,11 +17,11 @@ title="IDE's configuration"
     fi
 
     # R
-    sudo Rscript -e 'install.packages("IRkernel", repos="https://cloud.r-project.org")'
-    sudo Rscript -e 'IRkernel::installspec(user = FALSE)'
+    Rscript -e 'install.packages("IRkernel", repos="https://cloud.r-project.org")'
+    Rscript -e 'IRkernel::installspec(user = TRUE)'
 
     # Julia
-    sudo julia -e 'using Pkg; Pkg.add("IJulia"); Pkg.build("IJulia")'
+    julia -e 'using Pkg; Pkg.add("IJulia"); Pkg.build("IJulia")'
 
     log "${title} done"
 
