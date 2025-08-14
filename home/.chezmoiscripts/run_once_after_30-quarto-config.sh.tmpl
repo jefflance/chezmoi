@@ -20,13 +20,18 @@ title="IDE's configuration"
     python3 -Im pip install jupyter jupyterlab ipykernel matplotlib plotly pandas
 
     inf "install and register Jupyter kernels"
+    OLD_PATH="$PATH"
+    export PATH="$HOME/.asdf/bin:$HOME/.asdf/shims:$PATH"
+    JUPYTER_BIN="$(asdf which jupyter)"
+
     python3 -Im ipykernel install --user --name python-asdf --display-name "Python (asdf)"
 
     Rscript -e "install.packages('IRkernel', repos='https://cloud.r-project.org')" \
-            -e "IRkernel::installspec(user = TRUE, jupyter='/home/jeff/.asdf/installs/python/3.12.11/bin/jupyter')"
+            -e "Sys.setenv(JUPYTER=\"${JUPYTER_BIN}\"); IRkernel::installspec(user = TRUE)"
 
-    julia -e 'ENV["JUPYTER"]="/home/jeff/.asdf/installs/python/3.12.11/bin/jupyter"; using Pkg; Pkg.add("IJulia"); Pkg.build("IJulia")'
+    julia -e 'ENV["JUPYTER"]="${JUPYTER_BIN}"; using Pkg; Pkg.add("IJulia"); Pkg.build("IJulia")'
 
+    export PATH="$OLD_PATH"
     log "${title} done"
 
 {{- end }}
