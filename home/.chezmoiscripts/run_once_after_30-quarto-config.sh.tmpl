@@ -19,19 +19,21 @@ title="IDE's configuration"
     inf "install python dependencies for Quarto"
     python3 -Im pip install jupyter jupyterlab ipykernel matplotlib plotly pandas
 
+    asdf reshim python
+
     inf "install and register Jupyter kernels"
-    OLD_PATH="$PATH"
-    export PATH="$HOME/.asdf/bin:$HOME/.asdf/shims:$PATH"
+    # OLD_PATH="$PATH"
+    # export PATH="$HOME/.asdf/bin:$HOME/.asdf/shims:$PATH"
     JUPYTER_BIN="$(asdf which jupyter)"
 
     python3 -Im ipykernel install --user --name python-asdf --display-name "Python (asdf)"
 
     Rscript -e "install.packages('IRkernel', repos='https://cloud.r-project.org')" \
-            -e "Sys.setenv(JUPYTER=\"${JUPYTER_BIN}\"); IRkernel::installspec(user = TRUE)"
+            -e "Sys.setenv(JUPYTER=\"$JUPYTER_BIN\"); IRkernel::installspec(user = TRUE)"
 
     julia -e 'ENV["JUPYTER"]="${JUPYTER_BIN}"; using Pkg; Pkg.add("IJulia"); Pkg.build("IJulia")'
 
-    export PATH="$OLD_PATH"
+    # export PATH="$OLD_PATH"
     log "${title} done"
 
 {{- end }}
