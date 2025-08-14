@@ -20,7 +20,7 @@
     python3 -Im ipykernel install --user --name python-asdf --display-name "Python (asdf)"
 
     Rscript -e "install.packages('IRkernel', repos='https://cloud.r-project.org')" \
-            -e "IRkernel::installspec(user = FALSE)"
+            -e "IRkernel::installspec(user = TRUE)"
 
     julia -e 'using Pkg; Pkg.add("IJulia")'
 
