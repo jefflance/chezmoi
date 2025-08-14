@@ -104,8 +104,6 @@ install_ide() {
       python-plotly
       jupyter-nbclient
       jupyter-nbformat
-      # r
-      # julia
     )
 }
 
