@@ -16,12 +16,14 @@ title="IDE's configuration"
       quarto install tinytex
     fi
 
-    python3 -Im ipykernel install --user --name python-local --display-name "Python (local)"
+    python3 -Im ipykernel install --user --name python-asdf --display-name "Python (asdf)"
 
-    Rscript -e "install.packages('IRkernel', repos='https://cloud.r-project.org')" \
-            -e "IRkernel::installspec(user = TRUE)"
+    # R
+    Rscript -e 'install.packages("IRkernel", repos="https://cloud.r-project.org", lib=Sys.getenv("R_LIBS_USER"))'
+    Rscript -e 'IRkernel::installspec(user = TRUE)'
 
-    julia -e "using Pkg; Pkg.add(\"IJulia\"); Pkg.build(\"IJulia\")"
+    # Julia
+    julia -e 'using Pkg; Pkg.add("IJulia"); Pkg.build("IJulia")'
 
     log "${title} done"
 
