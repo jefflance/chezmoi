@@ -30,19 +30,24 @@ inf "installing direnv with system version..."
 # as it is managed by zim module
 
 for plugin in ${!plugins[@]}; do
-  inf "installing ${plugin}..."
 
-  asdf plugin add ${plugin} ${plugins[$plugin]}
-  asdf install ${plugin} latest
-  asdf set ${plugin} latest
-  asdf reshim ${plugin}
+  if [[ ! $(asdf plugin list | grep "^${plugin}$") ]];
+    inf "installing ${plugin}..."
+
+    asdf plugin add ${plugin} ${plugins[$plugin]}
+    asdf install ${plugin} latest
+    asdf set ${plugin} latest
+    asdf reshim ${plugin}
+  fi
 done
 
-inf "installing python..."
-asdf plugin add python https://github.com/asdf-community/asdf-python.git
-asdf install python latest:3.12
-asdf set python latest:3.12
-asdf reshim python
+  if [[ ! $(asdf plugin list | grep "^python$") ]];
+    inf "installing python..."
+    asdf plugin add python https://github.com/asdf-community/asdf-python.git
+    asdf install python latest:3.12
+    asdf set python latest:3.12
+    asdf reshim python
+  fi
 
 inf "initializing opam..."
 opam init -n
