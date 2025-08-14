@@ -61,7 +61,6 @@ install_devel() {
 install_nvim() {
     packages+=(
       neovim
-      # lua51
       python-pynvim
       fd
       ripgrep
