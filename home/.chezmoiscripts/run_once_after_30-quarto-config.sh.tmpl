@@ -18,12 +18,13 @@ title="IDE's configuration"
 
     inf "install python dependencies for Quarto"
     python3 -Im pip install jupyter jupyterlab ipykernel matplotlib plotly pandas
+    
+    # mask python kernel as installed in asdf directory tree
+    mv ~/.asdf/installs/python/3.12.11/share/jupyter/kernels/python3 ~/.asdf/installs/python/3.12.11/share/jupyter/kernels/python3.disabled
 
     asdf reshim python
 
     inf "install and register Jupyter kernels"
-    # OLD_PATH="$PATH"
-    # export PATH="$HOME/.asdf/bin:$HOME/.asdf/shims:$PATH"
     JUPYTER_BIN="$(asdf which jupyter)"
 
     python3 -Im ipykernel install --user --name python-asdf --display-name "Python (asdf)"
@@ -33,7 +34,6 @@ title="IDE's configuration"
 
     julia -e "ENV[\"JUPYTER\"]=\"${JUPYTER_BIN}\"; using Pkg; Pkg.add(\"IJulia\"); Pkg.build(\"IJulia\")"
 
-    # export PATH="$OLD_PATH"
     log "${title} done"
 
 {{- end }}
