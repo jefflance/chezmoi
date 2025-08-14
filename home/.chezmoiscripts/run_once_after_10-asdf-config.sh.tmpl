@@ -1,5 +1,8 @@
 #!{{ lookPath "bash" }}
 
+# title
+title="ASDF configuration"
+
 # include lib
 . ${CHEZMOI_WORKING_TREE}/scripts/utils.sh
 
@@ -20,7 +23,7 @@ plugins=(
 
 
 ### Install ASDF plugins ###
-log "Begin ASDF plugins installation"
+log "Begin ${title}"
 
 inf "installing direnv with system version..."
 # no need to run asdf direnv setup --shell zsh --version latest
@@ -44,5 +47,5 @@ asdf reshim python
 inf "initializing opam..."
 opam init -n
 
-log "Finish ASDF plugins installation"
+log "${title} done"
 

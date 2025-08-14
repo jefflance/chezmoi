@@ -1,22 +1,25 @@
 #!{{ lookPath "bash" }}
 
+# title
+title="IDE's configuration"
+
 # include lib
 . ${CHEZMOI_WORKING_TREE}/scripts/utils.sh
 
 
 {{- if (ne .hasIDE false) }}
 
-    log "Finalize quarto install"
+    log "Begin ${title}"
 
-    inf "Install tinytex"
+    inf "install tinytex for Quarto"
     if [[ $(command -v quarto) ]]; then
       quarto install tinytex
     fi
 
-    inf "Install python dependencies"
+    inf "install python dependencies for Quarto"
     python3 -Im pip install jupyter jupyterlab ipykernel matplotlib plotly pandas
 
-    inf "Install Jupyter kernels"
+    inf "install and register Jupyter kernels"
     python3 -Im ipykernel install --user --name python-asdf --display-name "Python (asdf)"
 
     Rscript -e "install.packages('IRkernel', repos='https://cloud.r-project.org')" \
@@ -24,7 +27,7 @@
 
     julia -e 'ENV["JUPYTER"]="/home/jeff/.asdf/installs/python/3.12.11/bin/jupyter"; using Pkg; Pkg.add("IJulia"); Pkg.build("IJulia")'
 
-    log "Quarto install complete"
+    log "${title} done"
 
 {{- end }}
 

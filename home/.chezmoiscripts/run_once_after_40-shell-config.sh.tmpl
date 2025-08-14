@@ -1,5 +1,8 @@
 #!{{ lookPath "bash" }}
 
+# title
+title="Zsh customization"
+
 # include lib
 . ${CHEZMOI_WORKING_TREE}/scripts/utils.sh
 
@@ -8,7 +11,7 @@ ZIMDIR=${HOME}/.zim
 
 
 ### Update shell install ###
-log "Begin Zsh customization"
+log "Begin ${title}"
 
 
 ## Update cargo
@@ -22,5 +25,5 @@ inf "installing zim framework"
 $(which zsh) -c "source ${ZIMDIR}/zimfw.zsh init -q"
 
 
-log "Finish Zsh customization"
+log "${title} done"
 

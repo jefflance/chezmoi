@@ -1,5 +1,8 @@
 #!{{ lookPath "bash" }}
 
+# title
+title="LaTeX repo cloning"
+
 # include lib
 . ${CHEZMOI_WORKING_TREE}/scripts/utils.sh
 
@@ -8,10 +11,10 @@ TEXMFDIR=${HOME}/texmf/tex/latex
 
 
 {{- if (ne .hasLatex false) }}
-    log "Begin LaTeX repo initialization"
+    log "Begin ${title}"
 
     texhash "${TEXMFDIR}"
 
-    log "Finish LaTeX repo initialization"
+    log "${title} done"
 {{ end -}}
 
