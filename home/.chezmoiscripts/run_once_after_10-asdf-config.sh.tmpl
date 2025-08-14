@@ -31,7 +31,7 @@ inf "installing direnv with system version..."
 
 for plugin in ${!plugins[@]}; do
 
-  if [[ ! $(asdf plugin list | grep "^${plugin}$") ]];
+  if [[ ! $(asdf plugin list | grep "^${plugin}$") ]]; then
     inf "installing ${plugin}..."
 
     asdf plugin add ${plugin} ${plugins[$plugin]}
@@ -41,7 +41,7 @@ for plugin in ${!plugins[@]}; do
   fi
 done
 
-  if [[ ! $(asdf plugin list | grep "^python$") ]];
+  if [[ ! $(asdf plugin list | grep "^python$") ]]; then
     inf "installing python..."
     asdf plugin add python https://github.com/asdf-community/asdf-python.git
     asdf install python latest:3.12
