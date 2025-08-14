@@ -20,8 +20,10 @@ install_default() {
     packages=(
       base-devel
       curl
+      gcc-fortran
       git
       pkgfile
+      python-pip
       trash-cli
       unzip
       wl-clipboard
@@ -49,7 +51,6 @@ install_base() {
 
 install_devel() {
     packages+=(
-      gcc-fortran
       go
       nodejs
       npm
@@ -59,12 +60,10 @@ install_devel() {
 
 install_nvim() {
     packages+=(
-      fd
       neovim
-      python-cairosvg
-      python-pip
-      python-jupyter-client
+      # lua51
       python-pynvim
+      fd
       ripgrep
       tree-sitter-cli
     )
@@ -99,6 +98,14 @@ install_ide() {
     packages+=(
       code
       quarto-cli-bin
+      python-jupyter
+      python-jupyter-client
+      python-matplotlib
+      python-plotly
+      python-cairosvg
+      python-pandas
+      r
+      julia
     )
 }
 

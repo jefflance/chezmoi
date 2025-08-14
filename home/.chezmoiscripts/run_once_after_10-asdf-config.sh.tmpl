@@ -17,8 +17,6 @@ plugins=(
   ['opam']='https://github.com/asdf-community/asdf-opam.git'
   ['ruby']='https://github.com/asdf-vm/asdf-ruby.git'
   ['rust']='https://github.com/code-lever/asdf-rust.git'
-  ['julia']='https://github.com/rkyleg/asdf-julia.git'
-  ['r']='https://github.com/asdf-community/asdf-r.git'
 )
 
 
@@ -40,14 +38,6 @@ for plugin in ${!plugins[@]}; do
     asdf reshim ${plugin}
   fi
 done
-
-  if [[ ! $(asdf plugin list | grep "^python$") ]]; then
-    inf "installing python..."
-    asdf plugin add python https://github.com/asdf-community/asdf-python.git
-    asdf install python latest:3.12
-    asdf set python latest:3.12
-    asdf reshim python
-  fi
 
 inf "initializing opam..."
 opam init -n
