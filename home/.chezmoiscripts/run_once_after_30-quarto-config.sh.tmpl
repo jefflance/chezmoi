@@ -22,7 +22,7 @@
     Rscript -e "install.packages('IRkernel', repos='https://cloud.r-project.org')" \
             -e "IRkernel::installspec(user = TRUE, jupyter='/home/jeff/.asdf/installs/python/3.12.11/bin/jupyter')"
 
-    julia -e 'using Pkg; Pkg.add("IJulia")'
+    julia -e 'ENV["JUPYTER"]="/home/jeff/.asdf/installs/python/3.12.11/bin/jupyter"; using Pkg; Pkg.add("IJulia"); Pkg.build("IJulia")'
 
     log "Quarto install complete"
 
