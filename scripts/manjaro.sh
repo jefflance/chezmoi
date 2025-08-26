@@ -44,7 +44,7 @@ install_base() {
       noto-fonts-emoji
       ranger
       tmux
-      ueberzug
+      ueberzugpp
       zoxide
     )
 }
