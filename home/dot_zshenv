@@ -38,3 +38,5 @@ export IPINFO_API_KEY="$(pass _api_keys/ipinfo_perso-0 2>/dev/null || echo ERROR
 
 # }}} End personnal configuration directives
 
+# load profile
+[[ -f ~/.profile ]] && . ~/.profile
