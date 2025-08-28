@@ -62,6 +62,9 @@ install_nvim() {
     packages+=(
       neovim
       python-pynvim
+      python-pyperclip
+      python-pnglatex
+      python-kaleido-bin
       fd
       ripgrep
       tree-sitter-cli
