@@ -39,7 +39,7 @@ zmodule archive
 {{ if (eq .chezmoi.os "linux") -}}
 # Distribution aliases and functions.
 {{ if (eq .chezmoi.osRelease.id "manjaro") -}}
-zmodule manjaro
+zmodule manjaro -z
 {{ else if (eq .chezmoi.osRelease.id "arch") -}}
 zmodule pacman
 {{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
@@ -47,7 +47,7 @@ zmodule debian
 {{- end }}
 {{- end }}
 # sudo module
-zmodule sudo
+zmodule sudo -z
 # Utility aliases and functions. Adds colour to ls, grep and less.
 zmodule utility
 # exa
@@ -55,7 +55,7 @@ zmodule utility
 # fzf
 zmodule fzf
 # Personal aliases
-zmodule jl-helper
+zmodule jl-helper -z
 # magic enter feature from subnixr's minimal prompt theme
 zmodule magic-enter
 
