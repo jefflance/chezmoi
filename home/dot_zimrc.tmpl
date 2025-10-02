@@ -23,11 +23,11 @@ zmodule zsh-users/zsh-autosuggestions
 # Productivity
 #
 # Alacritty completions modules
-zmodule -u alacritty
+zmodule alacritty -u
 # Sets up asdf, with auto install and optimized usage of the direnv plugin.
 #zmodule asdf
 # Buku completions modules
-zmodule -u buku
+zmodule buku -u
 # chezmoi
 zmodule joke/zim-chezmoi
 # Provides handy git aliases and functions.
@@ -39,7 +39,7 @@ zmodule archive
 {{ if (eq .chezmoi.os "linux") -}}
 # Distribution aliases and functions.
 {{ if (eq .chezmoi.osRelease.id "manjaro") -}}
-zmodule -u manjaro
+zmodule manjaro
 {{ else if (eq .chezmoi.osRelease.id "arch") -}}
 zmodule pacman
 {{ else if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
@@ -47,7 +47,7 @@ zmodule debian
 {{- end }}
 {{- end }}
 # sudo module
-zmodule -u sudo
+zmodule sudo
 # Utility aliases and functions. Adds colour to ls, grep and less.
 zmodule utility
 # exa
@@ -55,7 +55,7 @@ zmodule utility
 # fzf
 zmodule fzf
 # Personal aliases
-zmodule -u jl-helper
+zmodule jl-helper
 # magic enter feature from subnixr's minimal prompt theme
 zmodule magic-enter
 
