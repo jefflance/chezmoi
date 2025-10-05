@@ -18,6 +18,7 @@ _passwordstore_async_pull() {
         git pull --ff-only &> "$PASS_PULL_LOG"
       fi
       rm -f "$PASS_PULL_LOCK"
+      rm -f "$PASS_PULL_LOG"
     ) & disown
   fi
 }
