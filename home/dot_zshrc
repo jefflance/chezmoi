@@ -99,6 +99,8 @@ if [[ ${ZIM_HOME}/init.zsh -ot ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
 fi
 source ${ZIM_HOME}/init.zsh
 
+autoload -Uz compinit && compinit -C
+
 # ------------------------------
 # Post-init module configuration
 # ------------------------------
@@ -125,7 +127,7 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 # Bind ctrl+a and ctrl+e
 bindkey '^A' vi-beginning-of-line
-bindkey '^E' vi-end-of-line   
+bindkey '^E' vi-end-of-line
 # }}} End configuration added by Zim install
 
 
@@ -185,35 +187,17 @@ if [ -z "$TMUX" ]; then
         ssh-add 2>/dev/null
 
         # start tmux
+#
+# passwordstore
+#
+if [[ $(curl -s -w "%{http_code}\n" -L "https://git.jefflance.me/" -o /dev/null) = "200" ]]; then
+  echo -ne "\npasswordstore: " && pass git pull
+else
+  echo -ne "\npasswordstore: serveur hors ligne"
+fi
         tmux attach
     fi
 fi
-
-
-
-#
-# ocaml
-#
-# [[ ! -r '/home/jeff/.opam/opam-init/init.zsh' ]] || source '/home/jeff/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
-# test -r /home/jeff/.opam/opam-init/init.zsh && . /home/jeff/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-# eval "$(asdf exec opam env)"
-
-
-# #
-# # conda
-# #
-# # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/home/jeff/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/home/jeff/miniconda3/etc/profile.d/conda.sh" ]; then
-#         . "/home/jeff/miniconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/home/jeff/miniconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
 
 
 
@@ -226,11 +210,3 @@ gpgconf --launch gpg-agent
 
 
 
-#
-# passwordstore
-#
-if [[ $(curl -s -w "%{http_code}\n" -L "https://git.jefflance.me/" -o /dev/null) = "200" ]]; then
-  echo -ne "\npasswordstore: " && pass git pull
-else
-  echo -ne "\npasswordstore: serveur hors ligne"
-fi
