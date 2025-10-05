@@ -15,10 +15,9 @@ _passwordstore_async_pull() {
       cd "$PASSWORD_STORE_DIR" || exit
       # Vérifie la connectivité avant pull
       if git ls-remote &>/dev/null; then
-        git pull --ff-only &> "$PASS_PULL_LOG"
+        git pull --ff-only &>> "$PASS_PULL_LOG"
       fi
       rm -f "$PASS_PULL_LOCK"
-      rm -f "$PASS_PULL_LOG"
     ) & disown
   fi
 }
