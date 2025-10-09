@@ -78,7 +78,7 @@ if [[ ${ZIM_HOME}/init.zsh -ot ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
 fi
 source ${ZIM_HOME}/init.zsh
 
-autoload -Uz compinit && compinit -C
+# autoload -Uz compinit && compinit -C
 
 
 
