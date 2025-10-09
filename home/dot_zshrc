@@ -33,6 +33,8 @@ WORDCHARS=${WORDCHARS//[\/]}
 # Zoxide configuration
 ZOXIDE_CMD_OVERRIDE=cd
 
+
+
 # --------------------
 # Module configuration
 # --------------------
@@ -64,6 +66,8 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 #typeset -A ZSH_HIGHLIGHT_STYLES
 #ZSH_HIGHLIGHT_STYLES[comment]='fg=10'
 
+
+
 # ------------------
 # Initialize modules
 # ------------------
@@ -75,6 +79,8 @@ fi
 source ${ZIM_HOME}/init.zsh
 
 autoload -Uz compinit && compinit -C
+
+
 
 # ------------------------------
 # Post-init module configuration
@@ -162,17 +168,17 @@ if [ -z "$TMUX" ]; then
         ssh-add 2>/dev/null
 
         # start tmux
-#
-# passwordstore
-#
-if [[ $(curl -s -w "%{http_code}\n" -L "https://git.jefflance.me/" -o /dev/null) = "200" ]]; then
-  echo -ne "\npasswordstore: " && pass git pull
-else
-  echo -ne "\npasswordstore: serveur hors ligne"
-fi
-        tmux attach
-    fi
-fi
+# #
+# # passwordstore
+# #
+# if [[ $(curl -s -w "%{http_code}\n" -L "https://git.jefflance.me/" -o /dev/null) = "200" ]]; then
+#   echo -ne "\npasswordstore: " && pass git pull
+# else
+#   echo -ne "\npasswordstore: serveur hors ligne"
+# fi
+#         tmux attach
+#     fi
+# fi
 
 
 
