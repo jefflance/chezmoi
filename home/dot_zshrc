@@ -168,6 +168,12 @@ if [ -z "$TMUX" ]; then
         ssh-add 2>/dev/null
 
         # start tmux
+        tmux attach
+    fi
+fi
+
+
+
 # #
 # # passwordstore
 # #
