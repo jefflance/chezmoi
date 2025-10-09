@@ -1,7 +1,7 @@
 # modules-local/passwordstore/init.zsh
 
 # === Passwordstore async pull ===
-PASS_PULL_LOG="/tmp/passstore-pull.log"
+PASS_PULL_LOG="/tmp/passstore-pull"
 PASS_PULL_LOCK="/tmp/passstore-pull.lock"
 
 # Fonction pour lancer le pull async
@@ -15,7 +15,7 @@ _passwordstore_async_pull() {
       cd "$PASSWORD_STORE_DIR" || exit
       # Vérifie la connectivité avant pull
       if git ls-remote &>/dev/null; then
-        git pull --ff-only &> /dev/null #"$PASS_PULL_LOG"
+        git pull --ff-only &> "$PASS_PULL_LOG_$(date +%Y%m%dTHMS).log"
       fi
       rm -f "$PASS_PULL_LOCK"
     ) & disown
