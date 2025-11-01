@@ -33,6 +33,8 @@ export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
 export BROWSER=qutebrowser
 export EDITOR=$([[ $(command -v nvim) ]] && echo nvim || echo vim)
 export TERMINAL=kitty
+# to permit fcitx runs with kitty
+export GLFW_IM_MODULE=ibus
 
 # set fuzzy finder command to rg if installed
 [[ $(command -v rg) ]] && export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
