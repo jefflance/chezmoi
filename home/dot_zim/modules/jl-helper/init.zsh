@@ -50,7 +50,7 @@ alias yd='yt-dlp'                        # yt-dlp best download
 # Shortcuts
 #
 
-hash -d crs="${HOME}/cours"              # cours
+hash -d crs="${HOME}/Cours"              # cours
 hash -d doc="${HOME}/Documents"          # documents
 hash -d dot="$(chezmoi source-path)"     # dotfiles
 
