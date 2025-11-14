@@ -12,11 +12,23 @@ zmodule zsh-users/zsh-syntax-highlighting
 zmodule zsh-users/zsh-history-substring-search
 zmodule completion
 
-zmodule buku -z
+zmodule ohmyzsh/ohmyzsh --root plugins/kitty
+zmodule ohmyzsh/ohmyzsh --root plugins/starship
+zmodule ohmyzsh/ohmyzsh --root plugins/sudo
+zmodule ohmyzsh/ohmyzsh --root plugins/zoxide
+zmodule ohmyzsh/ohmyzsh --root plugins/direnv
+zmodule ohmyzsh/ohmyzsh --root plugins/colorize
+zmodule ohmyzsh/ohmyzsh --root plugins/docker-compose
+zmodule ohmyzsh/ohmyzsh --root plugins/colored-man-pages
+zmodule ohmyzsh/ohmyzsh --root plugins/git
+zmodule ohmyzsh/ohmyzsh --root plugins/man
+zmodule ohmyzsh/ohmyzsh --root plugins/magic-enter
+zmodule ohmyzsh/ohmyzsh --root plugins/per-directory-history
+zmodule ohmyzsh/ohmyzsh --root plugins/qrcode
+zmodule ohmyzsh/ohmyzsh --root plugins/mosh
+
 zmodule joke/zim-chezmoi
-zmodule git
-zmodule termtitle
-zmodule archive
+
 {{ if (eq .chezmoi.os "linux") -}}
 # Distribution aliases and functions.
 {{ if (eq .chezmoi.osRelease.id "manjaro") -}}
@@ -28,16 +40,15 @@ zmodule debian
 {{- end }}
 {{- end }}
 
-zmodule sudo -z
+zmodule termtitle
+zmodule archive
 zmodule utility
 zmodule fzf
-zmodule jl-helper -z
-zmodule magic-enter
 zmodule git-info
-zmodule steeef
-zmodule joke/zim-starship
 zmodule passwordstore -z
+zmodule buku -z
+zmodule jl-helper -z
 
-zstyle ':zim:module' skip 'prompt'
+# zstyle ':zim:module' skip 'prompt'
 
 # End configuration added by Zim install
