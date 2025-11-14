@@ -32,8 +32,8 @@ export PATH="$(go env GOBIN):$(go env GOPATH)/bin:${PATH}"
 
 # Set default browser, editor, terminal and shell
 export BROWSER=qutebrowser
-export EDITOR=$(( [[ $(command -v nvim) ]] && echo nvim ) || ( [[ $(command -v vim) ]] && echo vim ) || echo nano)
-export TERMINAL=$(( [[ $(command -v kitty) ]] && echo kitty ) || ( [[ $(command -v alacritty) ]] && echo alacritty ) || echo xterm)
+export EDITOR=$( ( [[ $(command -v nvim) ]] && echo nvim ) || ( [[ $(command -v vim) ]] && echo vim ) || echo nano)
+export TERMINAL=$( ( [[ $(command -v kitty) ]] && echo kitty ) || ( [[ $(command -v alacritty) ]] && echo alacritty ) || echo xterm)
 export SHELL=/usr/bin/zsh
 # to permit fcitx runs with kitty
 export GLFW_IM_MODULE=ibus
