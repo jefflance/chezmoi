@@ -20,23 +20,25 @@ path=(~/bin ~/.local/bin $path[@])
 # >>> environment variables >>>
 export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
 
-export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CONFIG_HOME="${HOME}/.config"
 
-# update path
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+# Update path
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:${PATH}"
 export GEM_HOME="$(${HOME}/.asdf/shims/gem env user_gemhome)"
-export PATH="$PATH:$GEM_HOME/bin"
-export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
-[[ -d ${HOME}/.fuelup ]] && export PATH="$PATH:${HOME}/.fuelup/bin"
+export PATH="${GEM_HOME}/bin:${PATH}"
+export PATH="$(go env GOBIN):$(go env GOPATH)/bin:${PATH}"
+[[ -d ${HOME}/.fuelup ]] && export PATH="${HOME}/.fuelup/bin:${PATH}"
+[[ $(command -v rofi) ]] && export PATH="${HOME}/.config/rofi/scripts:${PATH}"
 
-# set default browser, editor and terminal
+# Set default browser, editor, terminal and shell
 export BROWSER=qutebrowser
-export EDITOR=$([[ $(command -v nvim) ]] && echo nvim || echo vim)
-export TERMINAL=kitty
+export EDITOR=$(( [[ $(command -v nvim) ]] && echo nvim ) || ( [[ $(command -v vim) ]] && echo vim ) || echo nano)
+export TERMINAL=$(( [[ $(command -v kitty) ]] && echo kitty ) || ( [[ $(command -v alacritty) ]] && echo alacritty ) || echo xterm)
+export SHELL=/usr/bin/zsh
 # to permit fcitx runs with kitty
 export GLFW_IM_MODULE=ibus
 
-# set fuzzy finder command to rg if installed
+# Set fuzzy finder command to rg if installed
 [[ $(command -v rg) ]] && export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 export PASSWORD_STORE_DIR="${HOME}/.password-store"
@@ -45,11 +47,7 @@ export ZK_NOTEBOOK_DIR="${HOME}/Notes"
 export OPENAI_API_KEY="$(pass _api_keys/openai_perso-2 2>/dev/null || echo ERROR)"
 export IPINFO_API_KEY="$(pass _api_keys/ipinfo_perso-0 2>/dev/null || echo ERROR)"
 
-# set default shell and terminal
-export SHELL=/usr/bin/zsh
-export TERMINAL_COMMAND=xdg-terminal-exec
-
-# set electron trash implementation if trash-cli installed
+# Set electron trash implementation if trash-cli installed
 [[ ( $(command -v code) && $(command -v trash) ) ]] && export ELECTRON_TRASH="trash"
 
 # Disable hardware cursors. This might fix issues with
@@ -63,13 +61,13 @@ fi
 export OPENCV_LOG_LEVEL=ERROR
 # <<< environment variables <<<
 
-# load profile
+# Load profile
 set -a
-. "$HOME/.config/user-dirs.dirs"
+. "${HOME}/.config/user-dirs.dirs"
 set +a
 
-if [ -n "$(ls "$HOME"/.config/profile.d 2>/dev/null)" ]; then
-    for f in "$HOME"/.config/profile.d/*; do
+if [ -n "$(ls "${HOME}"/.config/profile.d 2>/dev/null)" ]; then
+    for f in "${HOME}"/.config/profile.d/*; do
         # shellcheck source=/dev/null
         . "$f"
     done
