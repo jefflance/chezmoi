@@ -29,6 +29,7 @@ export PATH="${GEM_HOME}/bin:${PATH}"
 export PATH="$(go env GOBIN):$(go env GOPATH)/bin:${PATH}"
 [[ -d ${HOME}/.fuelup ]] && export PATH="${HOME}/.fuelup/bin:${PATH}"
 [[ $(command -v rofi) ]] && export PATH="${HOME}/.config/rofi/scripts:${PATH}"
+[[ $(command -v nix) ]] && export PATH="${PATH}:${HOME}/.nix-profile/bin"
 
 # Set default browser, editor, terminal and shell
 export BROWSER=qutebrowser
