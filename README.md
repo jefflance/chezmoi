@@ -9,7 +9,7 @@ yay -Sy chezmoi
 ## Set up chezmoi on the computer
 
 ```
-chezmoi init git.jefflance.me/jeff/chezmoi
+chezmoi init gitea.com/jefflance/chezmoi
 ```
 
 ## Apply chezmoi configuration
