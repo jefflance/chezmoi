@@ -42,11 +42,12 @@ export GLFW_IM_MODULE=ibus
 # Set fuzzy finder command to rg if installed
 [[ $(command -v rg) ]] && export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
+export IPINFO_API_KEY="$(pass _api_keys/ipinfo_perso-0 2>/dev/null || echo ERROR)"
+export JOPLIN_API_KEY="$(pass _api_keys/joplin_perso-0 2>/dev/null || echo ERROR)"
+export OPENAI_API_KEY="$(pass _api_keys/openai_perso-2 2>/dev/null || echo ERROR)"
 export PASSWORD_STORE_DIR="${HOME}/.password-store"
 export PASSWORD_STORE_ENABLE_EXTENSIONS=True
 export ZK_NOTEBOOK_DIR="${HOME}/Notes"
-export OPENAI_API_KEY="$(pass _api_keys/openai_perso-2 2>/dev/null || echo ERROR)"
-export IPINFO_API_KEY="$(pass _api_keys/ipinfo_perso-0 2>/dev/null || echo ERROR)"
 
 # Set electron trash implementation if trash-cli installed
 [[ ( $(command -v code) && $(command -v trash) ) ]] && export ELECTRON_TRASH="trash"
