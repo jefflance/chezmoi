@@ -43,7 +43,7 @@ export GLFW_IM_MODULE=ibus
 [[ $(command -v rg) ]] && export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 export IPINFO_API_KEY="$(pass _api_keys/ipinfo_perso-0 2>/dev/null || echo ERROR)"
-export JOPLIN_API_KEY="$(pass _api_keys/joplin_perso-0 2>/dev/null || echo ERROR)"
+export JOPLIN_TOKEN="$(pass _api_keys/joplin_perso-0 2>/dev/null || echo ERROR)"
 export OPENAI_API_KEY="$(pass _api_keys/openai_perso-2 2>/dev/null || echo ERROR)"
 export PASSWORD_STORE_DIR="${HOME}/.password-store"
 export PASSWORD_STORE_ENABLE_EXTENSIONS=True
