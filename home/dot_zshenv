@@ -43,11 +43,11 @@ export SUDO_NOPASSWD=1
 # Set fuzzy finder command to rg if installed
 [[ $(command -v rg) ]] && export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
-export IPINFO_API_KEY="$(pass _api_keys/ipinfo_perso-0 2>/dev/null || echo ERROR)"
-export JOPLIN_TOKEN="$(pass _api_keys/joplin_perso-0 2>/dev/null || echo ERROR)"
-export ANTHROPIC_API_KEY="$(pass _api_keys/anthropic_perso-0 2>/dev/null || echo ERROR)"
-export GEMINI_API_KEY="$(pass _api_keys/gemini_perso-0 2>/dev/null || echo ERROR)"
-export OPENAI_API_KEY="$(pass _api_keys/openai_perso-2 2>/dev/null || echo ERROR)"
+export IPINFO_API_KEY="$(pass _access_token/api/ipinfo_perso-0 2>/dev/null || echo ERROR)"
+export JOPLIN_TOKEN="$(pass _access_token/api/joplin_perso-0 2>/dev/null || echo ERROR)"
+export ANTHROPIC_API_KEY="$(pass _access_token/api/anthropic_perso-0 2>/dev/null || echo ERROR)"
+export GEMINI_API_KEY="$(pass _access_token/api/gemini_perso-0 2>/dev/null || echo ERROR)"
+export OPENAI_API_KEY="$(pass _access_token/api/openai_perso-2 2>/dev/null || echo ERROR)"
 export PASSWORD_STORE_DIR="${HOME}/.password-store"
 export PASSWORD_STORE_ENABLE_EXTENSIONS=True
 export ZK_NOTEBOOK_DIR="${HOME}/Notes"
