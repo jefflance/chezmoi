@@ -38,6 +38,7 @@ export TERMINAL=$( ( [[ $(command -v kitty) ]] && echo kitty ) || ( [[ $(command
 export SHELL=/usr/bin/zsh
 # to permit fcitx runs with kitty
 export GLFW_IM_MODULE=ibus
+export SUDO_NOPASSWD=1
 
 # Set fuzzy finder command to rg if installed
 [[ $(command -v rg) ]] && export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
