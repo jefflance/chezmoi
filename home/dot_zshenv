@@ -28,8 +28,9 @@ export GEM_HOME="$(${HOME}/.asdf/shims/gem env user_gemhome)"
 export PATH="${GEM_HOME}/bin:${PATH}"
 export PATH="$(go env GOBIN):$(go env GOPATH)/bin:${PATH}"
 [[ -d ${HOME}/.fuelup ]] && export PATH="${HOME}/.fuelup/bin:${PATH}"
-[[ $(command -v rofi) ]] && export PATH="${HOME}/.config/rofi/scripts:${PATH}"
+[[ $(command -v composer) ]] && export PATH="${PATH}:$(composer config --global home)/vendor/bin"
 [[ $(command -v nix) ]] && export PATH="${PATH}:${HOME}/.nix-profile/bin"
+[[ $(command -v rofi) ]] && export PATH="${HOME}/.config/rofi/scripts:${PATH}"
 
 # Set default browser, editor, terminal and shell
 export BROWSER=qutebrowser
