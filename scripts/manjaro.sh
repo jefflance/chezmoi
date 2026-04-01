@@ -23,7 +23,9 @@ install_default() {
       gcc-fortran
       git
       pkgfile
+      plocate
       python-pip
+      re2c
       trash-cli
       unzip
       wl-clipboard
