@@ -126,6 +126,9 @@ symbol = " "
 [julia]
 symbol = " "
 
+[localip]
+disabled = true
+
 [memory_usage]
 symbol = " "
 
