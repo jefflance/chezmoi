@@ -45,7 +45,7 @@ export SHELL=/usr/bin/zsh
 export IPINFO_API_KEY="$(pass _access_token/api/ipinfo_perso-0 2>/dev/null || echo ERROR)"
 export JOPLIN_TOKEN="$(pass _access_token/api/joplin_perso-0 2>/dev/null || echo ERROR)"
 export ALBERT_API_KEY="$(pass _access_token/api/albert.playground.etalab.gouv.fr/poc-project-kami 2>/dev/null || echo ERROR)"
-export CLAUDE_CODE_OAUTH_TOKEN="$(pass _access_token/api/claude_perso-0 2>/dev/null || echo ERROR)"
+export ANTHROPIC_API_KEY="$(pass _access_token/api/claude_perso-0 2>/dev/null || echo ERROR)"
 export GEMINI_API_KEY="$(pass _access_token/api/gemini_perso-0 2>/dev/null || echo ERROR)"
 export OPENAI_API_KEY="$(pass _access_token/api/openai_perso-2 2>/dev/null || echo ERROR)"
 
