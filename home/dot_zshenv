@@ -72,7 +72,7 @@ export OPENCV_LOG_LEVEL=ERROR
 # to permit fcitx runs with kitty
 export GLFW_IM_MODULE=ibus
 
-export SUDO_NOPASSWD=1
+export SUDO_NOPASSWD=0
 export HISTORY_START_WITH_GLOBAL=true
 # <<< environment variables <<<
 
