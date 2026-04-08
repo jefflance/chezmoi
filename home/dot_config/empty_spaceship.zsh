@@ -9,7 +9,7 @@ SPACESHIP_DIR_TRUNC_REPO=false
 
 # Add custom Ember section
 # See: https://github.com/spaceship-prompt/spaceship-ember
-spaceship add ember
+# spaceship add ember
 
 # Add a custom vi-mode section to the prompt
 # See: https://github.com/spaceship-prompt/spaceship-vi-mode
