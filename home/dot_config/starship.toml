@@ -2,7 +2,7 @@
 
 format = """
 $username\
-$hostname}\
+$hostname\
 $localip\
 $shlvl\
 $singularity\
