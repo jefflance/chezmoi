@@ -206,6 +206,5 @@ gpgconf --launch gpg-agent
 #
 # spaceship prompt
 #
-spaceship add --before char vi_mode
 
 
