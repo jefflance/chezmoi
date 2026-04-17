@@ -34,7 +34,7 @@ WORDCHARS=${WORDCHARS//[\/]}
 ZOXIDE_CMD_OVERRIDE=cd
 
 SPACESHIP_PROMPT_ASYNC=false
-SPACESHIP_HOST_SHOW_FULL=true
+SPACESHIP_HOST_SHOW_FULL=always
 
 # --------------------
 # Module configuration
