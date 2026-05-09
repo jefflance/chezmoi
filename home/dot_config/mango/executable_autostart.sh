@@ -12,7 +12,7 @@ echo "Xft.dpi: 140" | xrdb -merge
 wl-clip-persist --clipboard regular --reconnect-tries 0 >/dev/null 2>&1 &
 
 # clipboard content manager
-wl-paste --watch cliphist store >/dev/null 2>&1 &
+wl-paste --type text --watch cliphist store >/dev/null 2>&1 &
 
 # start user session services
 systemctl --user start autostart.target
