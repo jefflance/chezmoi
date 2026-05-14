@@ -1,2 +1,29 @@
-#!/usr/bin/env sh
-slurp | grim -g - - | wl-copy
+#!/usr/bin/env bash
+set -euo pipefail
+mkdir -p "$HOME/Screenshots"
+filepath="$HOME/Screenshots/$(date +%Y%m%d%H%M%S).png"
+
+case "${1:-fullscreen}" in
+  region)
+    g=$(slurp -d); [ -z "$g" ] && exit 1
+    grim -g "$g" "$filepath" ;;
+  window)
+    g=$(mmsg -x | awk '/x / {x=$3} /y / {y=$3} /width / {w=$3} /height / {h=$3} END {print x","y" "w"x"h}')
+    [ -z "$g" ] && exit 1
+    grim -g "$g" "$filepath" ;;
+  # freeze)
+  #   p=$(mktemp -u).fifo; mkfifo "$p"
+  #   wayfreeze --after-freeze-timeout 100 --after-freeze-cmd "echo > $p" & wp=$!
+  #   read -r < "$p"; grim "$filepath"
+  #   kill "$wp" 2>/dev/null; rm -f "$p" ;;
+  # freeze-region)
+  #   p=$(mktemp -u).fifo; mkfifo "$p"
+  #   wayfreeze --after-freeze-timeout 100 --after-freeze-cmd "echo > $p" & wp=$!
+  #   read -r < "$p"; g=$(slurp -d)
+  #   if [ -z "$g" ]; then kill "$wp" 2>/dev/null; rm -f "$p"; exit 1; fi
+  #   grim -g "$g" "$filepath"
+  #   kill "$wp" 2>/dev/null; rm -f "$p" ;;
+  annotate)
+    grim "$filepath"; satty --filename "$filepath" --output-filename "$filepath" --actions-on-enter save-to-file --early-exit ;;
+  *) grim "$filepath" ;;
+esac
