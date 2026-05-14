@@ -24,6 +24,6 @@ case "${1:-fullscreen}" in
   #   grim -g "$g" "$filepath"
   #   kill "$wp" 2>/dev/null; rm -f "$p" ;;
   annotate)
-    grim "$filepath"; satty --filename "$filepath" --output-filename "$filepath" --actions-on-enter save-to-file --early-exit ;;
+    grim "$filepath"; satty --filename "$filepath" --output-filename "$filepath" --actions-on-enter save-to-file --early-exit; wl-copy < "$filepath" ;;
   *) grim "$filepath" ;;
 esac
