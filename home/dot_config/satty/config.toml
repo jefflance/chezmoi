@@ -11,7 +11,7 @@ resize = { mode = "size", width=2000, height=800 }
 # try to have the window float (0.20.1). This may depend on the compositor.
 floating-hack = true
 # Change to true to automatically copy to clipboard after every annotation change (NEXTRELEASE)
-auto-copy = true
+auto-copy = false
 # Exit directly after copy/save action. 0.20.1: Does not apply to save as
 early-exit = true
 # Exit directly after save as (0.20.1)
