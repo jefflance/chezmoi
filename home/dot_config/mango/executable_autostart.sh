@@ -17,4 +17,6 @@ wl-paste --watch cliphist store >/dev/null 2>&1 &
 # start user session services
 systemctl --user start autostart.target
 
+# permission authentication
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 >/dev/null 2>&1 &
 
