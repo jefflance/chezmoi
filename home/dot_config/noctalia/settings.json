@@ -112,36 +112,13 @@
                     ],
                     "left": [
                         {
-                            "colorizeDistroLogo": false,
-                            "colorizeSystemIcon": "none",
-                            "colorizeSystemText": "none",
-                            "customIconPath": "",
-                            "enableColorization": true,
-                            "icon": "noctalia",
-                            "id": "ControlCenter",
-                            "useDistroLogo": true
-                        },
-                        {
-                            "compactMode": true,
-                            "diskPath": "/",
-                            "iconColor": "none",
-                            "id": "SystemMonitor",
-                            "showCpuCores": false,
-                            "showCpuFreq": false,
-                            "showCpuTemp": true,
-                            "showCpuUsage": true,
-                            "showDiskAvailable": false,
-                            "showDiskUsage": false,
-                            "showDiskUsageAsPercent": false,
-                            "showGpuTemp": false,
-                            "showLoadAverage": false,
-                            "showMemoryAsPercent": false,
-                            "showMemoryUsage": true,
-                            "showNetworkStats": false,
-                            "showSwapUsage": false,
-                            "textColor": "none",
-                            "useMonospaceFont": true,
-                            "usePadding": false
+                            "clockColor": "tertiary",
+                            "customFont": "",
+                            "formatHorizontal": "HH:mm ddd, MMM dd",
+                            "formatVertical": "HH mm - dd MM",
+                            "id": "Clock",
+                            "tooltipFormat": "HH:mm ddd, MMM dd",
+                            "useCustomFont": false
                         }
                     ],
                     "right": [
@@ -198,9 +175,6 @@
                             "id": "plugin:clipboard"
                         },
                         {
-                            "id": "plugin:arch-updater"
-                        },
-                        {
                             "id": "plugin:color-scheme-creator"
                         }
                     ]
@@ -246,6 +220,28 @@
                     ],
                     "left": [
                         {
+                            "compactMode": true,
+                            "diskPath": "/",
+                            "iconColor": "none",
+                            "id": "SystemMonitor",
+                            "showCpuCores": false,
+                            "showCpuFreq": false,
+                            "showCpuTemp": true,
+                            "showCpuUsage": true,
+                            "showDiskAvailable": false,
+                            "showDiskUsage": false,
+                            "showDiskUsageAsPercent": false,
+                            "showGpuTemp": false,
+                            "showLoadAverage": false,
+                            "showMemoryAsPercent": false,
+                            "showMemoryUsage": true,
+                            "showNetworkStats": false,
+                            "showSwapUsage": false,
+                            "textColor": "none",
+                            "useMonospaceFont": true,
+                            "usePadding": false
+                        },
+                        {
                             "compactMode": false,
                             "hideMode": "idle",
                             "hideWhenIdle": false,
@@ -264,16 +260,13 @@
                     ],
                     "right": [
                         {
-                            "clockColor": "secondary",
+                            "clockColor": "tertiary",
                             "customFont": "",
                             "formatHorizontal": "HH:mm:ss, ddd dd MMM",
                             "formatVertical": "HH mm - dd MM",
                             "id": "Clock",
                             "tooltipFormat": "HH:mm ddd, MMM dd",
                             "useCustomFont": false
-                        },
-                        {
-                            "id": "plugin:arch-updater"
                         },
                         {
                             "id": "plugin:color-scheme-creator"
@@ -429,37 +422,6 @@
                         "showImagePreviews": true
                     },
                     "id": "plugin:clipboard"
-                },
-                {
-                    "defaultSettings": {
-                        "aurCmd": "paru -Qua 2>/dev/null",
-                        "aurHomepageCmd": "LC_ALL=C paru -Si {id} 2>/dev/null | awk '/^URL/ {print $3}'",
-                        "boldText": true,
-                        "boldVer": true,
-                        "boldVerDesktop": true,
-                        "boldVerPanel": true,
-                        "closeButton": true,
-                        "closeOnSettings": false,
-                        "customIconPath": "",
-                        "desktopTip": true,
-                        "enableColorization": false,
-                        "flatpak": true,
-                        "hideOnEmpty": false,
-                        "hoverTip": true,
-                        "iconColor": "none",
-                        "iconName": "arrow-big-down-lines",
-                        "noctalia": true,
-                        "panelContext": true,
-                        "panelTooltip": true,
-                        "refreshInterval": 120,
-                        "refreshTimer": true,
-                        "systemCmd": "checkupdates 2>/dev/null",
-                        "toast": true,
-                        "tooltip": true,
-                        "updateCmd": "ghostty -e bash -c 'echo \"Updating System...\";paru; flatpak update; read -n 1 -p \"Press any key to exit...\"'",
-                        "useDistroLogo": false
-                    },
-                    "id": "plugin:arch-updater"
                 },
                 {
                     "defaultSettings": {
@@ -774,10 +736,12 @@
         "enabledTypes": [
             0,
             1,
-            2
+            2,
+            3
         ],
         "location": "top_right",
         "monitors": [
+            "DP-1"
         ],
         "overlayLayer": true
     },
