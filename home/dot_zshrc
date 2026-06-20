@@ -68,6 +68,11 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 #ZSH_HIGHLIGHT_STYLES[comment]='fg=10'
 
 
+#
+# source scalingo completion
+#
+# source ~/.zsh/completion/scalingo_complete.zsh
+
 
 # ------------------
 # Initialize modules
@@ -202,10 +207,5 @@ export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 
-
-
-#
-# spaceship prompt
-#
 
 
