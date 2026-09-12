@@ -86,10 +86,10 @@
                             "followFocusedScreen": false,
                             "fontWeight": "bold",
                             "groupedBorderOpacity": 1,
-                            "hideUnoccupied": false,
+                            "hideUnoccupied": true,
                             "iconScale": 0.8,
                             "id": "Workspace",
-                            "labelMode": "index",
+                            "labelMode": "index+name",
                             "occupiedColor": "secondary",
                             "pillSize": 0.6,
                             "showApplications": true,
@@ -176,6 +176,9 @@
                         },
                         {
                             "id": "plugin:color-scheme-creator"
+                        },
+                        {
+                            "id": "plugin:keybind-cheatsheet"
                         }
                     ]
                 }
@@ -270,6 +273,9 @@
                         },
                         {
                             "id": "plugin:color-scheme-creator"
+                        },
+                        {
+                            "id": "plugin:keybind-cheatsheet"
                         }
                     ]
                 }
@@ -428,6 +434,59 @@
                         "iconColor": "none"
                     },
                     "id": "plugin:color-scheme-creator"
+                },
+                {
+                    "defaultSettings": {
+                        "autoHeight": true,
+                        "bindOverrides": {
+                        },
+                        "cheatsheetData": [
+                        ],
+                        "columnCount": 3,
+                        "descriptionTextColor": "",
+                        "detectedCompositor": "",
+                        "hyprlandConfigPath": "~/.config/hypr/hyprland.conf",
+                        "hyprlandLuaConfigPath": "~/.config/hypr/hyprland.lua",
+                        "hyprlandParserMode": "auto",
+                        "keyColorAlt": "#FF6B6B",
+                        "keyColorCtrl": "",
+                        "keyColorDefault": "#6C757D",
+                        "keyColorMod2": "",
+                        "keyColorMod3": "",
+                        "keyColorMod5": "",
+                        "keyColorMouse": "#F38181",
+                        "keyColorNumeric": "#A8DADC",
+                        "keyColorPrint": "#95E1D3",
+                        "keyColorShift": "",
+                        "keyColorSuper": "",
+                        "keyColorXF86": "#4ECDC4",
+                        "keyLabelColor": "#FFFFFF",
+                        "keyLabelMod2": "",
+                        "keyLabelMod3": "",
+                        "keyLabelMod5": "",
+                        "keyTextAlt": "",
+                        "keyTextCtrl": "",
+                        "keyTextDefault": "",
+                        "keyTextMod2": "",
+                        "keyTextMod3": "",
+                        "keyTextMod5": "",
+                        "keyTextMouse": "",
+                        "keyTextNumeric": "",
+                        "keyTextPrint": "",
+                        "keyTextShift": "",
+                        "keyTextSuper": "",
+                        "keyTextXF86": "",
+                        "mangoConfigPath": "~/.config/mango/config.conf",
+                        "mergeSequentialBinds": true,
+                        "modKeyVariable": "$mod",
+                        "niriConfigPath": "~/.config/niri/config.kdl",
+                        "showUndescribedBinds": true,
+                        "splitLargeWorkspaceCategory": true,
+                        "windowHeight": 850,
+                        "windowWidth": 1400,
+                        "workspaceSplitThreshold": 12
+                    },
+                    "id": "plugin:keybind-cheatsheet"
                 }
             ]
         }
